@@ -22,8 +22,20 @@
         <h1 class="txt_title">厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
       </div>
       <div class="liveDetails_wrap_rent">
-        <p class="txt_min">租金</p>
-        <h1 class="txt_money">250元/时起</h1>
+        <ul>
+          <li>
+            <p class="txt_min">租金</p>
+            <h1 class="txt_money">250元/时起</h1>
+          </li>
+          <li>
+            <p class="txt_min">工位</p>
+            <h1 class="txt_money">2000个工位</h1>
+          </li>
+          <li>
+            <p class="txt_min">面积</p>
+            <h1 class="txt_money">面积 750.00㎡</h1>
+          </li>
+        </ul>
       </div>
       <div class="liveDetails_wrap_card">
         <div class="txt_card">
@@ -45,80 +57,34 @@
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_baojie_nor.png" alt />
-          <p>交通便利</p>
+          <p>保洁服务</p>
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_visit_nor.png" alt />
-          <p>交通便利</p>
+          <p>政要参观</p>
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_light_nor.png" alt />
-          <p>交通便利</p>
+          <p>宽阔明亮</p>
         </div>
       </div>
     </div>
-    <div class="liveDetails_introductory paddd">
-      <div class="liveDetails_introductory_title">
-        <p class="txt_title_min">优惠政策</p>
-      </div>
-      <div class="liveDetails_introductory_content">
-        <div class="liveDetails_introductory_content_card">连租优惠</div>
-        <p>连续预定满3个小时，享受9.0折优惠</p>
-      </div>
-    </div>
     <div class="liveDetails_synopsis paddd">
-      <h1 class="txt_title_min">基地简介</h1>
+      <h1 class="txt_title_min">房源简介</h1>
       <p>是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。</p>
     </div>
     <div class="liveDetails_enter paddd">
       <div class="liveDetails_enter_title">
-        <h1 class="txt_title_min">入驻须知</h1>
+        <h1 class="txt_title_min">类似房源推荐</h1>
       </div>
       <div class="liveDetails_enter_list">
-        <div class="liveDetails_enter_list_left">
-          <p>押金</p>
-        </div>
-        <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">¥200</p>
-          <img src="../../assets/con_icon_ques.png" alt />
-        </div>
-      </div>
-      <div class="liveDetails_enter_list">
-        <div class="liveDetails_enter_list_left">
-          <p>最少起订</p>
-        </div>
-        <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">1个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
-        </div>
-      </div>
-      <div class="liveDetails_enter_list">
-        <div class="liveDetails_enter_list_left">
-          <p>退订政策</p>
-        </div>
-        <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">入住前一个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
-        </div>
-      </div>
-      <div class="liveDetails_enter_list">
-        <div class="liveDetails_enter_list_left">
-          <p>入驻守则</p>
-        </div>
-        <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">入住前一个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
-        </div>
+          <contentList/>
       </div>
     </div>
     <div class="liveDetails_bottom paddd">
       <div class="liveDetails_bottom_love">
-        <div class="liveDetails_bottom_love_img">
-
-        </div>
-        <div class="liveDetails_bottom_love_txt">
-          已关注
-        </div>
+        <div class="liveDetails_bottom_love_img"></div>
+        <div class="liveDetails_bottom_love_txt">已关注</div>
       </div>
       <div class="liveDetails_bottom_btn1">
         <button @click="toAppointment">立即预定</button>
@@ -131,6 +97,8 @@
 </template>
 
 <script>
+import contentList from '../../components/ContentList/index'
+
 export default {
   name: "liveDetails",
   data() {
@@ -143,15 +111,18 @@ export default {
       this.current = index;
     },
     toAppointment(){
-      this.$router.push(`/appointment/${2}`)
+      this.$router.push(`/appointment/${1}`)
     }
+  },
+  components:{
+      contentList
   }
 };
 </script>
 
 <style lang="less" scoped>
 .liveDetails {
-  padding:  0 0 130px 0;
+  padding: 0 0 130px 0;
 }
 .custom-indicator {
   position: absolute;
@@ -168,6 +139,18 @@ export default {
   }
   .liveDetails_wrap_rent {
     margin-top: 50px;
+    ul {
+      display: flex;
+      li:nth-child(1){
+          padding-left: 0;
+          border: none;
+      }
+      li {
+          flex: 1;
+          border-left: 1px #DEDEDE solid;
+          padding-left: 30px;
+      }
+    }
   }
   .liveDetails_wrap_card {
     margin-top: 24px;
@@ -204,38 +187,6 @@ export default {
   }
 }
 
-div.liveDetails_introductory.paddd {
-  div.liveDetails_introductory_title {
-    margin-top: 40px;
-    p {
-    }
-  }
-
-  div.liveDetails_introductory_content {
-    margin-top: 20px;
-    display: flex;
-    div.liveDetails_introductory_content_card {
-      padding: 5px 14px;
-      background: rgba(255, 247, 235, 1);
-      font-size: 22px;
-      font-family: PingFang-SC-Medium, PingFang-SC;
-      font-weight: 500;
-      color: rgba(250, 151, 2, 1);
-      line-height: 30px;
-    }
-
-    p {
-      font-size: 22px;
-      font-family: PingFang-SC-Medium, PingFang-SC;
-      font-weight: 500;
-      color: rgba(102, 102, 102, 1);
-      line-height: 30px;
-      margin-top: 5px;
-      margin-left: 20px;
-    }
-  }
-}
-
 .liveDetails_synopsis {
   margin-top: 45px;
   p {
@@ -254,48 +205,7 @@ div.liveDetails_enter.paddd {
     h1.txt_title_min {
     }
   }
-  .liveDetails_enter_list:nth-child(1) {
-    margin-top: 9px;
-  }
-  .liveDetails_enter_list:nth-last-child(1) {
-    margin-bottom: 40px;
-  }
-  div.liveDetails_enter_list {
-    width: 100%;
-    height: 88px;
-    line-height: 88px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px #f4f4f4 solid;
-    div.liveDetails_enter_list_left {
-      font-size: 26px;
-      font-family: PingFang-SC-Medium, PingFang-SC;
-      font-weight: 500;
-      color: rgba(102, 102, 102, 1);
-      line-height: 37px;
-      p {
-        line-height: 88px;
-      }
-    }
 
-    div.liveDetails_enter_list_right {
-      display: flex;
-      p {
-        margin-right: 20px;
-        line-height: 88px;
-
-        max-width: 156px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      img {
-        width: 32px;
-        height: 32px;
-        margin-top: 28px;
-      }
-    }
-  }
 }
 div.liveDetails_bottom {
   width: 100%;
@@ -303,7 +213,6 @@ div.liveDetails_bottom {
   padding: 21px 0;
   display: flex;
   background: rgba(255, 255, 255, 1);
-  box-shadow: 10px rgba(0, 0, 0, 0.07);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -311,7 +220,7 @@ div.liveDetails_bottom {
     flex: 1;
     width: 66px;
     text-align: center;
-    .liveDetails_bottom_love_img{
+    .liveDetails_bottom_love_img {
       width: 38px;
       height: 34px;
       background: red;
@@ -323,11 +232,11 @@ div.liveDetails_bottom {
       }
     }
     .liveDetails_bottom_love_txt {
-      font-size:22px;
-      font-family:PingFang-SC-Medium,PingFang-SC;
-      font-weight:500;
-      color:rgba(51,51,51,1);
-      line-height:30px;
+      font-size: 22px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(51, 51, 51, 1);
+      line-height: 30px;
       margin-top: 8px;
     }
   }
@@ -340,11 +249,11 @@ div.liveDetails_bottom {
       background: rgba(250, 151, 2, 1);
       border-radius: 6px;
       border: none;
-      font-size:32px;
-      font-family:PingFang-SC-Bold,PingFang-SC;
-      font-weight:540;
-      color:rgba(255,255,255,1);
-      line-height:45px;
+      font-size: 32px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 1);
+      line-height: 45px;
     }
   }
 
@@ -356,11 +265,11 @@ div.liveDetails_bottom {
       background: rgba(255, 186, 21, 1);
       border-radius: 6px;
       border: none;
-      font-size:32px;
-      font-family:PingFang-SC-Bold,PingFang-SC;
-      font-weight:540;
-      color:rgba(255,255,255,1);
-      line-height:45px;
+      font-size: 32px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: 540;
+      color: rgba(255, 255, 255, 1);
+      line-height: 45px;
     }
   }
 }

@@ -23,9 +23,24 @@ Vue.use(VueRouter)
     component:resolve=>(require(["@/views/RentingList/index.vue"],resolve))
   },
   {
+    path: '/RentingDetails',
+    name: 'RentingDetails',
+    component:resolve=>(require(["@/views/RentingDetails/index.vue"],resolve))
+  },
+  {
+    path: '/liveList',
+    name: 'liveList',
+    component:resolve=>(require(["@/views/LiveList/index.vue"],resolve))
+  },
+  {
     path: '/liveDetails',
     name: 'liveDetails',
     component:resolve=>(require(["@/views/LiveDetails/index.vue"],resolve))
+  },
+  {
+    path: '/appointment/:type',
+    name: 'appointment',
+    component:resolve=>(require(["@/views/Appointment/index.vue"],resolve))
   },
 ]
 

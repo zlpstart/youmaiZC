@@ -85,7 +85,7 @@
 
     <!-- 直播基地 -->
     <div class="HomeContent live_live">
-      <div class="HomeContent_title">
+      <div class="HomeContent_title" @click="toLiveList">
         <div class="HomeContent_title_left">
           <h1 class="txt_title">直播基地</h1>
           <p>配套设施齐全可拎包入住</p>
@@ -207,6 +207,9 @@ export default {
   methods:{
     toList(){
       this.$router.push('/rentingList')
+    },
+    toLiveList(){
+      this.$router.push('/liveList')
     }
   }
 };

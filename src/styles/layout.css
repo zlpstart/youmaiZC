@@ -156,3 +156,171 @@
     color:rgba(255,255,255,1);
     line-height:28px;
 }
+/* 选择时间 */
+.van-popup {
+    height: 791px !important;
+}
+.van-sidebar {
+    flex: 1;
+    height: 100% !important;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+.van-sidebar-item {
+    width: 266px;
+    height: 88px;
+    font-size:28px;
+    font-family:PingFang-SC-Bold,PingFang-SC;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+}
+.van-sidebar-item--select::before {
+    display: none;
+}
+.van-tree-select__item {
+    padding-left: 30px;
+    height: 88px;
+    line-height: 88px;
+    font-size:28px;
+    font-family:PingFang-SC-Medium,PingFang-SC;
+    font-weight:500;
+    color:#666666;
+    line-height:80px;
+}
+.van-tree-select__item--active {
+    color: #FA9702;
+}
+.van-icon-success::before {
+    display: none;
+}
+.van-popup--bottom {
+    overflow: hidden;
+}
+/* 预约成功 */
+.van-popup--center {
+    padding: 84px 30px 44px 30px;
+    width:500px;
+    height:410px !important;
+    background:rgba(255,255,255,1);
+    border-radius:10px;
+    text-align: center;
+    position: relative;
+    overflow-y: visible;
+}
+.van-popup--center h1 {
+    font-size:32px;
+    font-family:PingFang-SC-Bold,PingFang-SC;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    line-height:45px;
+}
+.van-popup--center p {
+    font-size:24px;
+    font-family:PingFang-SC-Medium,PingFang-SC;
+    font-weight:500;
+    color:rgba(102,102,102,1);
+    line-height:33px;
+    margin-top: 30px;
+}
+.van-popup--center button {
+    margin-top: 55px;
+    width:380px;
+    height:60px;
+    background:rgba(250,151,2,1);
+    border-radius:6px;
+    font-size:28px;
+    font-family:PingFang-SC-Bold,PingFang-SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    line-height:40px;
+}
+.img {
+    background: #F4F4F4;
+    width: 108px;
+    height: 108px;
+    position: absolute;
+    border-radius: 108px;
+    top:0px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.img img {
+    width: 100%;
+    /* height: 100%; */
+}
+.popup_timer {
+    width: 100%;
+    height: 87px;
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 155px;
+}
+.popup_timer p {
+    font-size:24px;
+    font-family:PingFang-SC-Medium,PingFang-SC;
+    font-weight:500;
+    color:rgba(51,51,51,1);
+    line-height:33px;
+}
+.popup_timer_left {
+    text-align: center;
+}
+.popup_timer_left p {
+    width: 100%;
+}
+.lives .van-popup--bottom {
+    padding-top: 50px;
+}
+.lives .popup_title {
+    height: auto !important;
+    line-height: 0 !important;
+}
+.van-tabs__nav--line {
+    width: 100%;
+    height: 88px;
+    background:rgba(244,244,244,1);
+}
+.van-tabs--line .van-tabs__wrap {
+    height: 88px;
+}
+.van-tabs__line {
+    width: 44px;
+    height: 5px !important;
+    top: 64px;
+    background:rgba(250,151,2,1);
+}
+.van_content {
+    /* padding: 0px 30px 44px 30px; */
+}
+.van_content ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.van_content li {
+    width:150px;
+    height:88px;
+    margin-top: 30px;
+    background:rgba(244,244,244,1);
+    border-radius:4px;
+    margin-left: 30px;
+    text-align: center;
+}
+.van_content p {
+    font-size:24px;
+    line-height: 88px !important;
+    font-family:PingFang-SC-Bold,PingFang-SC;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+    line-height:33px;
+}
+.van_active p {
+    width:150px;
+    height:88px;
+    background:rgba(255,255,255,1);
+    border-radius:4px;
+    border:1px solid rgba(250,151,2,1);
+}
