@@ -112,13 +112,17 @@
       </div>
     </div>
     <div class="liveDetails_bottom paddd">
-      <div class="liveDetails_bottom_love">
+      <div class="liveDetails_bottom_love" @click="attention" v-show="attentioning">
         <div class="liveDetails_bottom_love_img">
-
+          <img src="../../assets/bangong_icon_coll_nor.png" alt />
         </div>
-        <div class="liveDetails_bottom_love_txt">
-          已关注
+        <div class="liveDetails_bottom_love_txt">关注</div>
+      </div>
+      <div class="liveDetails_bottom_love" @click="attention" v-show="!attentioning">
+        <div class="liveDetails_bottom_love_img">
+          <img src="../../assets/bangong_icon_coll_press.png" alt />
         </div>
+        <div class="liveDetails_bottom_love_txt">已关注</div>
       </div>
       <div class="liveDetails_bottom_btn1">
         <button @click="toAppointment">立即预定</button>
@@ -135,15 +139,19 @@ export default {
   name: "liveDetails",
   data() {
     return {
-      current: 0
+      current: 0,
+      attentioning: true
     };
   },
   methods: {
     onChange(index) {
       this.current = index;
     },
-    toAppointment(){
-      this.$router.push(`/appointment/${2}`)
+    toAppointment() {
+      this.$router.push(`/appointment/${2}`);
+    },
+    attention() {
+      this.attentioning = !this.attentioning;
     }
   }
 };
@@ -151,7 +159,7 @@ export default {
 
 <style lang="less" scoped>
 .liveDetails {
-  padding:  0 0 130px 0;
+  padding: 0 0 130px 0;
 }
 .custom-indicator {
   position: absolute;
@@ -311,10 +319,9 @@ div.liveDetails_bottom {
     flex: 1;
     width: 66px;
     text-align: center;
-    .liveDetails_bottom_love_img{
+    .liveDetails_bottom_love_img {
       width: 38px;
       height: 34px;
-      background: red;
       margin-left: 35px;
       margin-top: 12px;
       img {
@@ -323,11 +330,11 @@ div.liveDetails_bottom {
       }
     }
     .liveDetails_bottom_love_txt {
-      font-size:22px;
-      font-family:PingFang-SC-Medium,PingFang-SC;
-      font-weight:500;
-      color:rgba(51,51,51,1);
-      line-height:30px;
+      font-size: 22px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(51, 51, 51, 1);
+      line-height: 30px;
       margin-top: 8px;
     }
   }
@@ -340,11 +347,11 @@ div.liveDetails_bottom {
       background: rgba(250, 151, 2, 1);
       border-radius: 6px;
       border: none;
-      font-size:32px;
-      font-family:PingFang-SC-Bold,PingFang-SC;
-      font-weight:540;
-      color:rgba(255,255,255,1);
-      line-height:45px;
+      font-size: 32px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: 540;
+      color: rgba(255, 255, 255, 1);
+      line-height: 45px;
     }
   }
 
@@ -356,11 +363,11 @@ div.liveDetails_bottom {
       background: rgba(255, 186, 21, 1);
       border-radius: 6px;
       border: none;
-      font-size:32px;
-      font-family:PingFang-SC-Bold,PingFang-SC;
-      font-weight:540;
-      color:rgba(255,255,255,1);
-      line-height:45px;
+      font-size: 32px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: 540;
+      color: rgba(255, 255, 255, 1);
+      line-height: 45px;
     }
   }
 }

@@ -1,15 +1,17 @@
 <template>
   <div class="contentList">
-    <div class="rentingList_content" @click="toWorkDetails">
+    <div :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}" @click="toWorkDetails">
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
           <img src="../../assets/ceshi.jpg" alt />
         </div>
         <div class="rentingList_content_box_txt">
-          <div class="rentingList_content_box_txt_h1">
-            <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
+          <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
+            <h1
+              :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
+            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
           </div>
-          <div class="rentingList_content_box_txt_span">
+          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
             <p class="txt_min">
               <img src="../../assets/bangong_icon_chair_nor.png" alt />
               100个工位
@@ -19,6 +21,7 @@
               500.00㎡面积
             </p>
           </div>
+          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
           <div class="rentingList_content_box_txt_card txt_card">
             <p>茶水间</p>
             <p>路演厅</p>
@@ -40,8 +43,8 @@ export default {
       console.log(this.$route.path);
       if (this.$route.path == "/rentingList") {
         this.$router.push("/RentingDetails");
-      }else if(this.$route.path == "/liveList"){
-          this.$router.push('/liveDetails')
+      } else if (this.$route.path == "/liveList") {
+        this.$router.push("/liveDetails");
       }
     }
   }
@@ -50,10 +53,10 @@ export default {
 
 <style lang="less" scoped>
 div.rentingList_content {
-    margin-top: 20px;
+  margin-top: 20px;
   margin-bottom: 61px;
-  .rentingList_content_box:nth-child(1){
-      margin-top: 0;
+  .rentingList_content_box:nth-child(1) {
+    margin-top: 0;
   }
   div.rentingList_content_box {
     margin-top: 30px;
@@ -68,6 +71,7 @@ div.rentingList_content {
     }
 
     div.rentingList_content_box_txt {
+      width: 409px;
       margin-left: 20px;
       div.rentingList_content_box_txt_h1 {
       }
@@ -94,5 +98,22 @@ div.rentingList_content {
       }
     }
   }
+}
+.form {
+  height: 74px;
+}
+.form2 {
+  white-space: nowrap;
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.zhanwei {
+  width: 100%;
+  height: 6px;
+}
+.rentingList_margin {
+  margin-top: 20px;
+  margin-bottom: 30px !important;
 }
 </style>

@@ -23,7 +23,9 @@
           <div class="yuan"></div>
           <label for="phone">看房时间</label>
           <input id="phone" type="text" placeholder="请选择看房时间" @click="showHouse" />
-          <p>></p>
+          <p>
+            <img src="../../assets/icon_link_nor.png" alt="">
+          </p>
         </div>
         <!-- 直播预约 -->
         <div class="appointment_form_form_input" v-if="type" @click="showType2">
@@ -33,7 +35,7 @@
           <p>></p>
         </div>
       </div>
-      <div class="appointment_form_form_button">下一步</div>
+      <div class="appointment_form_form_button" @click="toOrderForm">下一步</div>
     </div>
     <!-- 租房预约 -->
     <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
@@ -106,7 +108,7 @@ export default {
       type: true,
       show: false,
       show2: false,
-      showLives: true,
+      showLives: false,
       items: [
         //   1
         {
@@ -503,6 +505,9 @@ export default {
       } else {
         item.active = true;
       }
+    },
+    toOrderForm(){
+      this.$router.push('/orderform')
     }
   }
 };
@@ -540,6 +545,10 @@ div.appointment {
     }
     div.appointment_form_form {
       margin-top: 39px;
+      .appointment_form_form_input p img {
+        width: 16px;
+        height: 28px;
+      }
       .appointment_form_form_input:nth-child(1) .yuan {
         border: 3px solid #43d39c;
       }

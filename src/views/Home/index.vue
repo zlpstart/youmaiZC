@@ -3,11 +3,31 @@
     <div class="home_router">
       <router-view />
     </div>
-    <van-tabbar  route v-model="active" class="zlp">
-      <van-tabbar-item to="/homeWrap" class="zlp_txt" icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item class="zlp_txt" icon="search">标签</van-tabbar-item>
-      <van-tabbar-item class="zlp_txt" icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item class="zlp_txt" icon="setting-o">标签</van-tabbar-item>
+    <van-tabbar route v-model="active" class="zlp">
+      <van-tabbar-item to="/homeWrap">
+        <template>
+          <img :src="active!=0?icon.home:iconActive.home" />
+        </template>
+        <span>首页</span>
+      </van-tabbar-item>
+      <van-tabbar-item to="/serve">
+        <template>
+          <img :src="active!=1?icon.serve:iconActive.serve" />
+        </template>
+        <span>企服</span>
+      </van-tabbar-item>
+      <van-tabbar-item to="/service">
+        <template>
+          <img :src="active!=2?icon.kefu:iconActive.kefu" />
+        </template>
+        <span>客服</span>
+      </van-tabbar-item>
+      <van-tabbar-item to="/user">
+        <template>
+          <img :src="active!=3?icon.user:iconActive.user" />
+        </template>
+        <span>我的</span>
+      </van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -20,7 +40,19 @@ export default {
   name: "home",
   data() {
     return {
-      active: 0
+      active: 2,
+      icon: {
+        home: require("../../assets/home_icon_home_nor.png"),
+        serve: require("../../assets/serve.png"),
+        kefu: require("../../assets/home_icon_mess_nor.png"),
+        user: require("../../assets/home_icon_my_nor.png")
+      },
+      iconActive:{
+        home:require('../../assets/home_icon_home_press.png'),
+        serve:require('../../assets/serveActive.png'),
+        kefu:require('../../assets/home_icon_mess_press.png'),
+        user:require('../../assets/home_icon_my_press.png')
+      }
     };
   },
   components: {
@@ -43,6 +75,7 @@ export default {
   .van-tabbar-item {
     width: 96px;
     height: 96px;
+    text-align: center;
   }
 }
 </style>

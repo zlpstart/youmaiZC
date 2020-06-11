@@ -12,7 +12,9 @@
         <div class="HomeTopBar_minbox_logo">
           <img src="../../assets/home_icon_bangong_nor.png" alt />
         </div>
-        <div class="HomeTopBar_minbox_right">></div>
+        <div class="HomeTopBar_minbox_right">
+          <img src="../../assets/icon_link_nor.png" alt="">
+        </div>
         <div class="HomeTopBar_minbox_radiu"></div>
       </div>
       <div class="HomeTopBar_minbox" @click="toLiveList">
@@ -23,7 +25,9 @@
         <div class="HomeTopBar_minbox_logo">
           <img src="../../assets/home_icon_zhibo_nor.png" alt />
         </div>
-        <div class="HomeTopBar_minbox_right">></div>
+        <div class="HomeTopBar_minbox_right">
+          <img src="../../assets/icon_link_nor.png" alt="">
+        </div>
         <div class="HomeTopBar_minbox_radiu"></div>
       </div>
     </div>
@@ -90,6 +94,11 @@ export default {
         width: 13px;
         height: 24px;
         line-height: 70px;
+        img {
+          width: 13px;
+          height: 24px;
+          margin-left: 5px;
+        }
       }
       .HomeTopBar_minbox_radiu {
         position: absolute;

@@ -8,13 +8,15 @@
           <p>配套设施齐全可拎包入住</p>
         </div>
         <div class="HomeContent_title_right">
-          <p>></p>
+          <p>
+            <img src="../../assets/icon_link_nor.png" alt />
+          </p>
         </div>
       </div>
       <div class="HomeContent_wrap">
         <div class="HomeContent_wrap_box">
           <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt="">
+            <img src="../../assets/ceshi.jpg" alt />
           </div>
           <div class="HomeContent_wrap_box_txt">
             <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
@@ -31,7 +33,7 @@
         </div>
         <div class="HomeContent_wrap_box">
           <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt="">
+            <img src="../../assets/ceshi.jpg" alt />
           </div>
           <div class="HomeContent_wrap_box_txt">
             <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
@@ -48,7 +50,7 @@
         </div>
         <div class="HomeContent_wrap_box">
           <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt="">
+            <img src="../../assets/ceshi.jpg" alt />
           </div>
           <div class="HomeContent_wrap_box_txt">
             <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
@@ -65,7 +67,7 @@
         </div>
         <div class="HomeContent_wrap_box">
           <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt="">
+            <img src="../../assets/ceshi.jpg" alt />
           </div>
           <div class="HomeContent_wrap_box_txt">
             <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
@@ -91,7 +93,9 @@
           <p>配套设施齐全可拎包入住</p>
         </div>
         <div class="HomeContent_title_right">
-          <p>></p>
+          <p>
+            <img src="../../assets/icon_link_nor.png" alt />
+          </p>
         </div>
       </div>
       <div>
@@ -99,14 +103,14 @@
           <div class="live_box">
             <div class="live_box_img">
               <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt="">
+                <img src="../../assets/ceshi.jpg" alt />
               </div>
               <div class="live_box_img_right">
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
               </div>
             </div>
@@ -131,14 +135,14 @@
           <div class="live_box">
             <div class="live_box_img">
               <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt="">
+                <img src="../../assets/ceshi.jpg" alt />
               </div>
               <div class="live_box_img_right">
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
               </div>
             </div>
@@ -163,14 +167,14 @@
           <div class="live_box">
             <div class="live_box_img">
               <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt="">
+                <img src="../../assets/ceshi.jpg" alt />
               </div>
               <div class="live_box_img_right">
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
                 <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt="">
+                  <img src="../../assets/ceshi.jpg" alt />
                 </div>
               </div>
             </div>
@@ -204,12 +208,12 @@ export default {
   data() {
     return {};
   },
-  methods:{
-    toList(){
-      this.$router.push('/rentingList')
+  methods: {
+    toList() {
+      this.$router.push("/rentingList");
     },
-    toLiveList(){
-      this.$router.push('/liveList')
+    toLiveList() {
+      this.$router.push("/liveList");
     }
   }
 };
@@ -234,6 +238,11 @@ export default {
     }
     &_right {
       line-height: 39px;
+      img {
+        width: 14px;
+        height: 26px;
+        margin-top: 35px;
+      }
     }
   }
   &_wrap {
@@ -294,7 +303,7 @@ export default {
   overflow-x: auto;
   overflow-y: hidden;
   &_box:nth-child(1) {
-      margin-left: 0;
+    margin-left: 0;
   }
   &_box {
     width: 660px;
@@ -318,6 +327,10 @@ export default {
       &_right {
         width: 195px;
         height: 310px;
+        img {
+          width: 14px;
+          height: 26px;
+        }
         &_box {
           width: 100%;
           height: 150px;
@@ -381,6 +394,6 @@ export default {
   overflow-y: hidden;
 }
 .live_live {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 </style>

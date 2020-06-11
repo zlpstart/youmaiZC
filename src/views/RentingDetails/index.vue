@@ -78,12 +78,20 @@
         <h1 class="txt_title_min">类似房源推荐</h1>
       </div>
       <div class="liveDetails_enter_list">
-          <contentList/>
+        <contentList />
       </div>
     </div>
     <div class="liveDetails_bottom paddd">
-      <div class="liveDetails_bottom_love">
-        <div class="liveDetails_bottom_love_img"></div>
+      <div class="liveDetails_bottom_love" @click="attention" v-show="attentioning">
+        <div class="liveDetails_bottom_love_img">
+          <img src="../../assets/bangong_icon_coll_nor.png" alt />
+        </div>
+        <div class="liveDetails_bottom_love_txt">关注</div>
+      </div>
+      <div class="liveDetails_bottom_love" @click="attention" v-show="!attentioning">
+        <div class="liveDetails_bottom_love_img">
+          <img src="../../assets/bangong_icon_coll_press.png" alt />
+        </div>
         <div class="liveDetails_bottom_love_txt">已关注</div>
       </div>
       <div class="liveDetails_bottom_btn1">
@@ -97,25 +105,29 @@
 </template>
 
 <script>
-import contentList from '../../components/ContentList/index'
+import contentList from "../../components/ContentList/index";
 
 export default {
   name: "liveDetails",
   data() {
     return {
-      current: 0
+      current: 0,
+      attentioning: true
     };
   },
   methods: {
     onChange(index) {
       this.current = index;
     },
-    toAppointment(){
-      this.$router.push(`/appointment/${1}`)
+    toAppointment() {
+      this.$router.push(`/appointment/${1}`);
+    },
+    attention() {
+      this.attentioning = !this.attentioning;
     }
   },
-  components:{
-      contentList
+  components: {
+    contentList
   }
 };
 </script>
@@ -141,14 +153,14 @@ export default {
     margin-top: 50px;
     ul {
       display: flex;
-      li:nth-child(1){
-          padding-left: 0;
-          border: none;
+      li:nth-child(1) {
+        padding-left: 0;
+        border: none;
       }
       li {
-          flex: 1;
-          border-left: 1px #DEDEDE solid;
-          padding-left: 30px;
+        flex: 1;
+        border-left: 1px #dedede solid;
+        padding-left: 30px;
       }
     }
   }
@@ -205,7 +217,6 @@ div.liveDetails_enter.paddd {
     h1.txt_title_min {
     }
   }
-
 }
 div.liveDetails_bottom {
   width: 100%;
@@ -223,7 +234,6 @@ div.liveDetails_bottom {
     .liveDetails_bottom_love_img {
       width: 38px;
       height: 34px;
-      background: red;
       margin-left: 35px;
       margin-top: 12px;
       img {
