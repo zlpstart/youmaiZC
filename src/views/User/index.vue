@@ -6,8 +6,13 @@
           <img src="../../assets/ceshi.jpg" alt />
         </div>
         <div class="user_top_message_right">
-          <p>174****2310</p>
-          <img src alt />
+          <div class="user_top_message_right_phone">
+            <p>174****2310</p>
+          </div>
+          <div class="user_top_message_right_card">
+            <img src="../../assets/vip_icon_vip_nor.png" alt />
+            <p>有麦会员</p>
+          </div>
         </div>
       </div>
       <div class="user_top_list">
@@ -84,7 +89,7 @@
       </div>
     </div>
     <div class="user_list padd">
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toWallet">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_wallet.png" alt />
@@ -94,7 +99,7 @@
           </div>
         </div>
         <div class="user_list_box_right">
-          <img src="../../assets/vip_icon_quan_nor.png" alt />
+          <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
       <div class="user_list_box">
@@ -167,7 +172,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "user",
+  data() {
+    return {};
+  },
+  methods: {
+    toWallet() {
+      console.log(111);
+      this.$router.push("/wallet");
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -197,24 +213,43 @@ div.user {
       }
 
       div.user_top_message_right {
-        p {
-          font-size: 34px;
-          font-family: PingFang-SC-Bold, PingFang-SC;
-          font-weight: bold;
-          color: rgba(51, 51, 51, 1);
-          line-height: 48px;
+        margin-left: 20px;
+        .user_top_message_right_phone {
+          p {
+            font-size: 34px;
+            font-family: PingFang-SC-Bold, PingFang-SC;
+            font-weight: bold;
+            color: rgba(51, 51, 51, 1);
+            line-height: 48px;
+          }
         }
-
-        img {
+        .user_top_message_right_card {
           width: 154px;
           height: 44px;
           margin-top: 8px;
+          background: #e9c794;
+          line-height: 44px;
+          border-radius: 6px;
+          display: flex;
+          padding-left: 8px;
+          img {
+            width: 26px;
+            height: 24px;
+            margin-top: 10px;
+          }
+          p {
+            font-size: 26px;
+            font-family: PingFang-SC-Bold, PingFang-SC;
+            font-weight: bold;
+            margin-left: 7px;
+            color: rgba(151, 95, 11, 1);
+          }
         }
       }
     }
 
     div.user_top_list {
-      margin-top: 44px;
+      margin-top: 75px;
       display: flex;
       .user_top_list_box:nth-child(2) {
         border-left: 1px solid #dedede;
@@ -224,7 +259,7 @@ div.user {
         width: 230px;
         height: 70px;
         text-align: center;
-        padding: 24px;
+        // padding: 24px;
         h1 {
           font-size: 36px;
           font-family: PingFang-SC-Bold, PingFang-SC;
@@ -261,8 +296,8 @@ div.user {
           width: 55px;
           margin: auto;
           img {
-            width: 100%;
-            height: 100%;
+            width: 91%;
+            height: 91%;
           }
         }
 

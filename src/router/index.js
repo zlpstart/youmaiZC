@@ -82,6 +82,16 @@ const routes = [
     name: 'havePaid',
     component: resolve => (require(["@/views/HavePaid/index.vue"], resolve))
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: resolve => (require(["@/views/Login/index.vue"], resolve))
+  },
+  {
+    path: '/wallet',
+    name: 'wallet',
+    component: resolve => (require(["@/views/Wallet/index.vue"], resolve))
+  },
 ]
 
 const router = new VueRouter({

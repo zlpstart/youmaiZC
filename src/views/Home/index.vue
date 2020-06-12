@@ -40,7 +40,7 @@ export default {
   name: "home",
   data() {
     return {
-      active: 2,
+      active: 0,
       icon: {
         home: require("../../assets/home_icon_home_nor.png"),
         serve: require("../../assets/serve.png"),
@@ -58,6 +58,9 @@ export default {
   components: {
     HomeTopBar,
     HomeContent
+  },
+  monted(){
+
   }
 };
 </script>
