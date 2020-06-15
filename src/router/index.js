@@ -92,6 +92,36 @@ const routes = [
     name: 'wallet',
     component: resolve => (require(["@/views/Wallet/index.vue"], resolve))
   },
+  {
+    path: '/coupon',
+    name: 'coupon',
+    component: resolve => (require(["@/views/Coupon/index.vue"], resolve))
+  },
+  {
+    path: '/attention',
+    name: 'attention',
+    component: resolve => (require(["@/views/Attention/index.vue"], resolve))
+  },
+  {
+    path: '/indent',
+    name: 'indent',
+    component: resolve => (require(["@/views/Indent/index.vue"], resolve))
+  },
+  {
+    path: '/aboutToSee',
+    name: 'aboutToSee',
+    component: resolve => (require(["@/views/AboutToSee/index.vue"], resolve))
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: resolve => (require(["@/views/About/index.vue"], resolve))
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: resolve => (require(["@/views/Detail/index.vue"], resolve))
+  }
 ]
 
 const router = new VueRouter({

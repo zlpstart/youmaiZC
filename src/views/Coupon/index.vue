@@ -1,0 +1,38 @@
+<template>
+  <div class="coupon">
+    <van-tabs v-model="active">
+      <van-tab title="未使用(3)">
+          <CouponUnused />
+      </van-tab>
+      <van-tab title="已使用(3)">
+          <CouponFinish />
+      </van-tab>
+      <van-tab title="已过期(3)">
+          <CouponPast />
+      </van-tab>
+    </van-tabs>
+  </div>
+</template>
+
+<script>
+import CouponUnused from '../../components/CouponUnused/index'
+import CouponFinish from '../../components/CouponFinish/index'
+import CouponPast from '../../components/CouponPast/index'
+
+export default {
+  name: "coupon",
+  data() {
+    return {
+      active: 0
+    };
+  },
+  components:{
+      CouponUnused,
+      CouponFinish,
+      CouponPast
+  }
+};
+</script>
+
+<style lang="less" scoped>
+</style>

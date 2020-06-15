@@ -1,11 +1,11 @@
 <template>
     <div class="liveList">
-        <contentList/>
+        <LiveList/>
     </div>
 </template>
 
 <script>
-import contentList from '../../components/ContentList/index' 
+import LiveList from '../../components/LiveList/index' 
 
 export default {
     name:"liveList",
@@ -13,7 +13,7 @@ export default {
 
     },
     components:{
-        contentList
+        LiveList
     }
 }
 </script>

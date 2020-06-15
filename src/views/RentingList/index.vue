@@ -6,14 +6,14 @@
       <van-dropdown-item title="租金价格" v-model="value3" :options="option3" />
     </van-dropdown-menu>
     <div class="rentingList_list">
-      <contentList />
+      <RentingList />
     </div>
   </div>
 </template>
 
 <script>
 import "../../styles/layout.css";
-import contentList from '../../components/ContentList/index'
+import RentingList from '../../components/RentingList/index'
 
 export default {
   data(){
@@ -48,7 +48,7 @@ export default {
     }
   },
   components:{
-    contentList
+    RentingList
   },
   methods:{
     toWorkDetails(){

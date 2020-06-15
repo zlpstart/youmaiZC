@@ -16,15 +16,15 @@
         </div>
       </div>
       <div class="user_top_list">
-        <div class="user_top_list_box">
+        <div class="user_top_list_box" @click="toWallet">
           <h1>1200</h1>
           <p>余额（元）</p>
         </div>
-        <div class="user_top_list_box">
+        <div class="user_top_list_box" @click="toCoupon">
           <h1>4</h1>
           <p>优惠券</p>
         </div>
-        <div class="user_top_list_box">
+        <div class="user_top_list_box" @click="toAttention">
           <h1>14</h1>
           <p>已关注</p>
         </div>
@@ -102,7 +102,7 @@
           <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toCoupon">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_quan_nor.png" alt />
@@ -115,7 +115,7 @@
           <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toAttention">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_guanzhu_nor.png" alt />
@@ -128,7 +128,7 @@
           <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toAboutToSee">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_yuekan_nor.png" alt />
@@ -141,7 +141,7 @@
           <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toIndent">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_order_nor.png" alt />
@@ -154,7 +154,7 @@
           <img src="../../assets/icon_link_nor.png" alt />
         </div>
       </div>
-      <div class="user_list_box">
+      <div class="user_list_box" @click="toAbout">
         <div class="user_list_box_left">
           <div class="user_list_box_left_img">
             <img src="../../assets/vip_icon_about us_nor.png" alt />
@@ -181,6 +181,21 @@ export default {
     toWallet() {
       console.log(111);
       this.$router.push("/wallet");
+    },
+    toCoupon(){
+      this.$router.push("/coupon")
+    },
+    toAttention(){
+      this.$router.push('/attention')
+    },
+    toIndent(){
+      this.$router.push('/indent')
+    },
+    toAboutToSee(){
+      this.$router.push("/aboutToSee")
+    },
+    toAbout(){
+      this.$router.push('/about')
     }
   }
 };
@@ -327,6 +342,7 @@ div.user {
           img {
             width: 100%;
             height: 100%;
+            margin-top: 3px;
           }
         }
 
@@ -356,6 +372,7 @@ div.user {
         img {
           width: 13px;
           height: 22px;
+          margin-top: 5px;
         }
       }
     }

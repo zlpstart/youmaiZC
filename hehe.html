@@ -1,45 +1,24 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Vue如何加class</title>
-    <meta charset="utf-8" />
-    <style type="text/css">
-        .classred {
-            color: red;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <title>Title</title>
+
+
+
+
 </head>
-
 <body>
-    <div id="app">
-        <ul class="list">
-            <li v-for="(item,index) in liList" v-on:click="addClass(index)" v-bind:class="{ classred:index==current}">
-                {{item.title}}</li>
-        </ul>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type="text/javascript">
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                name: '成步堂',
-                current: 0,
-                liList: [
-                    { title: '哈哈' },
-                    { title: '阿昂' },
-                    { title: '呜呜' },
-                    { title: '来啦' }
-                ]
-            },
-            methods: {
-                addClass: function (index) {
-                    this.current = index;
-                }
-            },
-            mounted: function () { }
-        })
-    </script>
-</body>
+   <div class="container">
 
+
+
+       
+   </div>
+</body>
 </html>
