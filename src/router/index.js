@@ -121,6 +121,35 @@ const routes = [
     path: '/detail',
     name: 'detail',
     component: resolve => (require(["@/views/Detail/index.vue"], resolve))
+  },
+  {
+    path: '/serveAgreement',
+    name: 'serveAgreement',
+    component: resolve => (require(["@/views/ServeAgreement/index.vue"], resolve))
+  },
+  // 押金
+  {
+    path: '/guarantee',
+    name: 'guarantee',
+    component: resolve => (require(["@/views/Guarantee/index.vue"], resolve))
+  },
+  // 最少起订
+  {
+    path: '/minimum',
+    name: 'minimum',
+    component: resolve => (require(["@/views/Minimum/index.vue"], resolve))
+  },
+  // 入驻
+  {
+    path: '/enter',
+    name: 'enter',
+    component: resolve => (require(["@/views/Enter/index.vue"], resolve))
+  },
+  // 平台协议
+  {
+    path: '/platformAgreement',
+    name: 'platformAgreement',
+    component: resolve => (require(["@/views/PlatformAgreement/index.vue"], resolve))
   }
 ]
 
