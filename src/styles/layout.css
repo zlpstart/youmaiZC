@@ -59,6 +59,9 @@
 .paddd {
     padding: 0 30px;
 }
+.padddd {
+    padding-left: 30px;
+}
 /* vant */
 .van-dropdown-menu__bar {
     height: 88px;
@@ -162,7 +165,7 @@
 }
 /* 选择时间 */
 .van-popup {
-    height: 791px !important;
+    height: 921px !important;
 }
 .van-sidebar {
     flex: 1;
@@ -393,8 +396,7 @@ color:rgba(142,142,147,1);
 line-height:28px;
 }
 .van-tabbar-item__text img {
-    width: 58px;
-    height: 58px;
+    height: 50px;
 }
 .van-tabbar-item--active span {
     color:rgba(250,151,2,1) !important;

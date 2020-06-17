@@ -42,6 +42,7 @@ export default {
 
 <style lang="less" scoped>
 div.about {
+  padding-bottom: 67px;
   div.about_top {
     width: 750px;
     height: 421px;

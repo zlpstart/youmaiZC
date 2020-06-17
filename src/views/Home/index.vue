@@ -67,13 +67,13 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  padding: 0 30px;
+  // padding: 0 30px;
   .home_router {
-    padding-bottom: 166px;
+    padding-bottom: 98px;
   }
   .zlp {
     width: 100%;
-    height: 166px;
+    height: 98px;
   }
   .van-tabbar-item {
     width: 96px;

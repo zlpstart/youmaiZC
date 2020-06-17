@@ -2,7 +2,7 @@
   <div>
     <!-- 推荐好房 -->
     <div class="HomeContent">
-      <div class="HomeContent_title" @click="toList">
+      <div class="HomeContent_title paddd" @click="toList">
         <div class="HomeContent_title_left">
           <h1 class="txt_title">推荐好房</h1>
           <p>配套设施齐全可拎包入住</p>
@@ -13,73 +13,83 @@
           </p>
         </div>
       </div>
-      <div class="HomeContent_wrap">
-        <div class="HomeContent_wrap_box">
-          <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt />
+      <div class="max_box">
+        <div class="HomeContent_wrap">
+          <div class="HomeContent_wrap_box">
+            <div class="HomeContent_wrap_box_img">
+              <img src="../../assets/ceshi.jpg" alt />
+            </div>
+            <div class="HomeContent_wrap_box_txt">
+              <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
+              <p class="txt_p">
+                <img src="../../assets/home_icon_chair_nor.png" alt />
+                <span class="txt_min">100个工位</span>
+                <img src="../../assets/home_icon_area_nor.png" alt />
+                <span class="txt_min">500.00㎡</span>
+              </p>
+              <p class="price">¥4800/月</p>
+            </div>
+            <div class="HomeContent_wrap_box_card">
+              <div class="HomeContent_wrap_box_card_box">茶水间</div>
+              <div class="HomeContent_wrap_box_card_box">路演厅</div>
+            </div>
           </div>
-          <div class="HomeContent_wrap_box_txt">
-            <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
-            <p>
-              <span class="txt_min">100个工位</span>
-              <span class="txt_min">500.00㎡</span>
-            </p>
-            <p class="price">¥4800/月</p>
+          <div class="HomeContent_wrap_box">
+            <div class="HomeContent_wrap_box_img">
+              <img src="../../assets/ceshi.jpg" alt />
+            </div>
+            <div class="HomeContent_wrap_box_txt">
+              <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
+              <p class="txt_p">
+                <img src="../../assets/home_icon_chair_nor.png" alt />
+                <span class="txt_min">100个工位</span>
+                <img src="../../assets/home_icon_area_nor.png" alt />
+                <span class="txt_min">500.00㎡</span>
+              </p>
+              <p class="price">¥4800/月</p>
+            </div>
+            <div class="HomeContent_wrap_box_card">
+              <div class="HomeContent_wrap_box_card_box">茶水间</div>
+              <div class="HomeContent_wrap_box_card_box">路演厅</div>
+            </div>
           </div>
-          <div class="HomeContent_wrap_box_card">
-            <div class="HomeContent_wrap_box_card_box">茶水间</div>
-            <div class="HomeContent_wrap_box_card_box">路演厅</div>
+          <div class="HomeContent_wrap_box">
+            <div class="HomeContent_wrap_box_img">
+              <img src="../../assets/ceshi.jpg" alt />
+            </div>
+            <div class="HomeContent_wrap_box_txt">
+              <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
+              <p class="txt_p">
+                <img src="../../assets/home_icon_chair_nor.png" alt />
+                <span class="txt_min">100个工位</span>
+                <img src="../../assets/home_icon_area_nor.png" alt />
+                <span class="txt_min">500.00㎡</span>
+              </p>
+              <p class="price">¥4800/月</p>
+            </div>
+            <div class="HomeContent_wrap_box_card">
+              <div class="HomeContent_wrap_box_card_box">茶水间</div>
+              <div class="HomeContent_wrap_box_card_box">路演厅</div>
+            </div>
           </div>
-        </div>
-        <div class="HomeContent_wrap_box">
-          <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt />
-          </div>
-          <div class="HomeContent_wrap_box_txt">
-            <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
-            <p>
-              <span class="txt_min">100个工位</span>
-              <span class="txt_min">500.00㎡</span>
-            </p>
-            <p class="price">¥4800/月</p>
-          </div>
-          <div class="HomeContent_wrap_box_card">
-            <div class="HomeContent_wrap_box_card_box">茶水间</div>
-            <div class="HomeContent_wrap_box_card_box">路演厅</div>
-          </div>
-        </div>
-        <div class="HomeContent_wrap_box">
-          <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt />
-          </div>
-          <div class="HomeContent_wrap_box_txt">
-            <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
-            <p>
-              <span class="txt_min">100个工位</span>
-              <span class="txt_min">500.00㎡</span>
-            </p>
-            <p class="price">¥4800/月</p>
-          </div>
-          <div class="HomeContent_wrap_box_card">
-            <div class="HomeContent_wrap_box_card_box">茶水间</div>
-            <div class="HomeContent_wrap_box_card_box">路演厅</div>
-          </div>
-        </div>
-        <div class="HomeContent_wrap_box">
-          <div class="HomeContent_wrap_box_img">
-            <img src="../../assets/ceshi.jpg" alt />
-          </div>
-          <div class="HomeContent_wrap_box_txt">
-            <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
-            <p>
-              <span class="txt_min">100个工位</span>
-              <span class="txt_min">500.00㎡</span>
-            </p>
-            <p class="price">¥4800/月</p>
-          </div>
-          <div class="HomeContent_wrap_box_card">
-            <div class="HomeContent_wrap_box_card_box">茶水间</div>
-            <div class="HomeContent_wrap_box_card_box">路演厅</div>
+          <div class="HomeContent_wrap_box">
+            <div class="HomeContent_wrap_box_img">
+              <img src="../../assets/ceshi.jpg" alt />
+            </div>
+            <div class="HomeContent_wrap_box_txt">
+              <h1 class="txt_medium">软件谷科创城C1栋5楼504</h1>
+              <p class="txt_p">
+                <img src="../../assets/home_icon_chair_nor.png" alt />
+                <span class="txt_min">100个工位</span>
+                <img src="../../assets/home_icon_area_nor.png" alt />
+                <span class="txt_min">500.00㎡</span>
+              </p>
+              <p class="price">¥4800/月</p>
+            </div>
+            <div class="HomeContent_wrap_box_card">
+              <div class="HomeContent_wrap_box_card_box">茶水间</div>
+              <div class="HomeContent_wrap_box_card_box">路演厅</div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +97,7 @@
 
     <!-- 直播基地 -->
     <div class="HomeContent live_live">
-      <div class="HomeContent_title" @click="toLiveList">
+      <div class="HomeContent_title paddd" @click="toLiveList">
         <div class="HomeContent_title_left">
           <h1 class="txt_title">直播基地</h1>
           <p>配套设施齐全可拎包入住</p>
@@ -99,100 +109,110 @@
         </div>
       </div>
       <div>
-        <div class="live">
-          <div class="live_box">
-            <div class="live_box_img">
-              <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt />
-              </div>
-              <div class="live_box_img_right">
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
+        <div class="max_box">
+          <div class="live">
+            <div class="live_maxbox">
+              <div class="live_box">
+                <div class="live_box_img">
+                  <div class="live_box_img_left">
+                    <img src="../../assets/ceshi.jpg" alt />
+                  </div>
+                  <div class="live_box_img_right">
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                  </div>
                 </div>
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
+                <div class="live_box_txt">
+                  <div class="live_box_txt_left">
+                    <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
+                    <p class="txt_min">网红直播聚集地，专业直播平台</p>
+                  </div>
+                  <div class="live_box_txt_right">
+                    <p>¥1000/时</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="live_box_txt">
-              <div class="live_box_txt_left">
-                <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
-                <p class="txt_min">网红直播聚集地，专业直播平台</p>
-              </div>
-              <div class="live_box_txt_right">
-                <p>¥1000/时</p>
-              </div>
-            </div>
-            <div class="live_box_crad">
-              <div class="live_box_crad_box">
-                <p>茶水间</p>
-              </div>
-              <div class="live_box_crad_box">
-                <p>路演厅</p>
-              </div>
-            </div>
-          </div>
-          <div class="live_box">
-            <div class="live_box_img">
-              <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt />
-              </div>
-              <div class="live_box_img_right">
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
-                </div>
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
+                <div class="live_box_crad">
+                  <div class="live_box_crad_box">
+                    <p>茶水间</p>
+                  </div>
+                  <div class="live_box_crad_box">
+                    <p>路演厅</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="live_box_txt">
-              <div class="live_box_txt_left">
-                <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
-                <p class="txt_min">网红直播聚集地，专业直播平台</p>
-              </div>
-              <div class="live_box_txt_right">
-                <p>¥1000/时</p>
-              </div>
-            </div>
-            <div class="live_box_crad">
-              <div class="live_box_crad_box">
-                <p>茶水间</p>
-              </div>
-              <div class="live_box_crad_box">
-                <p>路演厅</p>
-              </div>
-            </div>
-          </div>
-          <div class="live_box">
-            <div class="live_box_img">
-              <div class="live_box_img_left">
-                <img src="../../assets/ceshi.jpg" alt />
-              </div>
-              <div class="live_box_img_right">
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
+
+            <div class="live_maxbox">
+              <div class="live_box">
+                <div class="live_box_img">
+                  <div class="live_box_img_left">
+                    <img src="../../assets/ceshi.jpg" alt />
+                  </div>
+                  <div class="live_box_img_right">
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                  </div>
                 </div>
-                <div class="live_box_img_right_box">
-                  <img src="../../assets/ceshi.jpg" alt />
+                <div class="live_box_txt">
+                  <div class="live_box_txt_left">
+                    <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
+                    <p class="txt_min">网红直播聚集地，专业直播平台</p>
+                  </div>
+                  <div class="live_box_txt_right">
+                    <p>¥1000/时</p>
+                  </div>
+                </div>
+                <div class="live_box_crad">
+                  <div class="live_box_crad_box">
+                    <p>茶水间</p>
+                  </div>
+                  <div class="live_box_crad_box">
+                    <p>路演厅</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="live_box_txt">
-              <div class="live_box_txt_left">
-                <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
-                <p class="txt_min">网红直播聚集地，专业直播平台</p>
-              </div>
-              <div class="live_box_txt_right">
-                <p>¥1000/时</p>
-              </div>
-            </div>
-            <div class="live_box_crad">
-              <div class="live_box_crad_box">
-                <p>茶水间</p>
-              </div>
-              <div class="live_box_crad_box">
-                <p>路演厅</p>
+
+            <div class="live_maxbox">
+              <div class="live_box">
+                <div class="live_box_img">
+                  <div class="live_box_img_left">
+                    <img src="../../assets/ceshi.jpg" alt />
+                  </div>
+                  <div class="live_box_img_right">
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                    <div class="live_box_img_right_box">
+                      <img src="../../assets/ceshi.jpg" alt />
+                    </div>
+                  </div>
+                </div>
+                <div class="live_box_txt">
+                  <div class="live_box_txt_left">
+                    <h1 class="txt_medium">软件谷科创城C1栋18楼1810-1815</h1>
+                    <p class="txt_min">网红直播聚集地，专业直播平台</p>
+                  </div>
+                  <div class="live_box_txt_right">
+                    <p>¥1000/时</p>
+                  </div>
+                </div>
+                <div class="live_box_crad">
+                  <div class="live_box_crad_box">
+                    <p>茶水间</p>
+                  </div>
+                  <div class="live_box_crad_box">
+                    <p>路演厅</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -232,7 +252,7 @@ export default {
         font-size: 22px;
         font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
-        color: rgba(102, 102, 102, 1);
+        color: #999999;
         line-height: 30px;
       }
     }
@@ -269,7 +289,7 @@ export default {
           margin-top: 11px;
         }
         .price {
-          margin-top: 11px;
+          margin-top: 20px;
           font-size: 26px;
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
@@ -389,11 +409,40 @@ export default {
   }
 }
 .HomeContent_wrap_live {
+  height: 200px;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
 }
 .live_live {
   margin-bottom: 40px;
+}
+.txt_p {
+  height: 30px;
+  img:nth-child(1) {
+    width: 30px;
+  }
+  img:nth-child(3) {
+    width: 23px;
+    margin-left: 27px;
+    margin-right: 6px;
+  }
+  span {
+    line-height: 0px;
+    height: 16px;
+    display: inline-block;
+    margin-top: -10px;
+  }
+}
+.max_box {
+  width: 100%;
+  overflow: hidden;
+  padding-left: 30px;
+}
+.HomeContent_wrap .HomeContent_wrap_box:nth-last-child(1) {
+  padding-right: 30px !important;
+}
+.live .live_maxbox:nth-last-child(1) {
+  padding-right: 30px !important;
 }
 </style>

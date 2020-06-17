@@ -1,7 +1,7 @@
 <template>
-  <div class="HomeTopBar">
+  <div class="HomeTopBar paddd">
     <div class="HomeTopBar_banner">
-      <img src="../../assets/ceshi.jpg" alt />
+      <img src="../../assets/home_banner.png" alt />
     </div>
     <div class="HomeTopBar_box">
       <div class="HomeTopBar_minbox" @click="toList">
@@ -20,7 +20,7 @@
       <div class="HomeTopBar_minbox" @click="toLiveList">
         <div class="HomeTopBar_minbox_txt">
           <h1 class="txt_medium">直播基地</h1>
-          <p class="txt_min">拎包入驻，灵活办公</p>
+          <p class="txt_min">个性软装，多元场景</p>
         </div>
         <div class="HomeTopBar_minbox_logo">
           <img src="../../assets/home_icon_zhibo_nor.png" alt />
@@ -62,7 +62,7 @@ export default {
   .HomeTopBar_box {
     display: flex;
     justify-content: space-between;
-    margin-top: 58px;
+    margin-top: 28px;
     .HomeTopBar_minbox {
       width: 335px;
       height: 140px;
@@ -83,11 +83,14 @@ export default {
       &_logo {
         width: 48px;
         height: 48px;
-        margin-left: 27px;
+        margin-left: 5px;
         margin-top: 10px;
         img {
           width: 100%;
-          height: 100%;
+          margin-left:11px;
+        }
+        img:nth-child(2){
+
         }
       }
       &_right {
@@ -110,6 +113,13 @@ export default {
         background: rgba(250, 151, 2, 1);
         opacity: 0.09;
       }
+    }
+  }
+}
+.HomeTopBar_box {
+  .HomeTopBar_minbox:nth-child(2){
+    .HomeTopBar_minbox_logo {
+      margin-top:13px;
     }
   }
 }

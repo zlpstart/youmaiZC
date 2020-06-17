@@ -48,7 +48,7 @@
     <div class="liveDetails_serve">
       <div class="liveDetails_serve_title">
         <h1 class="txt_title_min">设施服务</h1>
-        <p class="txt_min">更多</p>
+        <p class="txt_min" @click="toMore">更多</p>
       </div>
       <div class="liveDetails_serve_content">
         <div class="liveDetails_serve_content_box">
@@ -124,6 +124,9 @@ export default {
     },
     attention() {
       this.attentioning = !this.attentioning;
+    },
+    toMore() {
+      this.$router.push("/more");
     }
   },
   components: {

@@ -36,7 +36,7 @@
     <div class="liveDetails_serve">
       <div class="liveDetails_serve_title">
         <h1 class="txt_title_min">设施服务</h1>
-        <p class="txt_min">更多</p>
+        <p class="txt_min" @click="toMore">更多</p>
       </div>
       <div class="liveDetails_serve_content">
         <div class="liveDetails_serve_content_box">
@@ -45,15 +45,15 @@
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_baojie_nor.png" alt />
-          <p>交通便利</p>
+          <p>保洁服务</p>
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_visit_nor.png" alt />
-          <p>交通便利</p>
+          <p>政要参观</p>
         </div>
         <div class="liveDetails_serve_content_box">
           <img src="../../assets/con_icon_light_nor.png" alt />
-          <p>交通便利</p>
+          <p>宽阔明亮</p>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
         </div>
         <div class="liveDetails_enter_list_right">
           <p class="txt_medium">¥200</p>
-          <img src="../../assets/con_icon_ques.png" alt />
+          <img src="../../assets/con_icon_ques.png" @click="toYa" />
         </div>
       </div>
       <div class="liveDetails_enter_list">
@@ -89,7 +89,7 @@
         </div>
         <div class="liveDetails_enter_list_right">
           <p class="txt_medium">1个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
+          <img src="../../assets/con_icon_ques.png" @click="toMinimum" />
         </div>
       </div>
       <div class="liveDetails_enter_list">
@@ -97,8 +97,8 @@
           <p>退订政策</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">入住前一个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
+          <p class="txt_medium">若取消时距使用6小时以上</p>
+          <img src="../../assets/con_icon_ques.png" alt @click="toUnsubscribe" />
         </div>
       </div>
       <div class="liveDetails_enter_list">
@@ -107,7 +107,7 @@
         </div>
         <div class="liveDetails_enter_list_right">
           <p class="txt_medium">入住前一个小时</p>
-          <img src="../../assets/con_icon_ques.png" alt />
+          <img src="../../assets/con_icon_ques.png" @click="toEnter" />
         </div>
       </div>
     </div>
@@ -152,6 +152,21 @@ export default {
     },
     attention() {
       this.attentioning = !this.attentioning;
+    },
+    toYa(){
+      this.$router.push("/guarantee")
+    },
+    toMinimum(){
+      this.$router.push("/minimum")
+    },
+    toEnter(){
+      this.$router.push("/enter")
+    },
+    toMore(){
+      this.$router.push("/more")
+    },
+    toUnsubscribe(){
+      this.$router.push("/unsubscribe")
     }
   }
 };

@@ -11,20 +11,27 @@
         <div class="appointment_form_form_input">
           <div class="yuan"></div>
           <label for="phone">联系方式</label>
-          <input id="phone" type="text" placeholder="请输入手机号码" />
+          <input autocomplete="off" id="phone" v-model="form.phone" type="text" placeholder="请输入手机号码" />
         </div>
         <div class="appointment_form_form_input">
           <div class="yuan"></div>
           <label for="phone">您的姓名</label>
-          <input id="phone" type="text" placeholder="请输入姓名" />
+          <input autocomplete="off" id="phone" v-model="form.name" type="text" placeholder="请输入姓名" />
         </div>
         <!-- 租房预约 -->
         <div class="appointment_form_form_input" v-if="!type" @click="showType">
           <div class="yuan"></div>
           <label for="phone">看房时间</label>
-          <input id="phone" type="text" placeholder="请选择看房时间" @click="showHouse" />
+          <input
+            id="phone"
+            v-model="form.time"
+            type="text"
+            autocomplete="off"
+            placeholder="请选择看房时间"
+            @click="showHouse"
+          />
           <p>
-            <img src="../../assets/icon_link_nor.png" alt="">
+            <img src="../../assets/icon_link_nor.png" alt />
           </p>
         </div>
         <!-- 直播预约 -->
@@ -32,10 +39,11 @@
           <div class="yuan"></div>
           <label for="phone">选择时间</label>
           <input id="phone" type="text" placeholder="请选择用房时间" @click="showLive" />
-          <p>></p>
+          <p><img src="../../assets/icon_link_nor.png" alt=""></p>
         </div>
       </div>
-      <div class="appointment_form_form_button" @click="toOrderForm">下一步</div>
+      <div class="appointment_form_form_button" v-show="type" @click="toOrderForm">下一步</div>
+      <div class="appointment_form_form_button" v-show="!type" @click="subscribe">立即预约</div>
     </div>
     <!-- 租房预约 -->
     <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
@@ -44,6 +52,7 @@
         :items="items"
         :active-id.sync="activeId"
         :main-active-index.sync="activeIndex"
+        @click-item="clickItem"
       />
       <div class="popup_bottom">
         <button @click="cancel">取消</button>
@@ -97,6 +106,14 @@
         <img src="../../assets/img_yuyue_success.png" alt />
       </div>
     </van-popup>
+    <div class="appointment_alert" v-show="showAlert">
+      <div class="appointment_alert_img">
+        <img src="../../assets/tip_icon_jinggao.png" alt />
+      </div>
+      <div class="appointment_alert_txt">
+        <p>请输入正确的手机号码</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -109,6 +126,13 @@ export default {
       show: false,
       show2: false,
       showLives: false,
+      timerObj:{},
+      form: {
+        phone: "",
+        name: "",
+        time: ""
+      },
+      showAlert: false,
       items: [
         //   1
         {
@@ -484,16 +508,18 @@ export default {
       this.showLives = false;
     },
     confirm() {
+      this.form.time = this.timerObj
+      console.log(this.timerObj)
       this.show = false;
-      this.show2 = true;
+      // this.show2 = true;
     },
     showHouse() {
       this.show = true;
     },
     close() {
       this.show2 = false;
-      this.showLives = false
-      this.show = false
+      this.showLives = false;
+      this.show = false;
     },
     showLive() {
       console.log(111);
@@ -506,8 +532,57 @@ export default {
         item.active = true;
       }
     },
-    toOrderForm(){
-      this.$router.push('/orderform')
+    clickItem(e){
+      this.timerObj = e.text;
+      console.log(this.timerObj)
+    },
+    toOrderForm() {
+      let a = this.phone(this.form.phone);
+      if (!a) {
+        this.showAlert = true;
+        let setI = 0;
+        let timer = setInterval(() => {
+          setI++;
+          if (setI >= 2) {
+            this.showAlert = false;
+            clearInterval(timer);
+          }
+        }, 1000);
+      } else {
+        this.$router.push("/orderform");
+      }
+    },
+    phone(e) {
+      const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(e)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    email(e) {
+      const reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if (reg.test(e)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    subscribe(){
+      let a = this.phone(this.form.phone);
+      if (!a) {
+        this.showAlert = true;
+        let setI = 0;
+        let timer = setInterval(() => {
+          setI++;
+          if (setI >= 2) {
+            this.showAlert = false;
+            clearInterval(timer);
+          }
+        }, 1000);
+      } else {
+        this.show2 = true
+      }
     }
   }
 };
@@ -646,6 +721,37 @@ div.appointment {
     }
     button:nth-child(2) {
       background: rgba(250, 151, 2, 1);
+    }
+  }
+}
+.appointment_alert {
+  width: 300px;
+  height: 202px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .appointment_alert_img {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    margin-top: 40px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .appointment_alert_txt {
+    p {
+      margin-top: 21px;
+      font-size: 26px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 1);
+      line-height: 37px;
+      text-align: center;
     }
   }
 }

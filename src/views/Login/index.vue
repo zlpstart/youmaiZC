@@ -17,7 +17,11 @@
         <button>获取验证码</button>
       </div>
     </div>
-    <div v-show="(loginForm.phone != '' && loginForm.verify != '')" class="login_button" @click="login">登录</div>
+    <div
+      v-show="(loginForm.phone != '' && loginForm.verify != '')"
+      class="login_button"
+      @click="login"
+    >登录</div>
     <div v-show="(loginForm.phone == '' || loginForm.verify == '')" class="login_button2">登录</div>
     <div class="login_third">
       <div class="login_third_title">
@@ -60,11 +64,12 @@ export default {
     };
   },
   methods: {
-      login(){
-          if(this.loginForm.phone == 'admin' && this.loginForm.verify == 'admin'){
-              this.$router.push("/")
-          }
+    login() {
+      if (this.loginForm.phone == "admin" && this.loginForm.verify == "admin") {
+        window.sessionStorage.setItem("key", true);
+        this.$router.push("/");
       }
+    }
   }
 };
 </script>
@@ -186,7 +191,7 @@ div.login {
   div.login_third {
     width: 487px;
     margin: auto;
-    margin-top: 350px;
+    margin-top: 100px;
     div.login_third_title {
       display: flex;
       justify-content: space-between;

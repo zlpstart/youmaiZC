@@ -3,11 +3,7 @@
     <div class="box" v-if="!showAttention">
       <div class="box_content">
         <div class="box_img">
-          <img src="../../assets/img_guanzhu.png" alt />
-        </div>
-        <div class="box_txt">
-          <p>您还没有入驻</p>
-          <p>搜索结果为空</p>
+          <img src="../../assets/img_gongdan.png" alt />
         </div>
       </div>
     </div>
