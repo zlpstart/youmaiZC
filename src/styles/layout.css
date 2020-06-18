@@ -165,7 +165,7 @@
 }
 /* 选择时间 */
 .van-popup {
-    height: 921px !important;
+    height: 761px !important;
 }
 .van-sidebar {
     flex: 1;
@@ -325,6 +325,7 @@
 }
 .van_active p {
     width:150px;
+    color: #FA9702;
     height:88px;
     background:rgba(255,255,255,1);
     border-radius:4px;

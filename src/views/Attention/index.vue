@@ -1,6 +1,6 @@
 <template>
   <div class="attention">
-    <div class="box" v-if="showAttention">
+    <div class="box" v-if="!showAttention">
       <van-tabs v-model="active">
         <van-tab title="办公租房">
           <div class="attention_content">
@@ -14,7 +14,7 @@
         </van-tab>
       </van-tabs>
     </div>
-    <div class="box" v-if="!showAttention">
+    <div class="box" v-if="showAttention">
       <div class="box_content">
         <div class="box_img">
           <img src="../../assets/img_guanzhu.png" alt />

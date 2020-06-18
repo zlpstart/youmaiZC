@@ -11,7 +11,13 @@
         <div class="appointment_form_form_input">
           <div class="yuan"></div>
           <label for="phone">联系方式</label>
-          <input autocomplete="off" id="phone" v-model="form.phone" type="text" placeholder="请输入手机号码" />
+          <input
+            autocomplete="off"
+            id="phone"
+            v-model="form.phone"
+            type="text"
+            placeholder="请输入手机号码"
+          />
         </div>
         <div class="appointment_form_form_input">
           <div class="yuan"></div>
@@ -38,8 +44,10 @@
         <div class="appointment_form_form_input" v-if="type" @click="showType2">
           <div class="yuan"></div>
           <label for="phone">选择时间</label>
-          <input id="phone" type="text" placeholder="请选择用房时间" @click="showLive" />
-          <p><img src="../../assets/icon_link_nor.png" alt=""></p>
+          <input id="phone" type="text" v-model="timerInput" autocomplete="off" placeholder="请选择用房时间" @click="showLive" />
+          <p>
+            <img src="../../assets/icon_link_nor.png" alt />
+          </p>
         </div>
       </div>
       <div class="appointment_form_form_button" v-show="type" @click="toOrderForm">下一步</div>
@@ -64,20 +72,38 @@
       <van-popup v-model="showLives" position="bottom" :style="{ height: '30%' }">
         <div class="popup_title">请选择用房时间</div>
         <div class="popup_timer">
-          <div class="popup_timer_left">
-            <p>周三</p>
-            <p>15:00</p>
+          <div class="popup_timer_left" v-show="startTime.time == ''">
+            <p>开始时间</p>
           </div>
-          <div class="popup_timer_right">
-            <p>共5小时</p>
+          <div class="popup_timer_left" v-show="startTime.time != ''">
+            <p>{{startTime.week}}</p>
+            <p>{{startTime.time}}</p>
           </div>
-          <div class="popup_timer_left">
-            <p>周三</p>
-            <p>20:00</p>
+          <div class="popup_timer_right" v-show="duration != 0">
+            <p>共{{duration}}小时</p>
+          </div>
+          <div class="popup_timer_left" v-show="overTime.time == ''">
+            <p>结束时间</p>
+          </div>
+          <div class="popup_timer_left" v-show="overTime.time != ''">
+            <p>{{overTime.week}}</p>
+            <p>{{overTime.time}}</p>
           </div>
         </div>
-        <van-tabs line-width="44" line-height="5" title="ee">
-          <van-tab v-for="item in timer" :key="item.date2" :title="item.date  + item.date2">
+        <!-- 开始时间 -->
+        <van-tabs
+          line-width="44"
+          line-height="5"
+          title="ee"
+          @click="vanClick"
+          v-show="this.startTime.time == ''"
+        >
+          <van-tab
+            v-for="item in timer"
+            :key="item.date2"
+            :title="item.date  + item.date2"
+            @click="vanClick"
+          >
             <div class="van_content">
               <ul>
                 <li
@@ -92,9 +118,38 @@
             </div>
           </van-tab>
         </van-tabs>
+
+        <!-- 结束时间 -->
+        <van-tabs
+          line-width="44"
+          line-height="5"
+          title="ee"
+          @click="vanClick2"
+          v-show="this.startTime.time != ''"
+        >
+          <van-tab
+            v-for="item in timer"
+            :key="item.date2"
+            :title="item.date  + item.date2"
+            @click="vanClick"
+          >
+            <div class="van_content">
+              <ul>
+                <li
+                  v-for="(item,index) in timers"
+                  :key="index"
+                  :class="{'van_active':item.active}"
+                  @click="times2(item,index)"
+                >
+                  <p>{{item.time}}</p>
+                </li>
+              </ul>
+            </div>
+          </van-tab>
+        </van-tabs>
         <div class="popup_bottom">
-          <button @click="cancel">取消</button>
-          <button @click="confirm">确定</button>
+          <button @click="cancel2">重置</button>
+          <button @click="confirm2">确定</button>
         </div>
       </van-popup>
     </div>
@@ -122,11 +177,24 @@ export default {
   name: "appointment",
   data() {
     return {
+      startTime: {
+        id: 0,
+        week: "今天06/01",
+        time: ""
+      },
+      overTime: {
+        id: 0,
+        week: "今天06/01",
+        time: ""
+      },
+      // 选择时间input内容
+      timerInput: "",
+      duration: 0,
       type: true,
       show: false,
       show2: false,
       showLives: false,
-      timerObj:{},
+      timerObj: {},
       form: {
         phone: "",
         name: "",
@@ -440,6 +508,7 @@ export default {
           date2: "06/07"
         }
       ],
+      // 天数
       timers: [
         {
           id: 1,
@@ -485,6 +554,21 @@ export default {
           id: 9,
           time: "6:00",
           active: false
+        },
+        {
+          id: 10,
+          time: "7:00",
+          active: false
+        },
+        {
+          id: 11,
+          time: "8:00",
+          active: false
+        },
+        {
+          id: 12,
+          time: "9:00",
+          active: false
         }
       ]
     };
@@ -507,11 +591,26 @@ export default {
       this.show = false;
       this.showLives = false;
     },
+    cancel2() {
+      this.active = 0;
+      this.startTime.week = "今天06/01";
+      this.startTime.time = "";
+      this.overTime.week = "今天06/01";
+      this.overTime.time = "";
+      this.duration = 0;
+      this.timers.forEach(item => (item.active = false));
+    },
+    // 租房确定
     confirm() {
-      this.form.time = this.timerObj
-      console.log(this.timerObj)
+      this.form.time = this.timerObj;
       this.show = false;
-      // this.show2 = true;
+    },
+    // 直播确定
+    confirm2() {
+      this.timerInput = `${this.overTime.week} ${this.startTime.time}~${this.overTime.time}`
+      this.showLives = false;
+      console.log(this.timerInput)
+      this.cancel2()
     },
     showHouse() {
       this.show = true;
@@ -523,18 +622,34 @@ export default {
     },
     showLive() {
       console.log(111);
-      //   this.showLives = true;
     },
+    // 开始天数
     times(item, index) {
+      this.startTime.id = item.id;
+      this.startTime.time = item.time;
       if (item.active) {
         item.active = false;
       } else {
         item.active = true;
       }
     },
-    clickItem(e){
+    // 结束天数
+    times2(item, index) {
+      this.overTime.id = item.id;
+      this.overTime.time = item.time;
+      this.duration = this.overTime.id - this.startTime.id + 1;
+      if (item.active) {
+        item.active = false;
+      } else {
+        item.active = true;
+      }
+      for (let i = this.startTime.id; i < this.duration; i++) {
+        this.timers[i].active = true;
+      }
+    },
+    clickItem(e) {
       this.timerObj = e.text;
-      console.log(this.timerObj)
+      console.log(this.timerObj);
     },
     toOrderForm() {
       let a = this.phone(this.form.phone);
@@ -549,7 +664,7 @@ export default {
           }
         }, 1000);
       } else {
-        this.$router.push("/orderform");
+        this.$router.push("/paymentSucceed");
       }
     },
     phone(e) {
@@ -568,7 +683,7 @@ export default {
         return false;
       }
     },
-    subscribe(){
+    subscribe() {
       let a = this.phone(this.form.phone);
       if (!a) {
         this.showAlert = true;
@@ -581,8 +696,22 @@ export default {
           }
         }, 1000);
       } else {
-        this.show2 = true
+        this.show2 = true;
       }
+    },
+    // 选择开始天数
+    vanClick(name, title) {
+      console.log(name);
+      console.log(title);
+      this.startTime.week = title;
+      this.active = 0;
+      this.timers.forEach(item => (item.active = false));
+    },
+    // 选择结束天数
+    vanClick2(name, title) {
+      console.log(name);
+      console.log(title);
+      this.overTime.week = title;
     }
   }
 };

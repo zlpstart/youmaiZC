@@ -161,7 +161,6 @@ div.login {
     }
   }
   .login_button2 {
-    width: 690px;
     height: 88px;
     background: rgba(250, 151, 2, 0.5);
     margin-top: 90px;
@@ -218,6 +217,11 @@ div.login {
       ul {
         display: flex;
         justify-content: space-between;
+        li:nth-child(2){
+          img {
+            width: 44px;
+          }
+        }
         li {
           img {
             width: 50px;

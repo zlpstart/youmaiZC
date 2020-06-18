@@ -79,7 +79,7 @@
           <p>押金</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">¥200</p>
+          <p class="txt_medium">为确保房屋及其附属设备的完好</p>
           <img src="../../assets/con_icon_ques.png" @click="toYa" />
         </div>
       </div>
@@ -88,7 +88,7 @@
           <p>最少起订</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">1个小时</p>
+          <p class="txt_medium">最少起订为最小租赁时间单位。</p>
           <img src="../../assets/con_icon_ques.png" @click="toMinimum" />
         </div>
       </div>
@@ -106,7 +106,7 @@
           <p>入驻守则</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">入住前一个小时</p>
+          <p class="txt_medium">一、保持办公环境清馨，严禁在办公区域</p>
           <img src="../../assets/con_icon_ques.png" @click="toEnter" />
         </div>
       </div>
