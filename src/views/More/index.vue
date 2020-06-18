@@ -29,6 +29,8 @@
           <p>宽阔明亮</p>
         </div>
       </div>
+    </div>
+    <div class="more_list">
       <div class="more_list_wrap">
         <div class="more_list_box">
           <img src="../../assets/con_icon_meeting_nor.png" alt />
@@ -53,6 +55,8 @@
           <p>便捷商超</p>
         </div>
       </div>
+    </div>
+    <div class="more_list">
       <div class="more_list_wrap">
         <div class="more_list_box">
           <img src="../../assets/con_icon_chat_nor.png" alt />
@@ -71,12 +75,21 @@
           <p>健身中心</p>
         </div>
       </div>
+      <div class="more_list_wrap" v-for="item in ((Math.floor(11/4)+1)*4-11)" :key="item">
+        <div class="more_list_box"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return {
+      isData:1
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -101,9 +114,8 @@ div.more {
 
   div.more_list {
     display: flex;
-    // flex-flow: wrap;
-    box-sizing: border-box;
-    
+    flex-flow: wrap;
+    justify-content: space-between;
     .more_list_wrap {
       div.more_list_box {
         width: 96px;
@@ -125,16 +137,5 @@ div.more {
       }
     }
   }
-}
-.more_list_box_box {
-  display: flex;
-  justify-content:flex-start;
-  // flex-wrap: nowrap;
-}
-// .more_list_box_box .more_list_wrap:nth-child(1){
-//   margin-left: 0;
-// }
-.more_list_box_box .more_list_wrap {
-  // margin-left: 9px;
 }
 </style>

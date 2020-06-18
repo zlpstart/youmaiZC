@@ -188,7 +188,7 @@ export default {
       text-align: center;
       margin-left: 102px;
       img {
-        height: 35px;
+        height: 45px;
       }
       p {
         font-size: 24px;
@@ -229,6 +229,7 @@ div.liveDetails_bottom {
   background: rgba(255, 255, 255, 1);
   position: fixed;
   bottom: 0;
+  box-shadow:0px -2px 14px 0px rgba(0,0,0,0.07);
   left: 0;
   div.liveDetails_bottom_love {
     flex: 1;
