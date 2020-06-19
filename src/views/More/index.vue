@@ -138,4 +138,10 @@ div.more {
     }
   }
 }
+.more .more_list:nth-child(5) .more_list_wrap:nth-child(2) img {
+  height:50px;
+}
+.more .more_list:nth-child(5) .more_list_wrap:nth-child(2) p {
+  margin-top: 6px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="payment">
     <div class="payment_top">
-      <h1>¥ 1250.00</h1>
+      <h1><span>¥</span> 1250.00</h1>
       <p>支付剩余时间29：59</p>
     </div>
     <div class="payment_list">
@@ -38,7 +38,7 @@ export default {
   },
   methods:{
       confirm(){
-          this.$router.push("/havePaid")
+          this.$router.push("/paymentSucceed")
       }
   }
 };
@@ -51,11 +51,14 @@ div.payment {
     padding: 50px;
     height: 217px;
     h1 {
-      font-size: 34px;
-      font-family: PingFang-SC-Bold, PingFang-SC;
-      font-weight: bold;
-      color: rgba(51, 51, 51, 1);
-      line-height: 48px;
+     font-size:60px;
+font-family:PingFang-SC-Bold,PingFang-SC;
+font-weight:bold;
+color:rgba(51,51,51,1);
+line-height:48px;
+span {
+  font-size: 34px;
+}
     }
 
     p {

@@ -44,7 +44,14 @@
         <div class="appointment_form_form_input" v-if="type" @click="showType2">
           <div class="yuan"></div>
           <label for="phone">选择时间</label>
-          <input id="phone" type="text" v-model="timerInput" autocomplete="off" placeholder="请选择用房时间" @click="showLive" />
+          <input
+            id="phone"
+            type="text"
+            v-model="timerInput"
+            autocomplete="off"
+            placeholder="请选择用房时间"
+            @click="showLive"
+          />
           <p>
             <img src="../../assets/icon_link_nor.png" alt />
           </p>
@@ -54,13 +61,15 @@
       <div class="appointment_form_form_button" v-show="!type" @click="subscribe">立即预约</div>
     </div>
     <!-- 租房预约 -->
-    <van-popup v-model="show" position="bottom" :style="{ height: '30%' }">
+    <van-popup class="retingsss" v-model="show" position="bottom" :style="{ height: '30%' }">
       <div class="popup_title">请选择看房时间</div>
       <van-tree-select
         :items="items"
         :active-id.sync="activeId"
         :main-active-index.sync="activeIndex"
         @click-item="clickItem"
+        @click-nav="clickNav"
+        :class="{dis:true}"
       />
       <div class="popup_bottom">
         <button @click="cancel">取消</button>
@@ -69,7 +78,7 @@
     </van-popup>
     <!-- 直播预约 -->
     <div class="lives">
-      <van-popup v-model="showLives" position="bottom" :style="{ height: '30%' }">
+      <van-popup class="livesss" v-model="showLives" position="bottom" :style="{ height: '30%' }">
         <div class="popup_title">请选择用房时间</div>
         <div class="popup_timer">
           <div class="popup_timer_left" v-show="startTime.time == ''">
@@ -79,6 +88,7 @@
             <p>{{startTime.week}}</p>
             <p>{{startTime.time}}</p>
           </div>
+          <div class="xianxian"></div>
           <div class="popup_timer_right" v-show="duration != 0">
             <p>共{{duration}}小时</p>
           </div>
@@ -155,10 +165,12 @@
     </div>
     <van-popup :close-on-click-overlay="false" v-model="show2">
       <h1>预约成功</h1>
-      <p>从 2015 年 4 月起，Ant Design 在蚂蚁金服中后台产品线迅速推广，对接多条业务线，覆盖系统 800 个以上。</p>
+      <p>已收到您的预约订单，请保持手机畅通，我们将尽快与您联系！</p>
       <button @click="close">知道了</button>
       <div class="img">
-        <img src="../../assets/img_yuyue_success.png" alt />
+        <div class="img_wrap">
+          <img src="../../assets/img_yuyue_success.png" alt />
+        </div>
       </div>
     </van-popup>
     <div class="appointment_alert" v-show="showAlert">
@@ -194,7 +206,11 @@ export default {
       show: false,
       show2: false,
       showLives: false,
-      timerObj: {},
+      // 请选择预约时间
+      timerObj: {
+        week: "06月01日",
+        time: ""
+      },
       form: {
         phone: "",
         name: "",
@@ -209,35 +225,42 @@ export default {
           children: [
             {
               // 名称
-              text: "09：00-09：30",
+              text: "09:00-09:30",
               // id，作为匹配选中状态的标识符
               id: 1,
               // 禁用选项
+              disabled: false
+            },
+            {
+              text: "09:30-10:00",
+              id: 2,
+              disabled: false
+            },
+            {
+              text: "10:00-10:30(已约满)",
+              id: 3,
+              disabled: true,
+              className: "dis"
+            },
+            {
+              text: "11:00-11:30(已约满)",
+              id: 4,
               disabled: true
             },
             {
-              text: "09：30-10：00",
-              id: 2
+              text: "11:30-12:00 (已约满)",
+              id: 5,
+              disabled: true
             },
             {
-              text: "10：00-10：30",
-              id: 3
+              text: "12:00-12:30",
+              id: 6,
+              disabled: false
             },
             {
-              text: "11：00-11：30",
-              id: 4
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5
-            },
-            {
-              text: "12：00-12：30",
-              id: 6
-            },
-            {
-              text: "12：30-13：00",
-              id: 7
+              text: "12:30-13:00",
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -248,35 +271,41 @@ export default {
           children: [
             {
               // 名称
-              text: "09：00-09：30",
+              text: "09:00-09:30",
               // id，作为匹配选中状态的标识符
               id: 1,
               // 禁用选项
               disabled: true
             },
             {
-              text: "09：30-10：00",
-              id: 2
+              text: "09:30-10:00",
+              id: 2,
+              disabled: false
             },
             {
-              text: "10：00-10：30",
-              id: 3
+              text: "10:00-10:30",
+              id: 3,
+              disabled: false
             },
             {
-              text: "11：00-11：30",
-              id: 4
+              text: "11:00-11:30",
+              id: 4,
+              disabled: false
             },
             {
-              text: "11：30-12：00 (已约满)",
-              id: 5
+              text: "11:30-12:00 (已约满)",
+              id: 5,
+              disabled: true
             },
             {
-              text: "12：00-12：30",
-              id: 6
+              text: "12:00-12:30",
+              id: 6,
+              disabled: false
             },
             {
-              text: "12：30-13：00",
-              id: 7
+              text: "12:30-13:00",
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -287,35 +316,41 @@ export default {
           children: [
             {
               // 名称
-              text: "09：00-09：30",
+              text: "09:00-09:30",
               // id，作为匹配选中状态的标识符
               id: 1,
               // 禁用选项
               disabled: true
             },
             {
-              text: "09：30-10：00",
-              id: 2
+              text: "09:30-10:00",
+              id: 2,
+              disabled: false
             },
             {
               text: "10：00-10：30",
-              id: 3
+              id: 3,
+              disabled: false
             },
             {
               text: "11：00-11：30",
-              id: 4
+              id: 4,
+              disabled: false
             },
             {
               text: "11：30-12：00 (已约满)",
-              id: 5
+              id: 5,
+              disabled: true
             },
             {
               text: "12：00-12：30",
-              id: 6
+              id: 6,
+              disabled: false
             },
             {
               text: "12：30-13：00",
-              id: 7
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -334,27 +369,33 @@ export default {
             },
             {
               text: "09：30-10：00",
-              id: 2
+              id: 2,
+              disabled: false
             },
             {
               text: "10：00-10：30",
-              id: 3
+              id: 3,
+              disabled: false
             },
             {
               text: "11：00-11：30",
-              id: 4
+              id: 4,
+              disabled: false
             },
             {
               text: "11：30-12：00 (已约满)",
-              id: 5
+              id: 5,
+              disabled: true
             },
             {
               text: "12：00-12：30",
-              id: 6
+              id: 6,
+              disabled: false
             },
             {
-              text: "12：30-13：00",
-              id: 7
+              text: "12：30-13：00 (已约满)",
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -365,7 +406,7 @@ export default {
           children: [
             {
               // 名称
-              text: "呵呵",
+              text: "09：00-09：30",
               // id，作为匹配选中状态的标识符
               id: 1,
               // 禁用选项
@@ -373,27 +414,33 @@ export default {
             },
             {
               text: "09：30-10：00",
-              id: 2
+              id: 2,
+              disabled: false
             },
             {
               text: "10：00-10：30",
-              id: 3
+              id: 3,
+              disabled: false
             },
             {
               text: "11：00-11：30",
-              id: 4
+              id: 4,
+              disabled: false
             },
             {
               text: "11：30-12：00 (已约满)",
-              id: 5
+              id: 5,
+              disabled: true
             },
             {
               text: "12：00-12：30",
-              id: 6
+              id: 6,
+              disabled: false
             },
             {
               text: "12：30-13：00",
-              id: 7
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -412,27 +459,33 @@ export default {
             },
             {
               text: "09：30-10：00",
-              id: 2
+              id: 2,
+              disabled: false
             },
             {
               text: "10：00-10：30",
-              id: 3
+              id: 3,
+              disabled: false
             },
             {
               text: "11：00-11：30",
-              id: 4
+              id: 4,
+              disabled: false
             },
             {
               text: "11：30-12：00 (已约满)",
-              id: 5
+              id: 5,
+              disabled: true
             },
             {
               text: "12：00-12：30",
-              id: 6
+              id: 6,
+              disabled: false
             },
             {
               text: "12：30-13：00",
-              id: 7
+              id: 7,
+              disabled: false
             }
           ]
         },
@@ -451,27 +504,33 @@ export default {
             },
             {
               text: "09：30-10：00",
-              id: 2
+              id: 2,
+              disabled: false
             },
             {
               text: "10：00-10：30",
-              id: 3
+              id: 3,
+              disabled: false
             },
             {
               text: "11：00-11：30",
-              id: 4
+              id: 4,
+              disabled: false
             },
             {
               text: "11：30-12：00 (已约满)",
-              id: 5
+              id: 5,
+              disabled: true
             },
             {
               text: "12：00-12：30",
-              id: 6
+              id: 6,
+              disabled: false
             },
             {
               text: "12：30-13：00",
-              id: 7
+              id: 7,
+              disabled: false
             }
           ]
         }
@@ -574,11 +633,9 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.params.type);
     if (this.$route.params.type == 1) {
       this.type = false;
     }
-    console.log(this.type);
   },
   methods: {
     showType() {
@@ -602,15 +659,15 @@ export default {
     },
     // 租房确定
     confirm() {
-      this.form.time = this.timerObj;
+      this.form.time = this.timerObj.week + this.timerObj.time;
       this.show = false;
     },
     // 直播确定
     confirm2() {
-      this.timerInput = `${this.overTime.week} ${this.startTime.time}~${this.overTime.time}`
+      this.timerInput = `${this.overTime.week} ${this.startTime.time}~${this.overTime.time}`;
       this.showLives = false;
-      console.log(this.timerInput)
-      this.cancel2()
+      console.log(this.timerInput);
+      this.cancel2();
     },
     showHouse() {
       this.show = true;
@@ -648,7 +705,7 @@ export default {
       }
     },
     clickItem(e) {
-      this.timerObj = e.text;
+      this.timerObj.time = e.text;
       console.log(this.timerObj);
     },
     toOrderForm() {
@@ -664,7 +721,10 @@ export default {
           }
         }, 1000);
       } else {
-        this.$router.push("/paymentSucceed");
+        // 成功
+        // this.$router.push("/paymentSucceed");
+        // 失败
+        this.$router.push("/paymenterr");
       }
     },
     phone(e) {
@@ -701,17 +761,19 @@ export default {
     },
     // 选择开始天数
     vanClick(name, title) {
-      console.log(name);
-      console.log(title);
+      console.log(11111)
       this.startTime.week = title;
       this.active = 0;
       this.timers.forEach(item => (item.active = false));
+
     },
     // 选择结束天数
     vanClick2(name, title) {
-      console.log(name);
-      console.log(title);
+
       this.overTime.week = title;
+    },
+    clickNav(e) {
+      this.timerObj.week = this.items[e].text;
     }
   }
 };
@@ -883,5 +945,42 @@ div.appointment {
       text-align: center;
     }
   }
+}
+.dis {
+  color: #c7c7c7 !important;
+}
+.retingsss {
+  height: 900px !important;
+}
+.livesss {
+  height: 770px !important;
+}
+
+.img_wrap img {
+  width: 120px;
+  height: 108px;
+  margin-left: -10px;
+  margin-top: -19px;
+}
+.popup_timer {
+  position: relative;
+}
+.popup_timer_right {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.xianxian {
+  width: 1px;
+  height: 60px;
+  background: #dedede;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 </style>

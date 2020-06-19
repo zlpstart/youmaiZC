@@ -57,7 +57,7 @@ export default {
   },
   methods:{
       find(){
-          this.$router
+          this.$router.push("/havePaid")
       }
   }
 };

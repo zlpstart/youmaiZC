@@ -70,7 +70,6 @@ div.couponUnused {
 
       h1 {
         font-size: 52px;
-        font-family: PingFang-SC-Bold, PingFang-SC;
         font-weight: bold;
 color:rgba(250,151,2,1);
         line-height: 33px;
@@ -82,7 +81,6 @@ color:rgba(250,151,2,1);
 
       p {
         font-size: 22px;
-        font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 30px;
@@ -96,7 +94,6 @@ color:rgba(250,151,2,1);
       h1 {
         font-size: 28px;
         margin-top: 59px;
-        font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
         color: rgba(51, 51, 51, 1);
         line-height: 40px;
@@ -104,7 +101,6 @@ color:rgba(250,151,2,1);
 
       p {
         font-size: 20px;
-        font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 28px;

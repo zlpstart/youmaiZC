@@ -607,10 +607,10 @@ div.rentingList_content_box {
       }
       p {
         margin-left: 27px;
-        img {
-          width: 23px;
-          height: 23px;
-        }
+        // img {
+        //   width: 23px;
+        //   height: 23px;
+        // }
       }
     }
     div.rentingList_content_box_txt_card {
@@ -620,5 +620,8 @@ div.rentingList_content_box {
       margin-top: 11px;
     }
   }
+}
+.txt_min img {
+            height: 23px;
 }
 </style>

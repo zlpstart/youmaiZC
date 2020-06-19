@@ -95,7 +95,7 @@
         <div class="liveDetails_bottom_love_txt">已关注</div>
       </div>
       <div class="liveDetails_bottom_btn1">
-        <button @click="toAppointment">立即预定</button>
+        <button @click="toAppointment">立即预约</button>
       </div>
       <div class="liveDetails_bottom_btn2">
         <button>在线咨询</button>

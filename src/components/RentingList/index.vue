@@ -1,6 +1,79 @@
 <template>
   <div class="contentList">
-    <div :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}" @click="toWorkDetails">
+    <div
+      :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}"
+      @click="toWorkDetails"
+    >
+      <div class="rentingList_content_box">
+        <div class="rentingList_content_box_img">
+          <img src="../../assets/ceshi.jpg" alt />
+        </div>
+        <div class="rentingList_content_box_txt">
+          <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
+            <h1
+              :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
+            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
+          </div>
+          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
+            <p class="txt_min">
+              <img src="../../assets/bangong_icon_chair_nor.png" alt />
+              100个工位
+            </p>
+            <p class="txt_min">
+              <img src="../../assets/bangong_icon_mianji_nor.png" alt />
+              500.00㎡面积
+            </p>
+          </div>
+          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
+          <div class="rentingList_content_box_txt_card txt_card">
+            <p>茶水间</p>
+            <p>路演厅</p>
+          </div>
+          <div class="rentingList_content_box_txt_money">
+            <p class="txt_money">¥4800/月</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}"
+      @click="toWorkDetails"
+    >
+      <div class="rentingList_content_box">
+        <div class="rentingList_content_box_img">
+          <img src="../../assets/ceshi.jpg" alt />
+        </div>
+        <div class="rentingList_content_box_txt">
+          <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
+            <h1
+              :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
+            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
+          </div>
+          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
+            <p class="txt_min">
+              <img src="../../assets/bangong_icon_chair_nor.png" alt />
+              100个工位
+            </p>
+            <p class="txt_min">
+              <img src="../../assets/bangong_icon_mianji_nor.png" alt />
+              500.00㎡面积
+            </p>
+          </div>
+          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
+          <div class="rentingList_content_box_txt_card txt_card">
+            <p>茶水间</p>
+            <p>路演厅</p>
+          </div>
+          <div class="rentingList_content_box_txt_money">
+            <p class="txt_money">¥4800/月</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}"
+      @click="toWorkDetails"
+    >
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
           <img src="../../assets/ceshi.jpg" alt />
@@ -54,7 +127,6 @@ export default {
 <style lang="less" scoped>
 div.rentingList_content {
   margin-top: 20px;
-  margin-bottom: 61px;
   .rentingList_content_box:nth-child(1) {
     margin-top: 0;
   }

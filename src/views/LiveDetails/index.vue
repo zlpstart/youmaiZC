@@ -79,7 +79,7 @@
           <p>押金</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">为确保房屋及其附属设备的完好</p>
+          <p class="txt_medium">200</p>
           <img src="../../assets/con_icon_ques.png" @click="toYa" />
         </div>
       </div>
@@ -88,7 +88,7 @@
           <p>最少起订</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">最少起订为最小租赁时间单位。</p>
+          <p class="txt_medium">1个小时</p>
           <img src="../../assets/con_icon_ques.png" @click="toMinimum" />
         </div>
       </div>
@@ -125,7 +125,7 @@
         <div class="liveDetails_bottom_love_txt">已关注</div>
       </div>
       <div class="liveDetails_bottom_btn1">
-        <button @click="toAppointment">立即预定</button>
+        <button @click="toAppointment">立即预订</button>
       </div>
       <div class="liveDetails_bottom_btn2">
         <button>在线咨询</button>
@@ -213,7 +213,7 @@ export default {
       text-align: center;
       margin-left: 102px;
       img {
-        height: 35px;
+        height: 45px;
       }
       p {
         font-size: 24px;

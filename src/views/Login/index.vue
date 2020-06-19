@@ -219,7 +219,8 @@ div.login {
         justify-content: space-between;
         li:nth-child(2){
           img {
-            width: 44px;
+            width: 40px;
+            margin-top: 5px;
           }
         }
         li {

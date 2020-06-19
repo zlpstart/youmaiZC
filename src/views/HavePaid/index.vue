@@ -4,13 +4,16 @@
       <div class="havePaid_top_wrap padd" v-if="showTitle">
         <p>
           订单已支付
-          <span>（订单已支付成功）</span>
+          <span>（结果将以短信或电话方式通知，请保持手机畅通）</span>
         </p>
       </div>
       <div class="havePaid_top_wrap padd" v-if="!showTitle">
         <p>
           订单待支付
-          <span>（剩余<b>00:29:32</b>未支付订单江自动关闭）</span>
+          <span>
+            （剩余
+            <b>00:29:32</b>未支付订单江自动关闭）
+          </span>
         </p>
       </div>
     </div>
@@ -28,7 +31,21 @@
       </div>
     </div>
     <div class="havePaid_import padd">
-      <contentList />
+      <div class="havePaid_import_left">
+        <img src="../../assets/ceshi.jpg" alt />
+      </div>
+      <div class="havePaid_import_right">
+        <div class="havePaid_import_right_h1">
+          <h1>厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
+        </div>
+        <div class="havePaid_import_right_card">
+          <div class="havePaid_import_right_card_box">茶水间</div>
+          <div class="havePaid_import_right_card_box">路演厅</div>
+        </div>
+        <div class="havePaid_import_right_txt">
+          <p>250元/时起</p>
+        </div>
+      </div>
     </div>
     <div class="havePaid_name padd">
       <div class="havePaid_name_title">
@@ -141,7 +158,7 @@ div.havePaid {
           font-size: 24px;
           font-family: Medium;
           b {
-              font-size: 32px;
+            font-size: 32px;
           }
         }
       }
@@ -355,6 +372,56 @@ div.havePaid {
       color: rgba(255, 255, 255, 1);
       line-height: 88px;
       text-align: center;
+    }
+  }
+}
+div.havePaid_import {
+  display: flex;
+  div.havePaid_import_left {
+    width:262px;
+height:197px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  div.havePaid_import_right {
+    width: 409px;
+    margin-left: 20px;
+    div.havePaid_import_right_h1 {
+      h1 {
+font-size:26px;
+font-family:PingFang-SC-Bold,PingFang-SC;
+font-weight:bold;
+color:rgba(51,51,51,1);
+line-height:37px;
+      }
+    }
+
+    div.havePaid_import_right_card {
+      display: flex;
+      margin-top: 32px;
+      .havePaid_import_right_card_box:nth-child(1){
+        margin-left: 0;
+      }
+      div.havePaid_import_right_card_box {
+        padding: 5px 16px;
+        background:rgba(244,244,244,1);
+border-radius:4px;
+margin-left: 10px;
+      }
+    }
+
+    div.havePaid_import_right_txt {
+      margin-top: 11px;
+      p {
+font-size:28px;
+font-family:PingFang-SC-Bold,PingFang-SC;
+font-weight:bold;
+color:rgba(102,102,102,1);
+line-height:40px;
+      }
     }
   }
 }

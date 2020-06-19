@@ -212,6 +212,7 @@ div.user {
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.09);
     border-radius: 6px;
+    margin: auto;
     margin-top: 30px;
     padding: 30px;
     div.user_top_message {

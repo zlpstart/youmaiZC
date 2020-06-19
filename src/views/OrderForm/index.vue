@@ -10,13 +10,14 @@
         <p>周三 06/01</p>
         <p>15:00</p>
       </div>
+      <div class="xianxian"></div>
       <div class="orderform_timer_cent">
         <p>共5小时</p>
       </div>
       <div class="orderform_timer_left">
-        <p>开始时间</p>
+        <p>离开时间</p>
         <p>周三 06/01</p>
-        <p>15:00</p>
+        <p>20:00</p>
       </div>
     </div>
     <div class="orderform_name padd">
@@ -46,8 +47,9 @@
       </div>
       <div class="orderform_money_top">
         <div class="orderform_money_top_left">
-          <h1>押金
-              <img src="../../assets/con_icon_ques.png" alt="">
+          <h1>
+            押金
+            <img src="../../assets/con_icon_ques.png" alt @click="toYajin" />
           </h1>
           <p>正常退房后押金将退回</p>
         </div>
@@ -84,7 +86,7 @@
           订单总额
           <span>¥1250.00</span>
         </p>
-        <h1>（含押金，已优惠¥200.00）</h1>
+        <h1>(含押金，已优惠¥200.00)</h1>
       </div>
       <div class="orderform_bottom_box">
         <button @click="submit">提交订单</button>
@@ -101,10 +103,13 @@ export default {
   components: {
     contentList
   },
-  methods:{
-      submit(){
-          this.$router.push('/payment')
-      }
+  methods: {
+    submit() {
+      this.$router.push("/payment");
+    },
+    toYajin(){
+      this.$router.push("/guarantee")
+    }
   }
 };
 </script>
@@ -120,6 +125,7 @@ export default {
   .orderform_timer {
     width: 100%;
     height: 211px;
+    position: relative;
     display: flex;
     padding: 31px 88px;
     justify-content: space-between;
@@ -153,10 +159,15 @@ export default {
     }
     .orderform_timer_cent {
       width: 90px;
-      height: 151px;
-      line-height: 151px;
+      margin-top: 60px;
+      height: 33px;
+      line-height: 33px;
+      background: #fff;
+      z-index: 2;
       p {
         font-size: 24px;
+        background: #fff;
+        z-index: 22;
         font-family: PingFang-SC-Bold, PingFang-SC;
         font-weight: bold;
         color: rgba(250, 151, 2, 1);
@@ -222,9 +233,9 @@ export default {
           color: rgba(51, 51, 51, 1);
           line-height: 45px;
           img {
-              width: 32px;
-              height: 32px;
-              margin-left: 15px;
+            width: 32px;
+            height: 32px;
+            margin-left: 15px;
           }
         }
         p {
@@ -245,9 +256,9 @@ export default {
           color: rgba(51, 51, 51, 1);
           line-height: 45px;
           img {
-              width: 16px;
-              height: 28px;
-              margin-left: 28px;
+            width: 16px;
+            height: 28px;
+            margin-left: 28px;
           }
         }
         p {
@@ -334,6 +345,7 @@ export default {
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 30px;
+        margin-top: 4px;
       }
       button {
         width: 330px;
@@ -350,11 +362,21 @@ export default {
       }
     }
     .orderform_bottom_txt {
-      margin-top: 10px;
+      margin-top: 5px;
     }
   }
 }
 .padd {
   padding: 0 30px;
+}
+.xianxian {
+  width: 1px;
+  height: 150px;
+  background: rgba(222, 222, 222, 1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 </style>

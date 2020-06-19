@@ -11,7 +11,7 @@
               :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
             >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
           </div>
-          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
+          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform' && this.$route.path != '/havePaid'">
             <p class="txt_min">
               <img src="../../assets/bangong_icon_chair_nor.png" alt />
               100个工位
@@ -21,7 +21,7 @@
               500.00㎡面积
             </p>
           </div>
-          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
+          <div class="zhanwei" v-show="!(this.$route.path != '/orderform') "></div>
           <div class="rentingList_content_box_txt_card txt_card">
             <p>茶水间</p>
             <p>路演厅</p>
@@ -85,7 +85,6 @@ div.rentingList_content {
         p {
           margin-left: 27px;
           img {
-            width: 23px;
             height: 23px;
           }
         }

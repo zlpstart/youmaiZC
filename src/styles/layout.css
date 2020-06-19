@@ -151,8 +151,8 @@
     height: 100%;
 }
 .custom-indicator {
-    padding: 0 9px;
     top: 471px;
+    text-align: center;
     width:51px !important;
     height:25px !important;
     background:rgba(0, 0, 0, 0.5) !important;
@@ -161,11 +161,11 @@
     font-family:PingFang-SC-Medium,PingFang-SC;
     font-weight:500;
     color:rgba(255,255,255,1);
-    line-height:28px;
+    line-height:25px;
 }
 /* 选择时间 */
 .van-popup {
-    height: 761px !important;
+    height: 901px !important;
 }
 .van-sidebar {
     flex: 1;
@@ -180,7 +180,7 @@
     font-family:PingFang-SC-Bold,PingFang-SC;
     font-weight:bold;
     color:rgba(51,51,51,1);
-    line-height:40px;
+    line-height:88px;
 }
 .van-sidebar-item--select::before {
     display: none;
@@ -194,6 +194,7 @@
     font-weight:500;
     color:#666666;
     line-height:80px;
+
 }
 .van-tree-select__item--active {
     color: #FA9702;
@@ -240,10 +241,10 @@
     font-family:PingFang-SC-Bold,PingFang-SC;
     font-weight:bold;
     color:rgba(255,255,255,1);
-    line-height:40px;
+    line-height:60px;
 }
 .img {
-    background: #F4F4F4;
+    background: #fff;
     width: 108px;
     height: 108px;
     position: absolute;
@@ -251,6 +252,14 @@
     top:0px;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+.img_wrap {
+    width: 96px;
+    height: 96px;
+    border-radius: 102px;
+    margin: auto;
+    margin-top: 6px;
+    background: #F4F4F4;
 }
 .img img {
     width: 100%;
@@ -349,6 +358,9 @@
 .van-radio__label p {
     margin-left: 43px;
     margin-top: 12px;
+    font-size:30px;
+font-weight:bold;
+color:rgba(51,51,51,1);
 }
 .van-radio__label img {
     width: 44px;
@@ -421,4 +433,33 @@ line-height:28px;
     font-weight:bold;
     color:rgba(51,51,51,1);
     line-height:37px;
+}
+.van-tree-select__item--disabled {
+    color: #C7C7C7;
+}
+.van-tree-select__nav {
+    flex: none;
+    width: 266px;
+}
+.van-tree-select__content {
+    flex: none;
+    width: 484px;
+}
+.van-tree-select__nav-item {
+    padding: 0;
+}
+.van-sidebar-item__text {
+    margin-left: 30px;
+    width: 2009px;
+}
+.van-radio-group .van-radio:nth-child(4) .van-radio__label img{
+    width: 54px;
+    height: 32px;
+}
+.van-radio-group .van-radio:nth-child(4) .van-radio__label p{
+    margin-left: 38px !important;
+    margin-top: 5px;
+    font-size:30px;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
 }
