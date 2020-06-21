@@ -30,14 +30,17 @@
         </div>
       </div>
     </div>
+    <!-- img_vip_chang .png -->
+    <div class="user_privilege_bg"></div>
     <div class="user_privilege padd">
+      
       <div class="user_privilege_list">
         <div class="user_privilege_list_box">
           <div class="user_privilege_list_box_img">
             <img src="../../assets/vip_icon_hongbao.png" alt />
           </div>
           <div class="user_privilege_list_box_txt">
-            <p>每周券包</p>
+            <p>红包/卡券</p>
           </div>
         </div>
         <div class="user_privilege_list_box">
@@ -265,7 +268,7 @@ div.user {
     }
 
     div.user_top_list {
-      margin-top: 75px;
+      margin-top: 44px;
       display: flex;
       .user_top_list_box:nth-child(2) {
         border-left: 1px solid #dedede;
@@ -298,11 +301,14 @@ div.user {
   div.user_privilege {
     width: 630px;
     height: 223px;
+    position: relative;
+    z-index: 2;
     margin: auto;
-    margin-top: -48px;
+    margin-top: -78px;
     padding: 41px 36px 23px 36px;
     background: url("../../assets/vip_img_bg.png") no-repeat center;
     background-size: 100%;
+
     div.user_privilege_list {
       display: flex;
       justify-content: space-between;
@@ -343,7 +349,7 @@ div.user {
           img {
             width: 100%;
             height: 100%;
-            margin-top: 3px;
+            margin-top: 4px;
           }
         }
 
@@ -421,4 +427,17 @@ div.user {
     }
   }
 }
+    .user_privilege_bg {
+      width:650px;
+      height:14px;
+      background:rgba(244,244,244,1);
+      box-shadow:0px 5px 8px 0px rgba(0,0,0,0.27);
+      border-radius:7px;
+      background: url('../../assets/img_vip_chang .png');
+      position: absolute;
+      top: 314px;
+      z-index: 1;
+      left: 50%;
+      transform: translate(-50%);
+    }
 </style>

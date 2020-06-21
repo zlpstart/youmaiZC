@@ -463,3 +463,6 @@ line-height:28px;
     font-weight:bold;
     color:rgba(51,51,51,1);
 }
+.van-radio-group .van-radio:nth-child(1){
+    margin-top: 18px;
+}

@@ -8,7 +8,6 @@
         <h1>¥300，000.00</h1>
       </div>
       <div class="wallet_top_btn">
-        <button>去充值</button>
         <button @click="toDetail">收支明细</button>
       </div>
     </div>
@@ -38,19 +37,19 @@
       <div class="wallet_payment_li">
         <div class="payment_list">
           <van-radio-group v-model="radio">
-            <van-radio name="1" icon-size="24px">
+            <!-- <van-radio name="1" icon-size="24px">
               <img src="../../assets/img_vip.png" alt />
               <p>会员支付</p>
-            </van-radio>
-            <van-radio name="2" icon-size="24px">
+            </van-radio>-->
+            <van-radio name="1" icon-size="24px">
               <img src="../../assets/img-weixin.png" alt />
               <p>微信支付</p>
             </van-radio>
-            <van-radio name="3" icon-size="24px">
+            <van-radio name="2" icon-size="24px">
               <img src="../../assets/icon-zhifubao-nor@3x.png" alt />
               <p>支付宝支付</p>
             </van-radio>
-            <van-radio name="4" icon-size="24px">
+            <van-radio name="3" icon-size="24px">
               <img src="../../assets/logo-header.png" alt />
               <p>快钱支付</p>
             </van-radio>
@@ -116,7 +115,7 @@ export default {
     return {
       radio: "1",
       succeed: false,
-      error:false,
+      error: false,
       money: [
         {
           mach: "3000",
@@ -147,8 +146,8 @@ export default {
       this.money.map(item => (item.target = false));
       e.target = true;
     },
-    toDetail(){
-      this.$router.push('/detail')
+    toDetail() {
+      this.$router.push("/detail");
     }
   }
 };
@@ -156,7 +155,7 @@ export default {
 
 <style lang="less" scoped>
 .redd {
-  color: #FF2E2E !important;
+  color: #ff2e2e !important;
 }
 .target_bac {
   background: url("../../assets/wallet_img_press.png") no-repeat center !important;
@@ -167,7 +166,6 @@ export default {
   padding: 0 30px;
 }
 div.payment_list {
-  padding: 0 30px;
 }
 .payment_btn {
   width: 690px;
@@ -188,11 +186,12 @@ div.payment_list {
 div.wallet {
   div.wallet_top {
     width: 100%;
+    height: 468px;
     padding-left: 60px;
-    height: 475px;
     background: url("../../assets/wallet_bg.png") no-repeat center;
     background-size: 100%;
-    padding-top: 120px;
+    background-position-y: -90px;
+    padding-top: 80px;
     div.wallet_top_p {
       p {
         font-size: 26px;
