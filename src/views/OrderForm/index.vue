@@ -57,14 +57,14 @@
           <h1>¥200.00</h1>
         </div>
       </div>
-      <div class="orderform_money_top">
+      <div class="orderform_money_top" @click="showCouponWrap">
         <div class="orderform_money_top_left">
           <h1>优惠券</h1>
         </div>
         <div class="orderform_money_top_right">
           <h1>
             -¥200.00
-            <img src="../../assets/icon_link_nor.png" alt />
+            <img src="../../assets/icon_link_nor.png" @click="toAgreement" alt />
           </h1>
         </div>
       </div>
@@ -77,7 +77,7 @@
       <img src="../../assets/icon_jinggao_nor.png" alt />
       <p>
         预订代表您同意
-        <span>《平台服务协议》</span>
+        <span @click="toAgreement">《平台服务协议》</span>
       </p>
     </div>
     <div class="orderform_bottom padd">
@@ -92,23 +92,72 @@
         <button @click="submit">提交订单</button>
       </div>
     </div>
+    <div class="coupon" v-show="showCoupon">
+      <div class="coupon_wrap">
+        <div class="coupon_wrap_title">
+          <h1>优惠卷</h1>
+          <img class="title_img" @click="closeCoupon" src alt />
+        </div>
+        <div class="coupon_wrap_content">
+          <van-tabs v-model="active">
+            <van-tab title="可用优惠券(3)">
+              <couponUnused />
+              <div class="van_none">
+                <div class="van_none_left">
+                  <p>不使用优惠券</p>
+                </div>
+                <div class="van_none_right">
+                  <input class="radio_type" type="radio" name="coupon" id="radio1" checked="checked" />
+                </div>
+              </div>
+            </van-tab>
+            <van-tab title="不可用优惠券(3)">
+              <CouponPast />
+            </van-tab>
+          </van-tabs>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import contentList from "../../components/ContentList/index";
+import couponUnused from "../../components/CouponUnused/index";
+import CouponPast from "../../components/CouponPast/index";
 
 export default {
   name: "orderform",
+  data() {
+    return {
+      active: 0,
+      showCoupon: false,
+      radio: '1',
+    };
+  },
   components: {
-    contentList
+    contentList,
+    couponUnused,
+    CouponPast
   },
   methods: {
     submit() {
       this.$router.push("/payment");
     },
-    toYajin(){
-      this.$router.push("/guarantee")
+    toYajin() {
+      this.$router.push("/guarantee");
+    },
+    toAgreement() {
+      this.$router.push("/agreement");
+    },
+    showCouponWrap() {
+      this.showCoupon = true;
+    },
+    closeCoupon() {
+      this.showCoupon = false;
+    },
+    toAgreement(){
+      this.$router.push("/platformAgreement")
     }
   }
 };
@@ -236,6 +285,8 @@ export default {
             width: 32px;
             height: 32px;
             margin-left: 15px;
+            margin-top: 4px;
+            margin-bottom: -2px;
           }
         }
         p {
@@ -378,5 +429,71 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+div.coupon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 23;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  div.coupon_wrap {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    div.coupon_wrap_title {
+      height: 108px;
+      line-height: 108px;
+      padding: 0 30px;
+      background: white;
+      position: relative;
+      h1 {
+        font-size: 34px;
+        font-family: PingFang-SC-Bold, PingFang-SC;
+        font-weight: bold;
+        color: rgba(51, 51, 51, 1);
+        text-align: center;
+      }
+
+      img {
+      }
+    }
+  }
+}
+.coupon_wrap_content {
+  background: white;
+}
+.title_img {
+  width: 22px;
+  height: 22px;
+  background: red;
+  position: absolute;
+  right: 32px;
+  z-index: 1;
+  top: 45px;
+}
+div.van_none {
+  display: flex;
+  padding: 0 50px 0 30px;
+  justify-content: space-between;
+  margin-top: 30px;
+  div.van_none_left {
+    p {
+      font-size: 28px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(51, 51, 51, 1);
+      line-height: 40px;
+    }
+  }
+
+  div.van_none_right {
+    input {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(199, 199, 199, 1);
+    }
+  }
 }
 </style>

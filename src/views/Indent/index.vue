@@ -1,24 +1,24 @@
 <template>
   <div class="indent">
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" @click="changeIndent">
       <van-tab title="全部">
-        <Indent />
+        <IndentList :indentData="active" />
       </van-tab>
       <van-tab title="已完成">
-        <Indent />
+        <IndentList :indentData="active" />
       </van-tab>
       <van-tab title="待支付">
-        <Indent />
+        <IndentList :indentData="active" />
       </van-tab>
       <van-tab title="已取消">
-        <Indent />
+        <IndentList :indentData="active" />
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import Indent from "../../components/IndentList/index";
+import IndentList from "../../components/IndentList/index";
 
 export default {
   name: "indent",
@@ -28,7 +28,13 @@ export default {
     };
   },
   components: {
-    Indent
+    IndentList
+  },
+  methods:{
+    changeIndent(name,title){
+      this.active = name;
+      console.log(this.active)
+    }
   }
 };
 </script>

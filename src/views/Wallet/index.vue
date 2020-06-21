@@ -85,8 +85,8 @@
           <h1>¥5000.00</h1>
           <p>充值成功，您可以在“我的钱包”页面查看余额</p>
         </div>
-        <div class="wallet_alert_box_close">
-          <p @click="closeAlert">X</p>
+        <div class="wallet_alert_box_close" @click="closeAlert">
+          <img src="../../assets/wallet_icon_close.png" alt="">
         </div>
       </div>
     </div>
@@ -100,8 +100,8 @@
           <h1>¥5000.00</h1>
           <p class="redd">充值失败，您的卡内余额不足，请重新选择支付方式</p>
         </div>
-        <div class="wallet_alert_box_close">
-          <p @click="closeAlert">X</p>
+        <div class="wallet_alert_box_close" @click="closeAlert">
+          <img src="../../assets/wallet_icon_close.png" alt="">>
         </div>
       </div>
     </div>
@@ -445,7 +445,6 @@ div.wallet {
       div.wallet_alert_box_close {
         width: 60px;
         height: 60px;
-        background: rgba(0, 0, 0, 0.8);
         border-radius: 60px;
         text-align: center;
         line-height: 60px;
@@ -453,8 +452,9 @@ div.wallet {
         top: 115%;
         left: 50%;
         transform: translate(-50%, -50%);
-        p {
-          color: #ffffff;
+        img {
+          width: 100%;
+          height: 100%;
         }
       }
     }

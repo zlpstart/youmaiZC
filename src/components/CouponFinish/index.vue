@@ -90,7 +90,7 @@ color:rgba(250,151,2,1);
 
     div.couponUnused_box_right {
       flex: 3;
-      text-align: center;
+      padding-left: 30px;
       h1 {
         font-size: 28px;
         margin-top: 59px;
@@ -107,6 +107,9 @@ color:rgba(250,151,2,1);
         margin-top: 24px;
       }
     }
+  }
+    .couponUnused_box:nth-child(1) {
+    margin-top: 60px !important;
   }
 }
 </style>

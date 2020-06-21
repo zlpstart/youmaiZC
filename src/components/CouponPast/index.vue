@@ -24,18 +24,6 @@
         <p>2020-06-01至2020-06-25</p>
       </div>
     </div>
-    <div class="couponUnused_box">
-      <div class="couponUnused_box_left">
-        <h1>
-          <span>¥</span>100.00
-        </h1>
-        <p>满1000元可用</p>
-      </div>
-      <div class="couponUnused_box_right">
-        <h1>服装电商直播基地专用抵扣券</h1>
-        <p>2020-06-01至2020-06-25</p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -92,7 +80,7 @@ div.couponUnused {
 
     div.couponUnused_box_right {
       flex: 3;
-      text-align: center;
+      padding-left: 30px;
       h1 {
         font-size: 28px;
         margin-top: 59px;
@@ -111,6 +99,9 @@ div.couponUnused {
         margin-top: 24px;
       }
     }
+  }
+    .couponUnused_box:nth-child(1) {
+    margin-top: 60px !important;
   }
 }
 </style>

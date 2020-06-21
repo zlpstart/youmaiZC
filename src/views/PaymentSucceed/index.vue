@@ -21,7 +21,7 @@
     <div class="paymentSucceed_steps2">
       <div class="paymentSucceed_steps_box">
         <div class="paymentSucceed_steps_box_left">
-          <div class="yuan">1</div>
+          <div class="yuan">2</div>
           <div class="xian"></div>
         </div>
         <div class="paymentSucceed_steps_box_right">
@@ -33,7 +33,7 @@
     <div class="paymentSucceed_steps3">
       <div class="paymentSucceed_steps_box">
         <div class="paymentSucceed_steps_box_left">
-          <div class="yuan">1</div>
+          <div class="yuan">3</div>
           <div class="xian"></div>
         </div>
         <div class="paymentSucceed_steps_box_right">
@@ -98,6 +98,7 @@ div.paymentSucceed {
       .xian {
         width: 2px;
         height: 100px;
+        background: #FCB548;
       }
     }
     div.paymentSucceed_steps_box {
@@ -115,8 +116,9 @@ div.paymentSucceed {
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
-          line-height: 33px;
+          line-height: 36px;
           text-align: center;
+          background: #FED18B;
         }
         .xian2 {
           width: 2px;
@@ -156,8 +158,9 @@ div.paymentSucceed {
   }
 
   div.paymentSucceed_steps2 {
-    width: 350px;
+    width: 400px;
     margin: auto;
+    margin-left: 200px;
     margin-top: 6px;
     div.paymentSucceed_steps_box {
       height: 100px;
@@ -176,7 +179,7 @@ div.paymentSucceed {
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
-          line-height: 33px;
+          line-height: 36px;
           padding-left: -10px;
           text-align: center;
         }
@@ -191,6 +194,7 @@ div.paymentSucceed {
 
       div.paymentSucceed_steps_box_right {
         margin-left: 55px;
+        margin-top: 31px;
         h1 {
           font-size: 26px;
           font-family: PingFang-SC-Medium, PingFang-SC;
@@ -226,7 +230,7 @@ div.paymentSucceed {
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
-          line-height: 33px;
+          line-height: 36px;
           text-align: center;
           margin-bottom: 13px;
       }
@@ -242,6 +246,7 @@ div.paymentSucceed {
 
     div.paymentSucceed_steps_box_right {
         margin-left: 35px;
+        margin-top: 71px;
       h1 {
         font-size: 26px;
           font-family: PingFang-SC-Medium, PingFang-SC;

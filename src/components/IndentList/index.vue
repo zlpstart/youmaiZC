@@ -36,9 +36,33 @@
           <h1>总金额：</h1>
           <p>¥1000.00</p>
         </div>
-        <div class="IndentList_bottom_queding_btn">
-          <button>取消订单</button>
-          <button>立即支付</button>
+        <div
+          :class="{IndentList_bottom_queding_btn:true,IndentList_bottom_queding_btn2:indentData == 3}"
+        >
+          <button v-show="indentData != 3" @click="cancel">取消订单</button>
+          <button v-show="(indentData == 0 || indentData ==2)" @click="topayment">立即支付</button>
+          <button v-show="(indentData == 1 || indentData == 3)">联系客服</button>
+        </div>
+      </div>
+    </div>
+    <div class="formErr" v-show="showCancels">
+      <div class="formErr_wrap">
+        <div class="form_txt_wrap">
+          <div class="formErr_title">
+            <h1>确定取消订单？</h1>
+          </div>
+          <div class="formErr_content">
+            <p>确定取消该笔订单？取消后可在订单中心查看</p>
+          </div>
+        </div>
+
+        <div class="formErr_btn">
+          <div class="formErr_btn_left">
+            <p @click="confirm">确定</p>
+          </div>
+          <div class="formErr_btn_right" @click="cancel2">
+            <p>取消</p>
+          </div>
         </div>
       </div>
     </div>
@@ -49,14 +73,38 @@
 export default {
   name: "IndentList",
   data() {
-    return {};
+    return {
+      cancels:false,
+      showCancels:false
+    };
+  },
+  props: ["indentData"],
+  mounted() {
+    console.log(this.indentData);
+  },
+  methods: {
+    topayment() {
+      this.$router.push("/payment");
+    },
+    showCancel(){
+      this.showCancels = true;
+    },
+    confirm(){
+      this.showCancels = false;
+    },
+    cancel(){
+      this.showCancels = true;
+    },
+    cancel2(){
+      this.showCancels = false;
+    }
   }
 };
 </script>
 
 <style lang="less" scoped>
 div.IndentList {
-    background: #FFFFFF;
+  background: #ffffff;
   margin-top: 20px;
   div.IndentList_top {
     width: 100%;
@@ -174,8 +222,9 @@ div.IndentList {
     div.IndentList_bottom_queding {
       div.IndentList_bottom_queding_mach {
         display: flex;
+        text-align: right;
         h1 {
-            margin-left: 70px;
+          margin-left: 85px;
           font-size: 28px;
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
@@ -192,28 +241,123 @@ div.IndentList {
       }
 
       div.IndentList_bottom_queding_btn {
+        display: flex;
         margin-top: 20px;
+        text-align: right;
         button {
-          padding: 12px 20px;
+          width: 143px;
+          height: 60px;
           border-radius: 4px;
           border: 1px solid rgba(221, 221, 221, 1);
           font-size: 26px;
           font-family: PingFang-SC-Medium, PingFang-SC;
           font-weight: 500;
+          margin-left: 20px;
           color: rgba(102, 102, 102, 1);
           line-height: 37px;
           background: rgba(0, 0, 0, 0);
         }
         button:nth-child(2) {
-          padding: 12px 20px;
           border-radius: 4px;
+          width: 143px;
+          height: 60px;
           border: 1px solid #fa9702;
-          margin-left: 20px;
+
           font-size: 26px;
           font-family: PingFang-SC-Medium, PingFang-SC;
           font-weight: 500;
           color: #fa9702;
           line-height: 37px;
+        }
+        button:nth-child(3) {
+          border-radius: 4px;
+          width: 143px;
+          height: 60px;
+          border: 1px solid #fa9702;
+
+          font-size: 26px;
+          font-family: PingFang-SC-Medium, PingFang-SC;
+          font-weight: 500;
+          color: #fa9702;
+          line-height: 37px;
+        }
+      }
+    }
+  }
+}
+.IndentList_bottom_queding_btn2 {
+  float: right;
+}
+div.formErr {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  div.formErr_wrap {
+    width: 560px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .form_txt_wrap {
+      height: 149px;
+      div.formErr_title {
+        h1 {
+          font-size:32px;
+font-family:PingFang-SC-Bold,PingFang-SC;
+font-weight:bold;
+color:rgba(51,51,51,1);
+line-height:45px;
+text-align: center;
+margin-top: 20px;
+        }
+      }
+
+      div.formErr_content {
+        p {
+          font-size:22px;
+font-family:PingFang-SC-Medium,PingFang-SC;
+font-weight:500;
+color:rgba(102,102,102,1);
+text-align: center;
+margin-top: 25px;
+line-height:30px;
+        }
+      }
+    }
+
+    div.formErr_btn {
+      display: flex;
+      height: 88px;
+      border-top: 1px solid #F4F4F4;
+      div.formErr_btn_left {
+        flex: 1;
+        height: 88px;
+        line-height: 88px;
+        border-right: 1px solid #F4F4F4;
+        p {
+          font-size:28px;
+          font-family:PingFang-SC-Bold,PingFang-SC;
+          font-weight:bold;
+          color:rgba(102,102,102,1);
+          text-align: center;
+        }
+      }
+
+      div.formErr_btn_right {
+height: 88px;
+line-height: 88px;
+        flex: 1;
+        p {
+font-size:28px;
+font-family:PingFang-SC-Bold,PingFang-SC;
+font-weight:bold;
+color:rgba(250,151,2,1);
+text-align: center;
         }
       }
     }

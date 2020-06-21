@@ -1,10 +1,10 @@
 <template>
   <div class="havePaid">
     <div class="havePaid_top">
-      <div class="havePaid_top_wrap padd" v-if="showTitle">
+      <div class="havePaid_top_wrap" v-if="showTitle">
         <p>
           订单已支付
-          <span>（结果将以短信或电话方式通知，请保持手机畅通）</span>
+          <span>(结果将以短信或电话方式通知，请保持手机畅通)</span>
         </p>
       </div>
       <div class="havePaid_top_wrap padd" v-if="!showTitle">
@@ -146,7 +146,9 @@ div.havePaid {
     div.havePaid_top_wrap {
       width: 750px;
       height: 220px;
-      background: #ffac2f;
+      padding-left: 30px;
+      background: url('../../assets/img_bg_order.png')no-repeat center;
+      background-size: 100%;
       padding-top: 35px;
       p {
         font-size: 32px;
@@ -408,8 +410,13 @@ line-height:37px;
       div.havePaid_import_right_card_box {
         padding: 5px 16px;
         background:rgba(244,244,244,1);
-border-radius:4px;
-margin-left: 10px;
+        border-radius:4px;
+        margin-left: 10px;
+        font-size:22px;
+        font-family:PingFang-SC-Medium,PingFang-SC;
+        font-weight:500;
+        color:rgba(102,102,102,1);
+        line-height:30px;
       }
     }
 

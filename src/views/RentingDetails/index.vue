@@ -101,6 +101,22 @@
         <button>在线咨询</button>
       </div>
     </div>
+    <div class="love" v-show="loveSucess">
+      <div class="love_img">
+        <img src="../../assets/tip_icon_success.png" alt />
+      </div>
+      <div class="love_txt">
+        <p>关注成功</p>
+      </div>
+    </div>
+    <div class="love" v-show="loveError">
+      <div class="love_img">
+        <img src="../../assets/tip_icon_success.png" alt />
+      </div>
+      <div class="love_txt">
+        <p>取消关注成功</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -112,7 +128,9 @@ export default {
   data() {
     return {
       current: 0,
-      attentioning: true
+      attentioning: true,
+      loveSucess: false,
+      loveError: false
     };
   },
   methods: {
@@ -123,7 +141,31 @@ export default {
       this.$router.push(`/appointment/${1}`);
     },
     attention() {
+      if(this.loveSucess || this.loveError){
+
+      }else {
       this.attentioning = !this.attentioning;
+      if (this.attentioning) {
+        this.loveError = false;
+        this.loveError = true;
+        if(this.loveError){
+          this.loveSucess = false;
+        }
+        setTimeout(() => {
+          this.loveError = false;
+        }, 1000);
+      } else {
+        this.loveSucess = false;
+        this.loveSucess = true;
+        if(this.loveSucess){
+          this.loveError = false;
+        }
+        setTimeout(() => {
+          this.loveSucess = false;
+        }, 1000);
+      }
+      }
+
     },
     toMore() {
       this.$router.push("/more");
@@ -229,7 +271,7 @@ div.liveDetails_bottom {
   background: rgba(255, 255, 255, 1);
   position: fixed;
   bottom: 0;
-  box-shadow:0px -2px 14px 0px rgba(0,0,0,0.07);
+  box-shadow: 0px -2px 14px 0px rgba(0, 0, 0, 0.07);
   left: 0;
   div.liveDetails_bottom_love {
     flex: 1;
@@ -284,6 +326,34 @@ div.liveDetails_bottom {
       font-weight: 540;
       color: rgba(255, 255, 255, 1);
       line-height: 45px;
+    }
+  }
+}
+div.love {
+  width: 272px;
+  height: 202px;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 34%;
+  left: 34%;
+  div.love_img {
+    margin-top: 40px;
+    margin-left: 101px;
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  div.love_txt {
+    margin-top: 21px;
+    p {
+      font-size: 26px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 1);
+      text-align: center;
+      line-height: 37px;
     }
   }
 }

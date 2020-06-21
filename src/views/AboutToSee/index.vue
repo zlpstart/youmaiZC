@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import LiveList from "../../components/LiveList";
+import LiveList from "../../components/RentingList/index";
 
 export default {
   name: "aboutToSee",
@@ -63,9 +63,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.aboutToSee:nth-child(1) {
+  .aboutToSee_top:nth-child(1){
+    margin-top: 0;
+  }
+}
 div.aboutToSee {
+
   div.aboutToSee_top {
       display: flex;
+      margin-top: 40px;
       justify-content: space-between;
       align-items: center;
     padding: 0 30px;
@@ -75,7 +82,7 @@ div.aboutToSee {
     div.aboutToSee_top_txt {
       width: 100%;
       height: 100px;
-      line-height: 100px;
+      line-height: 80px;
       //   background: url("../../assets/0img_yuekan.png") no-repeat center;
 
       p {
@@ -92,6 +99,7 @@ div.aboutToSee {
     background: url("../../assets/img_contact.png") no-repeat center;
       background-size: 100%;
       text-align: center;
+      margin-top: -20px;
       padding: 5px 11px;
       box-sizing: content-box;
       p {

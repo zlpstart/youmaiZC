@@ -27,7 +27,7 @@
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p class="txt_money">¥4800/月</p>
+            <p :class="{txt_money:true,txt_orderform:this.$route.path == '/orderform'}">¥4800/月</p>
           </div>
         </div>
       </div>
@@ -114,5 +114,12 @@ div.rentingList_content {
 .rentingList_margin {
   margin-top: 20px;
   margin-bottom: 30px !important;
+}
+.txt_orderform {
+  font-size:28px;
+  font-family:PingFang-SC-Bold,PingFang-SC;
+  font-weight:bold;
+  color:rgba(102,102,102,1);
+  line-height:40px;
 }
 </style>

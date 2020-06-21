@@ -33,7 +33,6 @@
     <!-- img_vip_chang .png -->
     <div class="user_privilege_bg"></div>
     <div class="user_privilege padd">
-      
       <div class="user_privilege_list">
         <div class="user_privilege_list_box">
           <div class="user_privilege_list_box_img">
@@ -185,20 +184,20 @@ export default {
       console.log(111);
       this.$router.push("/wallet");
     },
-    toCoupon(){
-      this.$router.push("/coupon")
+    toCoupon() {
+      this.$router.push("/coupon");
     },
-    toAttention(){
-      this.$router.push('/attention')
+    toAttention() {
+      this.$router.push("/attention");
     },
-    toIndent(){
-      this.$router.push('/indent')
+    toIndent() {
+      this.$router.push("/indent");
     },
-    toAboutToSee(){
-      this.$router.push("/aboutToSee")
+    toAboutToSee() {
+      this.$router.push("/aboutToSee");
     },
-    toAbout(){
-      this.$router.push('/about')
+    toAbout() {
+      this.$router.push("/about");
     }
   }
 };
@@ -387,6 +386,7 @@ div.user {
 
   div.user_list {
     margin-top: 40px;
+
     div.user_list_box {
       widows: 100%;
       height: 88px;
@@ -425,19 +425,33 @@ div.user {
         }
       }
     }
+    .user_list_box:nth-child(3) {
+      .user_list_box_left_img {
+        width: 47px !important;
+        height: 47px !important;
+        margin-left:-5px;
+      }
+    }
+        .user_list_box:nth-child(5) {
+      .user_list_box_left_img {
+        width: 54px !important;
+        margin-left: -8px;
+        height: 54px !important;
+      }
+    }
   }
 }
-    .user_privilege_bg {
-      width:650px;
-      height:14px;
-      background:rgba(244,244,244,1);
-      box-shadow:0px 5px 8px 0px rgba(0,0,0,0.27);
-      border-radius:7px;
-      background: url('../../assets/img_vip_chang .png');
-      position: absolute;
-      top: 314px;
-      z-index: 1;
-      left: 50%;
-      transform: translate(-50%);
-    }
+.user_privilege_bg {
+  width: 650px;
+  height: 14px;
+  background: rgba(244, 244, 244, 1);
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.27);
+  border-radius: 7px;
+  background: url("../../assets/img_vip_chang .png");
+  position: absolute;
+  top: 314px;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%);
+}
 </style>
