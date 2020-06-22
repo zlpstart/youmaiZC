@@ -23,6 +23,7 @@
         <p>周三 06/01</p>
         <p>15:00</p>
       </div>
+      <div class="xianxian"></div>
       <div class="havePaid_timeCard_center">共5小时</div>
       <div class="havePaid_timeCard_box">
         <p>离开时间</p>
@@ -42,6 +43,7 @@
           <div class="havePaid_import_right_card_box">茶水间</div>
           <div class="havePaid_import_right_card_box">路演厅</div>
         </div>
+        
         <div class="havePaid_import_right_txt">
           <p>250元/时起</p>
         </div>
@@ -49,7 +51,7 @@
     </div>
     <div class="havePaid_name padd">
       <div class="havePaid_name_title">
-        <p>预定人</p>
+        <p>预订人</p>
       </div>
       <div class="havePaid_name_content">
         <div class="havePaid_name_content_left">
@@ -141,6 +143,7 @@ export default {
   padding: 0 30px;
 }
 div.havePaid {
+  padding-bottom: 184px;
   div.havePaid_top {
     width: 100%;
     div.havePaid_top_wrap {
@@ -170,6 +173,7 @@ div.havePaid {
   div.havePaid_timeCard {
     width: 690px;
     height: 211px;
+    position: relative;
     background: rgba(255, 255, 255, 1);
     box-shadow: 2px 4px 11px 0px rgba(0, 0, 0, 0.09);
     border-radius: 16px;
@@ -212,6 +216,10 @@ div.havePaid {
       color: rgba(250, 151, 2, 1);
       line-height: 33px;
       display: flex;
+      z-index: 2;
+      height: 33px;
+      margin-top: 60px;
+      background: white;
       align-items: center;
     }
   }
@@ -344,13 +352,17 @@ div.havePaid {
     }
   }
   .havePaid_btn {
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
     margin-top: 54px;
     align-items: center;
     height: 130px;
     background: rgba(255, 255, 255, 1);
     box-shadow: 0px -2px 14px 0px rgba(0, 0, 0, 0.07);
+    position: fixed;
+    bottom: 0;
+        display: flex;
+    justify-content: space-between;
+    background: white;
     .havePaid_btn1 {
       width: 330px;
       height: 88px;
@@ -431,5 +443,15 @@ line-height:40px;
       }
     }
   }
+}
+.xianxian {
+  width: 1px;
+  height: 150px;
+  background: rgba(222, 222, 222, 1);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 </style>

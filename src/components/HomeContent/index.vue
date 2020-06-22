@@ -15,7 +15,7 @@
       </div>
       <div class="max_box">
         <div class="HomeContent_wrap">
-          <div class="HomeContent_wrap_box">
+          <div class="HomeContent_wrap_box" @click="toRentingDetails">
             <div class="rentingList_content_box">
               <div class="rentingList_content_box_img">
                 <img src="../../assets/ceshi.jpg" alt />
@@ -52,7 +52,7 @@
               </div>
             </div>
           </div>
-          <div class="HomeContent_wrap_box">
+          <div class="HomeContent_wrap_box" @click="toRentingDetails">
             <div class="rentingList_content_box">
               <div class="rentingList_content_box_img">
                 <img src="../../assets/ceshi.jpg" alt />
@@ -89,7 +89,7 @@
               </div>
             </div>
           </div>
-          <div class="HomeContent_wrap_box">
+          <div class="HomeContent_wrap_box" @click="toRentingDetails">
             <div class="rentingList_content_box">
               <div class="rentingList_content_box_img">
                 <img src="../../assets/ceshi.jpg" alt />
@@ -126,7 +126,7 @@
               </div>
             </div>
           </div>
-          <div class="HomeContent_wrap_box">
+          <div class="HomeContent_wrap_box" @click="toRentingDetails">
             <div class="rentingList_content_box">
               <div class="rentingList_content_box_img">
                 <img src="../../assets/ceshi.jpg" alt />
@@ -183,7 +183,7 @@
       <div>
         <div class="max_box">
           <div class="live">
-            <div class="live_maxbox">
+            <div class="live_maxbox" @click="toLiveDetails">
               <div class="live_box">
                 <div class="live_box_img">
                   <div class="live_box_img_left">
@@ -227,7 +227,7 @@
               </div>
             </div>
 
-            <div class="live_maxbox">
+            <div class="live_maxbox" @click="toLiveDetails">
               <div class="live_box">
                 <div class="live_box_img">
                   <div class="live_box_img_left">
@@ -271,7 +271,7 @@
               </div>
             </div>
 
-            <div class="live_maxbox">
+            <div class="live_maxbox" @click="toLiveDetails">
               <div class="live_box">
                 <div class="live_box_img">
                   <div class="live_box_img_left">
@@ -333,6 +333,12 @@ export default {
     },
     toLiveList() {
       this.$router.push("/liveList");
+    },
+    toRentingDetails(){
+      this.$router.push('/rentingDetails')
+    },
+    toLiveDetails(){
+      this.$router.push("/liveDetails")
     }
   }
 };

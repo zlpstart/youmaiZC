@@ -46,7 +46,7 @@
     <div class="login_bottom">
       <p>
         登录即同意
-        <span>《用户服务协议》</span>
+        <span @click="toServeAgreement">《用户服务协议》</span>
       </p>
     </div>
   </div>
@@ -69,6 +69,9 @@ export default {
         window.sessionStorage.setItem("key", true);
         this.$router.push("/");
       }
+    },
+    toServeAgreement(){
+      this.$router.push("/serveAgreement")
     }
   }
 };

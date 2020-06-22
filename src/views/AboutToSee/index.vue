@@ -82,9 +82,7 @@ div.aboutToSee {
     div.aboutToSee_top_txt {
       width: 100%;
       height: 100px;
-      line-height: 80px;
-      //   background: url("../../assets/0img_yuekan.png") no-repeat center;
-
+      line-height: 88px;
       p {
         font-size: 30px;
         font-family: PingFang-SC-Bold, PingFang-SC;
@@ -96,10 +94,10 @@ div.aboutToSee {
     div.aboutToSee_top_btn {
       width: 118px;
       height: 42px;
-    background: url("../../assets/img_contact.png") no-repeat center;
+      background: url("../../assets/img_contact.png") no-repeat center;
       background-size: 100%;
       text-align: center;
-      margin-top: -20px;
+      margin-top: -64px;
       padding: 5px 11px;
       box-sizing: content-box;
       p {

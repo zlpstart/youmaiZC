@@ -18,7 +18,7 @@
       <div class="user_top_list">
         <div class="user_top_list_box" @click="toWallet">
           <h1>1200</h1>
-          <p>余额（元）</p>
+          <p>余额(元)</p>
         </div>
         <div class="user_top_list_box" @click="toCoupon">
           <h1>4</h1>
@@ -245,7 +245,8 @@ div.user {
           width: 154px;
           height: 44px;
           margin-top: 8px;
-          background: #e9c794;
+          background: url('../../assets/bg_vip_nor.png')no-repeat center;
+          background-size: 100%;
           line-height: 44px;
           border-radius: 6px;
           display: flex;
@@ -445,13 +446,16 @@ div.user {
   width: 650px;
   height: 14px;
   background: rgba(244, 244, 244, 1);
-  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.27);
   border-radius: 7px;
-  background: url("../../assets/img_vip_chang .png");
+  background: url("../../assets/img_vip_chang .png")no-repeat center;
+  background-size: 100%;
   position: absolute;
-  top: 314px;
+  top: 311px;
   z-index: 1;
   left: 50%;
   transform: translate(-50%);
+}
+.user_list .user_list_box:nth-child(5) .user_list_box_left_img img {
+  margin-left: 2px;
 }
 </style>

@@ -13,7 +13,7 @@
           <div class="xian"></div>
         </div>
         <div class="paymentSucceed_steps_box_right">
-          <h1>下单预定</h1>
+          <h1>下单预订</h1>
           <p>2020-06-10</p>
         </div>
       </div>
@@ -111,14 +111,14 @@ div.paymentSucceed {
           height: 36px;
           border-radius: 36px;
           z-index: 1;
-          background: #fed18b;
           font-size: 24px;
           font-family: PingFang-SC-Bold, PingFang-SC;
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
           line-height: 36px;
           text-align: center;
-          background: #FED18B;
+          background: url('../../assets/bg_zhifu_nor.png')no-repeat center;
+          background-size: 100%;
         }
         .xian2 {
           width: 2px;
@@ -134,7 +134,7 @@ div.paymentSucceed {
           width: 2px;
           height: 50px;
           background: #fcb548;
-          margin-left: 15px;
+          margin-left: 17px;
         }
       }
 
@@ -181,6 +181,7 @@ div.paymentSucceed {
           color: rgba(255, 255, 255, 1);
           line-height: 36px;
           padding-left: -10px;
+          z-index: 22;
           text-align: center;
         }
 
@@ -188,7 +189,7 @@ div.paymentSucceed {
           width: 2px;
           height: 100px;
           background: #d8d8d8;
-          margin-left: -21px;
+          margin-left: -19px;
         }
       }
 
@@ -237,9 +238,9 @@ div.paymentSucceed {
 
       div.xian {
           width: 2px;
-          height: 50px;
+          height: 52px;
           background: #D8D8D8;
-          margin-left: 15px;
+          margin-left: 17px;
           margin-top: -100px;
       }
     }

@@ -95,8 +95,8 @@
     <div class="coupon" v-show="showCoupon">
       <div class="coupon_wrap">
         <div class="coupon_wrap_title">
-          <h1>优惠卷</h1>
-          <img class="title_img" @click="closeCoupon" src alt />
+          <h1>优惠劵</h1>
+          <img class="title_img" src="zhibo_icon_close_nor.png" @click="closeCoupon" />
         </div>
         <div class="coupon_wrap_content">
           <van-tabs v-model="active">
@@ -130,7 +130,7 @@ export default {
   name: "orderform",
   data() {
     return {
-      active: 0,
+      active: -1,
       showCoupon: false,
       radio: '1',
     };
@@ -165,6 +165,7 @@ export default {
 
 <style lang="less" scoped>
 .orderform {
+  padding-bottom: 130px;
   .orderform_top {
     .kong {
       width: 100%;
@@ -373,6 +374,10 @@ export default {
     height: 130px;
     padding: 21px 30px 25px 30px;
     display: flex;
+    position: fixed;
+    bottom: 0;
+    z-index: 22;
+    background: white;
     .orderform_bottom_box {
       width: 50%;
       p {
@@ -467,7 +472,9 @@ div.coupon {
 .title_img {
   width: 22px;
   height: 22px;
-  background: red;
+  // background: red;
+  background: url('../../assets/zhibo_icon_close_nor.png')no-repeat center;
+  background-size: 100%;
   position: absolute;
   right: 32px;
   z-index: 1;

@@ -79,7 +79,7 @@
           <p>押金</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">200</p>
+          <p class="txt_medium">¥200</p>
           <img src="../../assets/con_icon_ques.png" @click="toYa" />
         </div>
       </div>

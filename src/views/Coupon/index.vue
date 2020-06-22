@@ -34,5 +34,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style scoped>
+.coupon >>> .van-tabs__nav--line {
+  height: 88px !important;
+  overflow: hidden;
+}
 </style>

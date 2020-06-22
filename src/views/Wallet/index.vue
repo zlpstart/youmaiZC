@@ -86,7 +86,7 @@
           <p>充值成功，您可以在“我的钱包”页面查看余额</p>
         </div>
         <div class="wallet_alert_box_close" @click="closeAlert">
-          <img src="../../assets/wallet_icon_close.png" alt="">
+          <img src="../../assets/wallet_icon_close.png" alt />
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
           <p class="redd">充值失败，您的卡内余额不足，请重新选择支付方式</p>
         </div>
         <div class="wallet_alert_box_close" @click="closeAlert">
-          <img src="../../assets/wallet_icon_close.png" alt="">>
+          <img src="../../assets/wallet_icon_close.png" alt />>
         </div>
       </div>
     </div>
@@ -158,6 +158,8 @@ export default {
   color: #ff2e2e !important;
 }
 .target_bac {
+  width: 209px !important;
+  height: 140px;
   background: url("../../assets/wallet_img_press.png") no-repeat center !important;
   background-size: 100% !important;
   border: none !important;
@@ -184,6 +186,7 @@ div.payment_list {
 }
 
 div.wallet {
+  padding-bottom: 130px;
   div.wallet_top {
     width: 100%;
     height: 468px;
@@ -348,6 +351,8 @@ div.wallet {
   }
 
   div.wallet_affirm {
+    position: fixed;
+    bottom: 0;
     display: flex;
     width: 100%;
     height: 130px;
@@ -357,6 +362,7 @@ div.wallet {
     justify-content: space-between;
     div.wallet_affirm_left {
       display: flex;
+      line-height: 16px;
       p {
         font-size: 24px;
         font-family: PingFang-SC-Medium, PingFang-SC;
@@ -383,6 +389,7 @@ div.wallet {
       font-weight: bold;
       color: rgba(255, 255, 255, 1);
       line-height: 88px;
+
       text-align: center;
     }
   }
@@ -459,5 +466,14 @@ div.wallet {
       }
     }
   }
+}
+</style>
+<style scoped>
+.wallet >>> .van-radio-group .van-radio:nth-child(3) .van-radio__label img {
+  width: 58px;
+  height: 32px;
+}
+.wallet >>> .van-radio-group .van-radio:nth-child(3) .van-radio__label p {
+  margin-left: 35px;
 }
 </style>

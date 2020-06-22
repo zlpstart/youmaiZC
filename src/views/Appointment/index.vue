@@ -57,13 +57,16 @@
           </p>
         </div>
       </div>
-      <div class="appointment_form_form_button" v-show="type" @click="toOrderForm">下一步</div>
-      <div class="appointment_form_form_button" v-show="!type" @click="subscribe">立即预约</div>
+      <div class="appointment_form_form_button" v-show="(type && (form.name != '' && form.phone != '' && form.time != ''))" @click="toOrderForm">下一步</div>
+      <div class="appointment_form_form_button2" v-show="(type && (form.name == '' || form.phone == '' || form.time == ''))">下一步</div>
+      <div v-show="(!type && form.name != '' && form.phone != '' && form.time != '')" class="appointment_form_form_button"  @click="subscribe">立即预约</div>
+      <div v-show="(!type && (form.name == '' || form.phone == '' || form.time == ''))" class="appointment_form_form_button2">立即预约</div>
     </div>
     <!-- 租房预约 -->
     <van-popup class="retingsss" v-model="show" position="bottom" :style="{ height: '30%' }">
       <div class="popup_title">请选择看房时间</div>
       <van-tree-select
+        class="timeDeta"
         :items="items"
         :active-id.sync="activeId"
         :main-active-index.sync="activeIndex"
@@ -81,7 +84,7 @@
       <van-popup class="livesss" v-model="showLives" position="bottom" :style="{ height: '30%' }">
         <div class="popup_title">请选择用房时间</div>
         <div class="popup_timer">
-          <div class="popup_timer_left" v-show="startTime.time == ''">
+          <div class="popup_timer_left popup_timer_none" v-show="startTime.time == ''">
             <p>开始时间</p>
           </div>
           <div class="popup_timer_left" v-show="startTime.time != ''">
@@ -92,7 +95,7 @@
           <div class="popup_timer_right" v-show="duration != 0">
             <p>共{{duration}}小时</p>
           </div>
-          <div class="popup_timer_left" v-show="overTime.time == ''">
+          <div class="popup_timer_left popup_timer_none" v-show="overTime.time == ''">
             <p>结束时间</p>
           </div>
           <div class="popup_timer_left" v-show="overTime.time != ''">
@@ -102,11 +105,14 @@
         </div>
         <!-- 开始时间 -->
         <van-tabs
+          background="#F4F4F4"
           line-width="44"
-          line-height="5"
+          line-height="2"
           title="ee"
+          :active="active"
           @click="vanClick"
           v-show="this.startTime.time == ''"
+          class="startTime timeDeta"
         >
           <van-tab
             v-for="item in timer"
@@ -132,7 +138,7 @@
         <!-- 结束时间 -->
         <van-tabs
           line-width="44"
-          line-height="5"
+          line-height="2"
           title="ee"
           @click="vanClick2"
           v-show="this.startTime.time != ''"
@@ -165,7 +171,7 @@
     </div>
     <van-popup :close-on-click-overlay="false" v-model="show2">
       <h1>预约成功</h1>
-      <p>已收到您的预约订单，请保持手机畅通，我们将尽快与您联系！</p>
+      <p>已收到您的预约订单，请保持手机畅通，我们将尽快与您联系！您可以进入“我的”-“我的约看”页面查看详情。</p>
       <button @click="close">知道了</button>
       <div class="img">
         <div class="img_wrap">
@@ -208,7 +214,7 @@ export default {
       showLives: false,
       // 请选择预约时间
       timerObj: {
-        week: "06月01日",
+        week: "06月01日(今天)",
         time: ""
       },
       form: {
@@ -248,7 +254,7 @@ export default {
               disabled: true
             },
             {
-              text: "11:30-12:00 (已约满)",
+              text: "11:30-12:00(已约满)",
               id: 5,
               disabled: true
             },
@@ -535,7 +541,8 @@ export default {
           ]
         }
       ],
-      activeId: 1,
+      activeId: 0,
+      active:"null",
       activeIndex: 0,
       timer: [
         {
@@ -649,7 +656,6 @@ export default {
       this.showLives = false;
     },
     cancel2() {
-      this.active = 0;
       this.startTime.week = "今天06/01";
       this.startTime.time = "";
       this.overTime.week = "今天06/01";
@@ -664,18 +670,20 @@ export default {
     },
     // 直播确定
     confirm2() {
-      this.timerInput = `${this.overTime.week} ${this.startTime.time}~${this.overTime.time}`;
+      this.timerInput = `${this.overTime.week} ${this.startTime.time}-${this.overTime.time}`;
       this.showLives = false;
-      console.log(this.timerInput);
+      this.form.time = this.timerInput
       this.cancel2();
     },
     showHouse() {
       this.show = true;
     },
     close() {
+      console.log(111)
       this.show2 = false;
       this.showLives = false;
       this.show = false;
+      this.$router.push("/rentingDetails")
     },
     showLive() {
       console.log(111);
@@ -694,7 +702,7 @@ export default {
     times2(item, index) {
       this.overTime.id = item.id;
       this.overTime.time = item.time;
-      this.duration = this.overTime.id - this.startTime.id + 1;
+      this.duration = this.overTime.id - this.startTime.id ;
       if (item.active) {
         item.active = false;
       } else {
@@ -722,9 +730,9 @@ export default {
         }, 1000);
       } else {
         // 成功
-        // this.$router.push("/paymentSucceed");
+        this.$router.push("/orderform");
         // 失败
-        this.$router.push("/paymenterr");
+        // this.$router.push("/paymenterr");
       }
     },
     phone(e) {
@@ -878,6 +886,20 @@ div.appointment {
     color: rgba(255, 255, 255, 1);
     line-height: 88px;
   }
+    .appointment_form_form_button2 {
+    width: 630px;
+    height: 88px;
+    background: rgba(250, 151, 2, 1);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 32px;
+    margin-top: 193px;
+    font-family: PingFang-SC-Bold, PingFang-SC;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 1);
+    line-height: 88px;
+    opacity: 0.5;
+  }
   .popup_title {
     width: 100%;
     height: 128px;
@@ -950,7 +972,7 @@ div.appointment {
   color: #c7c7c7 !important;
 }
 .retingsss {
-  height: 900px !important;
+  height: auto !important;
 }
 .livesss {
   height: 770px !important;
@@ -982,5 +1004,43 @@ div.appointment {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+// .startTime .van-tabs__wrap {
+//   backghr
+// }
+// .startTime .van-tabs__wrap {
+//   background: red !important;
+// }
+.startTime .van-tabs__wrap {
+  background: red !important;
+}
+.van-tabs--line .van-tabs__wrap {
+  height: 200px !important;
+}
+
+.popup_timer_none {
+  font-size:24px !important;
+  font-family:PingFang-SC-Medium,PingFang-SC !important;
+  font-weight:500 !important;
+  color:rgba(153,153,153,1) !important;
+  line-height:33px !important;
+}
+
+</style>
+<style scoped>
+.appointment >>> .van-tabs--line .van-tabs__wrap {
+  height: 88px !important;
+  background: #F4F4F4;
+}
+.appointment >>> .van-tabs__wrap--scrollable .van-tabs__nav {
+  background: #F4F4F4;
+}
+.appointment >>> .van-tabs__line {
+    width: 0.48rem !important;
+    height: 0.06667rem !important;
+    background: rgba(250,151,2,1) !important;
+    width: 1.24667rem;
+    transition-duration: 0.3s;
+    transform: translateX(83.5px) translateX(-50%);
 }
 </style>

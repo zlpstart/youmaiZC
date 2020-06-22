@@ -84,4 +84,14 @@ div.box {
     }
   }
 }
+
+</style>
+
+<style scoped>
+.attention >>> .van-tabs--line .van-tabs__wrap {
+  background: red !important;
+}
+.van-tabs--line .van-tabs__wrap {
+  background: red !important;
+}
 </style>
