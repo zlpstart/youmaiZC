@@ -268,7 +268,6 @@
 .popup_timer {
     width: 100%;
     height: 87px;
-    margin-top: 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -285,8 +284,8 @@
     padding-top: 50px;
 }
 .lives .popup_title {
-    height: auto !important;
-    line-height: 0 !important;
+    height: 48px !important;
+    line-height: 48px !important;
 }
 .van-tabs__nav--line {
     width: 100%;
@@ -299,7 +298,7 @@
     height:5px !important;
     background:rgba(250,151,2,1) !important;
     width: 93.5px;
-    top: 84px;
+    top: 81px;
     transform: translateX(181.5px) translateX(-50%);
     transition-duration: 0.3s;
 }
@@ -532,6 +531,7 @@ label input[type="radio"]:checked:after {
     position: absolute;
     left: -3px;
     top: -2px;
+    display: block !important;
 }
 .van-radio__icon .van-icon {
     width: 36px;
@@ -543,4 +543,14 @@ label input[type="radio"]:checked:after {
     border-radius: 36px;
     border:1px solid rgba(199,199,199,1);
     position: relative;
+    left:-2px
+}
+.van-radio__icon--round img {
+    display: none;
+}
+.van-hairline--top-bottom::after, .van-hairline-unset--top-bottom::after {
+    border:  none;
+}
+.orderform .van-hairline--top-bottom {
+    border-bottom: 1px solid #DEDEDE;
 }

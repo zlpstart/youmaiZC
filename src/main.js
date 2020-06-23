@@ -11,6 +11,9 @@ import 'vant/lib/index.css';
 import '../src/styles/reset.css'
 import '../src/styles/layout.css'
 
+import http from './util/http'
+Vue.prototype.axios = http;
+
 Vue.use(Vant);
 
 Vue.config.productionTip = false

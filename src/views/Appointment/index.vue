@@ -35,6 +35,7 @@
             autocomplete="off"
             placeholder="请选择看房时间"
             @click="showHouse"
+            readonly
           />
           <p>
             <img src="../../assets/icon_link_nor.png" alt />
@@ -51,6 +52,7 @@
             autocomplete="off"
             placeholder="请选择用房时间"
             @click="showLive"
+            readonly
           />
           <p>
             <img src="../../assets/icon_link_nor.png" alt />
@@ -64,7 +66,10 @@
     </div>
     <!-- 租房预约 -->
     <van-popup class="retingsss" v-model="show" position="bottom" :style="{ height: '30%' }">
-      <div class="popup_title">请选择看房时间</div>
+      <div class="popup_title">
+        请选择看房时间
+        <img src="../../assets/zhibo_icon_close_nor.png" class="topPoup" @click="closeHoure" alt="">
+      </div>
       <van-tree-select
         class="timeDeta"
         :items="items"
@@ -82,7 +87,10 @@
     <!-- 直播预约 -->
     <div class="lives">
       <van-popup class="livesss" v-model="showLives" position="bottom" :style="{ height: '30%' }">
-        <div class="popup_title">请选择用房时间</div>
+        <div class="popup_title">
+          请选择用房时间
+          <img src="../../assets/zhibo_icon_close_nor.png" @click="closeHoure" alt="">
+        </div>
         <div class="popup_timer">
           <div class="popup_timer_left popup_timer_none" v-show="startTime.time == ''">
             <p>开始时间</p>
@@ -645,6 +653,10 @@ export default {
     }
   },
   methods: {
+    closeHoure(){
+      this.showLives = false;
+      this.show = false;
+    },
     showType() {
       this.show = true;
     },
@@ -686,7 +698,7 @@ export default {
       this.$router.push("/rentingDetails")
     },
     showLive() {
-      console.log(111);
+      
     },
     // 开始天数
     times(item, index) {
@@ -909,6 +921,15 @@ div.appointment {
     font-family: PingFang-SC-Bold, PingFang-SC;
     font-weight: bold;
     color: rgba(51, 51, 51, 1);
+    position: relative;
+    img {
+      width: 30px;
+      float: right;
+      height: 30px;
+      position: absolute;
+      right: 30px;
+      top: 9px;
+    }
   }
   .popup_bottom {
     width: 100%;
@@ -1042,5 +1063,8 @@ div.appointment {
     width: 1.24667rem;
     transition-duration: 0.3s;
     transform: translateX(83.5px) translateX(-50%);
+}
+.topPoup {
+  top: 49px !important;
 }
 </style>

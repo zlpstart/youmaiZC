@@ -114,7 +114,7 @@
                     <van-radio-group v-model="radio">
                       <van-radio name="1" icon-size="24px">
                         <p>2020-06-01至2020-06-25</p>
-                        <img slot="icon" src="../../assets/yes.png" alt />
+                        <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
                       </van-radio>
                     </van-radio-group>
                   </p>
@@ -133,7 +133,7 @@
                     <van-radio-group v-model="radio">
                       <van-radio name="2" icon-size="24px">
                         <p>2020-06-01至2020-06-25</p>
-                        <img slot="icon" src="../../assets/yes.png" alt />
+                        <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
                       </van-radio>
                     </van-radio-group>
                   </p>
@@ -143,7 +143,7 @@
                 <van-radio-group v-model="radio">
                   <van-radio name="3" icon-size="24px">
                     <p>不使用优惠券</p>
-                    <img slot="icon" src="../../assets/yes.png" alt />
+                    <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
                   </van-radio>
                 </van-radio-group>
               </div>
@@ -583,8 +583,8 @@ div.coupon {
   background: white;
 }
 .title_img {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   // background: red;
   background: url("../../assets/zhibo_icon_close_nor.png") no-repeat center;
   background-size: 100%;

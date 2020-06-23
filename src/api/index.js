@@ -1,0 +1,1 @@
+export const login = "/?m=Index&a=NEWS";
