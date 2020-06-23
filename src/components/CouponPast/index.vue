@@ -74,7 +74,7 @@ div.couponUnused {
         font-weight: 500;
         color: #AEAEAE;
         line-height: 30px;
-        margin-top: 10px;
+        margin-top: 20px;
       }
     }
 
@@ -96,7 +96,7 @@ div.couponUnused {
         font-weight: 500;
         color: #AEAEAE;
         line-height: 28px;
-        margin-top: 24px;
+        margin-top: 31px !important;
       }
     }
   }

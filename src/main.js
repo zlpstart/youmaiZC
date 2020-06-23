@@ -8,6 +8,7 @@ import Vant from 'vant';
 import 'lib-flexible'
 import 'vant/lib/index.css';
 
+import '../src/styles/reset.css'
 import '../src/styles/layout.css'
 
 Vue.use(Vant);

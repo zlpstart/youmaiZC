@@ -3,7 +3,7 @@
     <div class="home_router">
       <router-view />
     </div>
-    <van-tabbar route v-model="active" class="zlp">
+    <van-tabbar @change="onChange" :active="active" route v-model="active" class="zlp">
       <van-tabbar-item to="/homeWrap">
         <template>
           <img :src="active!=0?icon.home:iconActive.home" />
@@ -47,11 +47,11 @@ export default {
         kefu: require("../../assets/home_icon_mess_nor.png"),
         user: require("../../assets/home_icon_my_nor.png")
       },
-      iconActive:{
-        home:require('../../assets/home_icon_home_press.png'),
-        serve:require('../../assets/serveActive.png'),
-        kefu:require('../../assets/home_icon_mess_press.png'),
-        user:require('../../assets/home_icon_my_press.png')
+      iconActive: {
+        home: require("../../assets/home_icon_home_press.png"),
+        serve: require("../../assets/serveActive.png"),
+        kefu: require("../../assets/home_icon_mess_press.png"),
+        user: require("../../assets/home_icon_my_press.png")
       }
     };
   },
@@ -59,8 +59,21 @@ export default {
     HomeTopBar,
     HomeContent
   },
-  monted(){
+  mounted() {
+    if(this.$route.path != '/homeWrap'){
+    let a = window.sessionStorage.getItem('avtive')
+    this.active = a 
+    }else {
+      this.active = 0
+    }
 
+    console.log(a)
+  },
+  methods: {
+  onChange(e) {
+    window.sessionStorage.setItem('avtive',e)
+    
+  },
   }
 };
 </script>

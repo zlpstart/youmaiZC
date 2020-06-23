@@ -37,21 +37,20 @@
       <div class="wallet_payment_li">
         <div class="payment_list">
           <van-radio-group v-model="radio">
-            <!-- <van-radio name="1" icon-size="24px">
-              <img src="../../assets/img_vip.png" alt />
-              <p>会员支付</p>
-            </van-radio>-->
             <van-radio name="1" icon-size="24px">
               <img src="../../assets/img-weixin.png" alt />
               <p>微信支付</p>
+              <img slot="icon" src="../../assets/yes.png" alt="">
             </van-radio>
             <van-radio name="2" icon-size="24px">
               <img src="../../assets/icon-zhifubao-nor@3x.png" alt />
               <p>支付宝支付</p>
+              <img slot="icon" src="../../assets/yes.png" alt="">
             </van-radio>
             <van-radio name="3" icon-size="24px">
               <img src="../../assets/logo-header.png" alt />
               <p>快钱支付</p>
+              <img slot="icon" src="../../assets/yes.png" alt="">
             </van-radio>
           </van-radio-group>
         </div>
@@ -158,8 +157,8 @@ export default {
   color: #ff2e2e !important;
 }
 .target_bac {
-  width: 209px !important;
-  height: 140px;
+  width: 203px !important;
+  height: 142px !important;
   background: url("../../assets/wallet_img_press.png") no-repeat center !important;
   background-size: 100% !important;
   border: none !important;
@@ -259,7 +258,7 @@ div.wallet {
         }
       }
       div.wallet_refill_wrap_box {
-        width: 210px;
+        width: 200px;
         height: 140px;
         background: rgba(255, 255, 255, 1);
         border-radius: 6px;

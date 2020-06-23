@@ -96,19 +96,56 @@
       <div class="coupon_wrap">
         <div class="coupon_wrap_title">
           <h1>优惠劵</h1>
-          <img class="title_img" src="zhibo_icon_close_nor.png" @click="closeCoupon" />
+          <p class="title_img" src="zhibo_icon_close_nor.png" @click="closeCoupon" />
         </div>
         <div class="coupon_wrap_content">
           <van-tabs v-model="active">
             <van-tab title="可用优惠券(3)">
-              <couponUnused />
+              <div class="couponUnused_box">
+                <div class="couponUnused_box_left">
+                  <h1>
+                    <span>¥</span>100.00
+                  </h1>
+                  <p>满1000元可用</p>
+                </div>
+                <div class="couponUnused_box_right">
+                  <h1>服装电商直播基地专用抵扣券</h1>
+                  <p>
+                    <van-radio-group v-model="radio">
+                      <van-radio name="1" icon-size="24px">
+                        <p>2020-06-01至2020-06-25</p>
+                        <img slot="icon" src="../../assets/yes.png" alt />
+                      </van-radio>
+                    </van-radio-group>
+                  </p>
+                </div>
+              </div>
+              <div class="couponUnused_box">
+                <div class="couponUnused_box_left">
+                  <h1>
+                    <span>¥</span>100.00
+                  </h1>
+                  <p>满1000元可用</p>
+                </div>
+                <div class="couponUnused_box_right">
+                  <h1>服装电商直播基地专用抵扣券</h1>
+                  <p>
+                    <van-radio-group v-model="radio">
+                      <van-radio name="2" icon-size="24px">
+                        <p>2020-06-01至2020-06-25</p>
+                        <img slot="icon" src="../../assets/yes.png" alt />
+                      </van-radio>
+                    </van-radio-group>
+                  </p>
+                </div>
+              </div>
               <div class="van_none">
-                <div class="van_none_left">
-                  <p>不使用优惠券</p>
-                </div>
-                <div class="van_none_right">
-                  <input class="radio_type" type="radio" name="coupon" id="radio1" checked="checked" />
-                </div>
+                <van-radio-group v-model="radio">
+                  <van-radio name="3" icon-size="24px">
+                    <p>不使用优惠券</p>
+                    <img slot="icon" src="../../assets/yes.png" alt />
+                  </van-radio>
+                </van-radio-group>
               </div>
             </van-tab>
             <van-tab title="不可用优惠券(3)">
@@ -132,7 +169,7 @@ export default {
     return {
       active: -1,
       showCoupon: false,
-      radio: '1',
+      radio: "1"
     };
   },
   components: {
@@ -156,14 +193,84 @@ export default {
     closeCoupon() {
       this.showCoupon = false;
     },
-    toAgreement(){
-      this.$router.push("/platformAgreement")
+    toAgreement() {
+      this.$router.push("/platformAgreement");
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
+.padd {
+  padding: 0 30px;
+}
+
+div.couponUnused_box {
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+  height: 200px;
+  background: url("../../assets/img_quan_press.png") no-repeat center;
+  background-size: 100%;
+  display: flex;
+  div.couponUnused_box_left {
+    width: 240px;
+    text-align: center;
+    h1 {
+      font-size: 52px;
+      font-family: PingFang-SC-Bold, PingFang-SC;
+      font-weight: bold;
+      color: rgba(250, 151, 2, 1);
+      line-height: 33px;
+      margin-top: 62px;
+      span {
+        font-size: 24px;
+      }
+    }
+
+    p {
+      font-size: 22px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(153, 153, 153, 1);
+      line-height: 30px;
+      margin-top: 20px;
+    }
+  }
+
+  div.couponUnused_box_right {
+    flex: 3;
+    padding-left: 30px;
+    h1 {
+      font-size: 28px;
+      margin-top: 59px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(51, 51, 51, 1);
+      line-height: 40px;
+    }
+
+    p {
+      font-size: 20px;
+      font-family: PingFang-SC-Medium, PingFang-SC;
+      font-weight: 500;
+      color: rgba(153, 153, 153, 1);
+      line-height: 28px;
+      margin-top: 24px;
+      input {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #c7c7c7;
+        float: right;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+.couponUnused_box:nth-child(1) {
+  margin-top: 30px !important;
+}
+
 .orderform {
   padding-bottom: 130px;
   .orderform_top {
@@ -444,14 +551,20 @@ div.coupon {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   div.coupon_wrap {
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    background: white;
+    overflow-y: auto;
+    height: 921px;
+    position: fixed;
+
+    bottom: 0;
+
     div.coupon_wrap_title {
       height: 108px;
       line-height: 108px;
       padding: 0 30px;
       background: white;
+      border: none;
       position: relative;
       h1 {
         font-size: 34px;
@@ -473,7 +586,7 @@ div.coupon {
   width: 22px;
   height: 22px;
   // background: red;
-  background: url('../../assets/zhibo_icon_close_nor.png')no-repeat center;
+  background: url("../../assets/zhibo_icon_close_nor.png") no-repeat center;
   background-size: 100%;
   position: absolute;
   right: 32px;
@@ -502,5 +615,55 @@ div.van_none {
       border: 1px solid rgba(199, 199, 199, 1);
     }
   }
+}
+</style>
+
+<style scoped>
+.orderform >>> .van_none {
+}
+.orderform >>> .van-radio {
+  height: 60px;
+  margin-left: 0;
+  margin-top: -18px;
+  padding-right: 30px !important;
+}
+.orderform >>> .van-radio__label p {
+  margin-left: 0;
+  margin-top: 0px !important;
+}
+.orderform >>> .van-radio__label {
+  margin-left: 0;
+}
+.orderform >>> .van-radio__icon--round img {
+}
+.orderform >>> .van-radio-group {
+  width: 100%;
+}
+.orderform >>> .orderform {
+  background: red;
+}
+.van_none >>> .van-radio {
+  padding-right: 20px !important;
+}
+.van_none >>> .van-radio__label p {
+  font-size: 28px;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40px;
+}
+.orderform >>> .couponUnused_box_right p {
+  margin-top: 18px !important;
+}
+.couponUnused_box_right >>> .van-radio__label p {
+  margin-top: 13px !important;
+}
+.couponUnused_box_right >>> .van-radio__label {
+  margin-top: 15px;
+}
+.orderform >>> .van-radio__icon--checked {
+  margin-top: 20px;
+}
+.orderform >>> .couponUnused_box_left p {
 }
 </style>

@@ -497,3 +497,50 @@ padding: 0 30px;
 .van-tabs--line .van-tabs__wrap {
     height: auto;
 }
+label input[type="radio"] {
+	appearance: none;
+	-webkit-appearance: none;
+	outline: none;
+	margin: 0;
+	vertical-align: text-bottom;
+	margin-right: 0.1rem;
+}
+label input[type="radio"]:after {
+	display: block;
+	content: "";
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	border-radius: 50%;
+	border: 2px solid #bfbfbf;
+}
+
+label input[type="radio"]:checked:after {
+	background: #F67D07;
+	border: 2px solid #fff;
+}
+.van-radio__icon--checked .van-icon {
+    background: #FA9702;
+    border: 1px solid #FA9702;
+}
+.van-radio__icon--checked img {
+    width: 38px;
+    height: 38px;
+    border-radius: 36px !important;
+    background: #FA9702;
+    padding: 10px;
+    position: absolute;
+    left: -3px;
+    top: -2px;
+}
+.van-radio__icon .van-icon {
+    width: 36px;
+    height: 36px;
+}
+.van-radio__icon--round {
+    width:36px;
+    height:36px;
+    border-radius: 36px;
+    border:1px solid rgba(199,199,199,1);
+    position: relative;
+}

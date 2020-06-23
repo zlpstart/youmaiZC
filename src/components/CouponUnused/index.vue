@@ -9,7 +9,15 @@
       </div>
       <div class="couponUnused_box_right">
         <h1>服装电商直播基地专用抵扣券</h1>
-        <p>2020-06-01至2020-06-25 <input v-show="this.$route.path == '/orderform'" name="coupon" type="radio"></p>
+        <p>
+          2020-06-01至2020-06-25
+          <van-radio-group v-model="radio" v-show="this.$route.path == '/orderform' ">
+            <van-radio name="1" icon-size="24px">
+              <p>2020-06-01至2020-06-25</p>
+              <img slot="icon" src="../../assets/yes.png" alt />
+            </van-radio>
+          </van-radio-group>
+        </p>
       </div>
     </div>
     <div class="couponUnused_box">
@@ -21,7 +29,15 @@
       </div>
       <div class="couponUnused_box_right">
         <h1>服装电商直播基地专用抵扣券</h1>
-        <p>2020-06-01至2020-06-25 <input v-show="this.$route.path == '/orderform'" name="coupon" type="radio"></p>
+        <p>
+          2020-06-01至2020-06-25
+          <van-radio-group v-model="radio" v-show="this.$route.path == '/orderform' ">>
+            <van-radio name="2" icon-size="24px">
+              <p>2020-06-01至2020-06-25</p>
+              <img slot="icon" src="../../assets/yes.png" alt />
+            </van-radio>
+          </van-radio-group>
+        </p>
       </div>
     </div>
   </div>
@@ -31,7 +47,9 @@
 export default {
   name: "couponUnused",
   data() {
-    return {};
+    return {
+      radio: "1"
+    };
   },
   props: []
 };
@@ -73,7 +91,7 @@ div.couponUnused {
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 30px;
-        margin-top: 10px;
+        margin-top: 20px;
       }
     }
 
@@ -95,11 +113,11 @@ div.couponUnused {
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 28px;
-        margin-top: 24px;
+        margin-top: 31px;
         input {
-          width:36px;
-          height:36px;
-          border:1px solid #C7C7C7;
+          width: 36px;
+          height: 36px;
+          border: 1px solid #c7c7c7;
           float: right;
           margin-right: 20px;
         }
@@ -109,5 +127,21 @@ div.couponUnused {
   .couponUnused_box:nth-child(1) {
     margin-top: 30px !important;
   }
+}
+</style>
+
+<style scoped>
+.couponUnused >>> .van-radio {
+  height: 50px;
+  margin-left: 0;
+  margin-top: -18px;
+  padding-right: 30px !important;
+}
+.couponUnused >>> .van-radio__label p {
+  margin-left: 0;
+  margin-top: 0px !important;
+}
+.couponUnused >>> .van-radio__label {
+  margin-left: 0;
 }
 </style>

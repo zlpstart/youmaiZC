@@ -71,7 +71,7 @@ div.couponUnused {
       h1 {
         font-size: 52px;
         font-weight: bold;
-color:rgba(250,151,2,1);
+        color:rgba(250,151,2,1);
         line-height: 33px;
         margin-top: 62px;
         span {
@@ -84,7 +84,7 @@ color:rgba(250,151,2,1);
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 30px;
-        margin-top: 10px;
+        margin-top: 20px;
       }
     }
 
@@ -104,7 +104,7 @@ color:rgba(250,151,2,1);
         font-weight: 500;
         color: rgba(153, 153, 153, 1);
         line-height: 28px;
-        margin-top: 24px;
+        margin-top: 32px;
       }
     }
   }
