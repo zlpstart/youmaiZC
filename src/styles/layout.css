@@ -298,8 +298,8 @@
     height:5px !important;
     background:rgba(250,151,2,1) !important;
     width: 93.5px;
-    top: 81px;
-    transform: translateX(181.5px) translateX(-50%);
+    top: 82px;
+    transform: translateX(170.5px) translateX(-50%);
     transition-duration: 0.3s;
 }
 .van_content {

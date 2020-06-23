@@ -9,10 +9,17 @@
 import HomeTopBar from "../../components/HomeTopBar/index";
 import HomeContent from "../../components/HomeContent/index";
 
+
 export default {
   name: "",
   data() {
-    return {};
+    return {
+      mounted(){
+        this.sendForm().then(res=> {
+          console.log(res)
+        })
+      }
+    };
   },
   components: {
     HomeTopBar,

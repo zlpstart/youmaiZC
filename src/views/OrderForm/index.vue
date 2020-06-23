@@ -64,7 +64,7 @@
         <div class="orderform_money_top_right">
           <h1>
             -¥200.00
-            <img src="../../assets/icon_link_nor.png" @click="toAgreement" alt />
+            <img src="../../assets/icon_link_nor.png" alt />
           </h1>
         </div>
       </div>
@@ -77,7 +77,7 @@
       <img src="../../assets/icon_jinggao_nor.png" alt />
       <p>
         预订代表您同意
-        <span @click="toAgreement">《平台服务协议》</span>
+        <span @click="toAgreement2">《平台服务协议》</span>
       </p>
     </div>
     <div class="orderform_bottom padd">
@@ -184,7 +184,7 @@ export default {
     toYajin() {
       this.$router.push("/guarantee");
     },
-    toAgreement() {
+    toAgreement1() {
       this.$router.push("/agreement");
     },
     showCouponWrap() {
@@ -193,7 +193,7 @@ export default {
     closeCoupon() {
       this.showCoupon = false;
     },
-    toAgreement() {
+    toAgreement2() {
       this.$router.push("/platformAgreement");
     }
   }

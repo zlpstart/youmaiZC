@@ -35,6 +35,7 @@
 <script>
 import HomeTopBar from "../../components/HomeTopBar/index";
 import HomeContent from "../../components/HomeContent/index";
+import { sendForm } from "../../api/Home/index";
 
 export default {
   name: "home",
@@ -60,20 +61,24 @@ export default {
     HomeContent
   },
   mounted() {
-    if(this.$route.path != '/homeWrap'){
-    let a = window.sessionStorage.getItem('avtive')
-    this.active = a 
-    }else {
-      this.active = 0
+    if (window.sessionStorage.getItem("avtive")) {
+      if (this.$route.path != "/homeWrap") {
+        let a = window.sessionStorage.getItem("avtive");
+        if (a) {
+          this.active = a;
+        }
+      } else {
+        this.active = 0;
+      }
     }
-
-    console.log(a)
+    this.axios.get('http://jsonplaceholder.typicode.com/posts').then(res => {
+      console.log(res)
+    })
   },
   methods: {
-  onChange(e) {
-    window.sessionStorage.setItem('avtive',e)
-    
-  },
+    onChange(e) {
+      window.sessionStorage.setItem("avtive", e);
+    }
   }
 };
 </script>

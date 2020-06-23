@@ -1,1 +1,1 @@
-export const login = "/?m=Index&a=NEWS";
+export const login = "/?m=Index&a=NEWS";``

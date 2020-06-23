@@ -10,6 +10,7 @@ const http = axios.create({
 
 // axios 请求前的拦截
 http.interceptors.request.use((req)=>{
+    console.log("拦截前")
     let token = sessionStorage.getItem('token');
     token && (req.headers['token']=token);
     return req;
@@ -19,6 +20,7 @@ http.interceptors.request.use((req)=>{
 
 // axios 响应后的拦截
 http.interceptors.response.use((res)=>{
+    console.log("拦截后")
     res.data.token && sessionStorage.setItem('token',res.data.token)
     return res;
 },error => {
