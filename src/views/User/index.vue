@@ -181,7 +181,6 @@ export default {
   },
   methods: {
     toWallet() {
-      console.log(111);
       this.$router.push("/wallet");
     },
     toCoupon() {

@@ -691,7 +691,6 @@ export default {
       this.show = true;
     },
     close() {
-      console.log(111)
       this.show2 = false;
       this.showLives = false;
       this.show = false;
@@ -726,7 +725,6 @@ export default {
     },
     clickItem(e) {
       this.timerObj.time = e.text;
-      console.log(this.timerObj);
     },
     toOrderForm() {
       let a = this.phone(this.form.phone);
@@ -781,7 +779,6 @@ export default {
     },
     // 选择开始天数
     vanClick(name, title) {
-      console.log(11111)
       this.startTime.week = title;
       this.active = 0;
       this.timers.forEach(item => (item.active = false));

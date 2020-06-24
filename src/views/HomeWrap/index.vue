@@ -15,9 +15,7 @@ export default {
   data() {
     return {
       mounted(){
-        this.sendForm().then(res=> {
-          console.log(res)
-        })
+        this.$api.home.getNews().then(res => console.log(res))
       }
     };
   },

@@ -1,10 +1,10 @@
 // api
-import {login} from '../index'
+import request from '../request'
 
-export function sendForm(data) {
-    return ({
-      url: login,
-      method: 'post',
+  export function sendForm(data) {
+    return request({
+      url: '/?m=Index&a=MessageBoard',
+      method: 'get',
       data
     })
   }

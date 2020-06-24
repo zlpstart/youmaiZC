@@ -14,7 +14,8 @@
       </div>
       <div class="login_form_input">
         <input type="text" v-model="loginForm.verify" placeholder="请输入验证码" />
-        <button>获取验证码</button>
+        <button @click="getCode" v-show="getC">获取验证码</button>
+        <button @click="getCode" v-show="!getC">{{timer}}s</button>
       </div>
     </div>
     <div
@@ -53,6 +54,9 @@
 </template>
 
 <script>
+import { sendForm } from "../../api/login/index";
+import { getIndex } from "../../api/login/index";
+
 export default {
   name: "login",
   data() {
@@ -60,7 +64,9 @@ export default {
       loginForm: {
         phone: "",
         verify: ""
-      }
+      },
+      timer: 60,
+      getC: true
     };
   },
   methods: {
@@ -70,8 +76,38 @@ export default {
         this.$router.push("/");
       }
     },
-    toServeAgreement(){
-      this.$router.push("/serveAgreement")
+    toServeAgreement() {
+      this.$router.push("/serveAgreement");
+    },
+    getCode() {
+      this.timer = 60;
+      this.getC = false;
+      let timer = setInterval(() => {
+        this.timer -= 1;
+        if (this.timer <= 0) {
+          clearInterval(timer);
+          this.getC = true;
+        }
+      }, 1000);
+
+      let para = {
+        phone: this.loginForm.phone
+      };
+
+      this.$api.login.getRegistersms(para).then(res => {
+        console.log(res);
+        console.log("封装api");
+      });
+
+      this.$api.login.getIndex().then(res => {
+        console.log(res);
+        console.log("封装axios");
+      });
+
+      getIndex().then(res => {
+        console.log(res);
+        console.log("get请求");
+      });
     }
   }
 };
@@ -149,6 +185,8 @@ div.login {
         border-bottom: 1px solid #dedede;
       }
       button {
+        width: 140px;
+        height: 48px;
         background: rgba(244, 244, 244, 1);
         border-radius: 4px;
         font-size: 20px;
@@ -220,7 +258,7 @@ div.login {
       ul {
         display: flex;
         justify-content: space-between;
-        li:nth-child(2){
+        li:nth-child(2) {
           img {
             width: 40px;
             margin-top: 5px;

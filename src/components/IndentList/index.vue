@@ -294,7 +294,7 @@ export default {
   },
   props: ["indentData"],
   mounted() {
-    console.log(this.indentData);
+
   },
   methods: {
     topayment() {

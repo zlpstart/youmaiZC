@@ -35,7 +35,7 @@
 <script>
 import HomeTopBar from "../../components/HomeTopBar/index";
 import HomeContent from "../../components/HomeContent/index";
-import { sendForm } from "../../api/Home/index";
+import request from '../../api/request'
 
 export default {
   name: "home",
@@ -71,9 +71,8 @@ export default {
         this.active = 0;
       }
     }
-    this.axios.get('http://jsonplaceholder.typicode.com/posts').then(res => {
-      console.log(res)
-    })
+    console.log("请求参数")
+    this.$api.home.getNews().then(res => console.log(res))
   },
   methods: {
     onChange(e) {

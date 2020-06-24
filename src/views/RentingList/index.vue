@@ -52,7 +52,7 @@ export default {
   },
   methods:{
     toWorkDetails(){
-      console.log(111)
+
       this.$router.push('/workDetails')
     }
   }

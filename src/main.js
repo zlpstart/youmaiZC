@@ -8,11 +8,13 @@ import Vant from 'vant';
 import 'lib-flexible'
 import 'vant/lib/index.css';
 
-import '../src/styles/reset.css'
+import '../src/styles/reset.css'  
 import '../src/styles/layout.css'
 
-import http from './util/http'
-Vue.prototype.axios = http;
+import api from './api';
+
+Vue.prototype.$api = api;
+
 
 Vue.use(Vant);
 

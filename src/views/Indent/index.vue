@@ -33,7 +33,6 @@ export default {
   methods:{
     changeIndent(name,title){
       this.active = name;
-      console.log(this.active)
     }
   }
 };

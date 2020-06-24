@@ -193,9 +193,8 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next) => {
-  console.log(to)
   let isLogin = window.sessionStorage.getItem("key")
-  if(to.path == '/login'){
+  if(to.path == '/login' || to.path == '/serveAgreement'){
     next()
   }else if(isLogin){
     next()

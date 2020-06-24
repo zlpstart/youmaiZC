@@ -43,7 +43,7 @@ export default {
   name: "contentList",
   methods: {
     toWorkDetails() {
-      console.log(this.$route.path);
+
       if (this.$route.path == "/rentingList") {
         this.$router.push("/RentingDetails");
       } else if (this.$route.path == "/liveList") {

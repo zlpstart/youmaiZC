@@ -12,7 +12,12 @@
 
 <script>
 export default {
-    name:"service"
+    name:"service",
+    data(){
+      return {
+        showAttention:false
+      }
+    }
 }
 </script>
 
