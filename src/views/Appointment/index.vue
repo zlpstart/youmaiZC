@@ -3,6 +3,9 @@
     <div class="appointment_banner">
       <img src="../../assets/ceshi.jpg" alt />
     </div>
+
+
+
     <div class="appointment_form">
       <div class="appointment_form_title">
         <p>厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</p>
@@ -744,11 +747,11 @@ export default {
       console.log("选择开始时间");
       this.startTime.id = item.id;
       this.startTime.time = item.time;
-      // if (item.active) {
-      //   item.active = false;
-      // } else {
-      //   item.active = true;
-      // }
+      if (item.active) {
+        item.active = false;
+      } else {
+        item.active = true;
+      }
     },
     // 结束时间
     times2(item, index) {
@@ -848,9 +851,9 @@ export default {
       console.log("选择开始天数");
       this.activeNum = index;
       this.startTime.week = title;
-      // this.active = 0;
-      // this.timers.map(item => (item.active = false));
-      // this.startTime.week = title;
+      this.overTime.week = title;
+      this.timers.map(item => (item.active = false));
+      this.startTime.week = title;
     },
     // 选择结束天数
     vanClick2(index, title) {
@@ -1194,5 +1197,15 @@ div.appointment {
 }
 .topPoup {
   top: 49px !important;
+}
+
+.type-list-item {
+  font-size: 26px;
+  font-weight: 400;
+  width: 100px;
+  height: 23px;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  position: relative;
 }
 </style>

@@ -32,9 +32,11 @@ export default {
       CouponPast
   },
   mounted(){
-    this.$api.user.getUserData().then(res => {
-      console.log(res)
-    })
+    console.log('youhuijuan')
+    let para = {
+      id: window.sessionStorage.getItem("userId")
+    };
+    this.$api.coupon.getCoupon(para).then(res => console.log(res))
   }
 };
 </script>

@@ -5,9 +5,9 @@ let root = process.env.BASE_API;// 会根据环境不同自动获取对应环境
 // 自定义封装的 request,
 
 const request = axios.create({
-    baseURL: 'http://192.168.50.89/api',//所有接口主域名，
+    baseURL: 'http://192.168.50.89:81/api',//所有接口主域名，
     timeout: 50000, // 请求超时时间
-    withCredentials: false,// 根据需是否开启，关于cookie是否需要被带入请求头，后端也要做改动
+    withCredentials:true,// 根据需是否开启，关于cookie是否需要被带入请求头，后端也要做改动
 });
 // 请求时前的拦截器
 request.interceptors.request.use(
@@ -15,6 +15,7 @@ request.interceptors.request.use(
     (config) => {
         // 可以在此处为请求设置请求头
         // config.headers['x-token'] = store.state.data.token;// 让每个请求携带自定义token 请根据实际情况自行修改
+        // config.headers['xhrFields'] = {withCredentials:true};// 让每个请求携带自定义token 请根据实际情况自行修改
         return config
     },
     // 请求出错

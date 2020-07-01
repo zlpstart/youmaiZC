@@ -87,7 +87,7 @@ export default {
         //   window.sessionStorage.setItem("key",1)
         //   this.$router.push('/')
         // }
-      });
+      }).catch(err => console.log(err))
     },
     toServeAgreement() {
       this.$router.push("/serveAgreement");

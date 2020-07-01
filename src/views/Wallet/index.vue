@@ -5,7 +5,7 @@
         <p>当前可用余额（元）</p>
       </div>
       <div class="wallet_top_h1">
-        <h1>¥300，000.00</h1>
+        <h1>¥{{moneys}}</h1>
       </div>
       <div class="wallet_top_btn">
         <button @click="toDetail">收支明细</button>
@@ -40,17 +40,17 @@
             <van-radio name="1" icon-size="24px">
               <img src="../../assets/img-weixin.png" alt />
               <p>微信支付</p>
-              <img slot="icon" src="../../assets/icon_gou_nor.png" alt="">
+              <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
             </van-radio>
             <van-radio name="2" icon-size="24px">
               <img src="../../assets/icon-zhifubao-nor@3x.png" alt />
               <p>支付宝支付</p>
-              <img slot="icon" src="../../assets/icon_gou_nor.png" alt="">
+              <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
             </van-radio>
             <van-radio name="3" icon-size="24px">
               <img src="../../assets/logo-header.png" alt />
               <p>快钱支付</p>
-              <img slot="icon" src="../../assets/icon_gou_nor.png" alt="">
+              <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
             </van-radio>
           </van-radio-group>
         </div>
@@ -131,7 +131,8 @@ export default {
           song: true,
           target: false
         }
-      ]
+      ],
+      moneys:''
     };
   },
   methods: {
@@ -148,6 +149,12 @@ export default {
     toDetail() {
       this.$router.push("/detail");
     }
+  },
+  mounted() {
+    let para = {
+      id: window.sessionStorage.getItem("userId")
+    };
+    this.$api.wallet.getCoupon(para).then(res => this.moneys = res.data.data[0].available_amount);
   }
 };
 </script>

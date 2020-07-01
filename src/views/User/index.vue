@@ -17,15 +17,15 @@
       </div>
       <div class="user_top_list">
         <div class="user_top_list_box" @click="toWallet">
-          <h1>1200</h1>
+          <h1>{{userData.account}}</h1>
           <p>余额(元)</p>
         </div>
         <div class="user_top_list_box" @click="toCoupon">
-          <h1>4</h1>
+          <h1>{{userData.discount}}</h1>
           <p>优惠券</p>
         </div>
         <div class="user_top_list_box" @click="toAttention">
-          <h1>14</h1>
+          <h1>{{userData.follow}}</h1>
           <p>已关注</p>
         </div>
       </div>
@@ -177,7 +177,13 @@
 export default {
   name: "user",
   data() {
-    return {};
+    return {
+      userData:{
+        account:'',
+        discount:'',
+        follow:''
+      }
+    };
   },
   methods: {
     toWallet() {
@@ -205,12 +211,10 @@ export default {
       id:Number(window.sessionStorage.getItem("userId"))
     }
     console.log(para)
-    // this.$api.user.getDiscounts(para).then(res => {
-    //   console.log(res)
-    // })
-    // // 获取余额
-    // this.$api.user.getMoney(para).then(res => console.log(res))
-    this.$api.user.getUserData(para).then(res => console.log(res))
+    this.$api.user.getUserData(para).then(res => {
+      console.log(res.data)
+      this.userData = Object.assign(this.userData,res.data)
+    })
 
   }
 };
