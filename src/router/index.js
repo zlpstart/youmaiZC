@@ -196,7 +196,7 @@ router.beforeEach((to,from,next) => {
   let isLogin = window.sessionStorage.getItem("key")
   if(to.path == '/login' || to.path == '/serveAgreement'){
     next()
-  }else if(isLogin){
+  }else if(isLogin == 1){
     next()
   }else {
     next("/login")

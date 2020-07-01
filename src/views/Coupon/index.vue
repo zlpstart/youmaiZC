@@ -30,6 +30,11 @@ export default {
       CouponUnused,
       CouponFinish,
       CouponPast
+  },
+  mounted(){
+    this.$api.user.getUserData().then(res => {
+      console.log(res)
+    })
   }
 };
 </script>

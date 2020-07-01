@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
-    baseURL: 'http://web.iyoumai.net',
+    baseURL: 'http://192.168.101.12/api',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'

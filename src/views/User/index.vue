@@ -198,6 +198,20 @@ export default {
     toAbout() {
       this.$router.push("/about");
     }
+  },
+  mounted(){
+    // // 获取优惠卷
+    let para = {
+      id:Number(window.sessionStorage.getItem("userId"))
+    }
+    console.log(para)
+    // this.$api.user.getDiscounts(para).then(res => {
+    //   console.log(res)
+    // })
+    // // 获取余额
+    // this.$api.user.getMoney(para).then(res => console.log(res))
+    this.$api.user.getUserData(para).then(res => console.log(res))
+
   }
 };
 </script>

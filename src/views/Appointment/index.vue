@@ -42,7 +42,7 @@
           </p>
         </div>
         <!-- 直播预约 -->
-        <div class="appointment_form_form_input" v-if="type" @click="showType2">
+        <div class="appointment_form_form_input2" v-if="type" @click="showType2">
           <div class="yuan"></div>
           <label for="phone">选择时间</label>
           <input
@@ -59,16 +59,35 @@
           </p>
         </div>
       </div>
-      <div class="appointment_form_form_button" v-show="(type && (form.name != '' && form.phone != '' && form.time != ''))" @click="toOrderForm">下一步</div>
-      <div class="appointment_form_form_button2" v-show="(type && (form.name == '' || form.phone == '' || form.time == ''))">下一步</div>
-      <div v-show="(!type && form.name != '' && form.phone != '' && form.time != '')" class="appointment_form_form_button"  @click="subscribe">立即预约</div>
-      <div v-show="(!type && (form.name == '' || form.phone == '' || form.time == ''))" class="appointment_form_form_button2">立即预约</div>
+      <div
+        class="appointment_form_form_button"
+        v-show="(type && (form.name != '' && form.phone != '' && form.time != ''))"
+        @click="toOrderForm"
+      >下一步</div>
+      <div
+        class="appointment_form_form_button2"
+        v-show="(type && (form.name == '' || form.phone == '' || form.time == ''))"
+      >下一步</div>
+      <div
+        v-show="(!type && form.name != '' && form.phone != '' && form.time != '')"
+        class="appointment_form_form_button"
+        @click="subscribe"
+      >立即预约</div>
+      <div
+        v-show="(!type && (form.name == '' || form.phone == '' || form.time == ''))"
+        class="appointment_form_form_button2"
+      >立即预约</div>
     </div>
     <!-- 租房预约 -->
     <van-popup class="retingsss" v-model="show" position="bottom" :style="{ height: '30%' }">
       <div class="popup_title">
         请选择看房时间
-        <img src="../../assets/zhibo_icon_close_nor.png" class="topPoup" @click="closeHoure" alt="">
+        <img
+          src="../../assets/zhibo_icon_close_nor.png"
+          class="topPoup"
+          @click="closeHoure"
+          alt
+        />
       </div>
       <van-tree-select
         class="timeDeta"
@@ -89,7 +108,7 @@
       <van-popup class="livesss" v-model="showLives" position="bottom" :style="{ height: '30%' }">
         <div class="popup_title">
           请选择用房时间
-          <img src="../../assets/zhibo_icon_close_nor.png" @click="closeHoure" alt="">
+          <img src="../../assets/zhibo_icon_close_nor.png" @click="closeHoure" alt />
         </div>
         <div class="popup_timer">
           <div class="popup_timer_left popup_timer_none" v-show="startTime.time == ''">
@@ -117,7 +136,8 @@
           line-width="44"
           line-height="2"
           title="ee"
-          :active="active"
+          :active="activeNum"
+          bind:change="onChange1"
           @click="vanClick"
           v-show="this.startTime.time == ''"
           class="startTime timeDeta"
@@ -145,11 +165,15 @@
 
         <!-- 结束时间 -->
         <van-tabs
+          background="#F4F4F4"
           line-width="44"
           line-height="2"
           title="ee"
+          :active="activeNum"
+          bind:change="onChange2"
           @click="vanClick2"
           v-show="this.startTime.time != ''"
+          class="startTime timeDeta"
         >
           <van-tab
             v-for="item in timer"
@@ -171,6 +195,7 @@
             </div>
           </van-tab>
         </van-tabs>
+
         <div class="popup_bottom">
           <button @click="cancel2">重置</button>
           <button @click="confirm2">确定</button>
@@ -203,6 +228,8 @@ export default {
   name: "appointment",
   data() {
     return {
+      activeNum: 0,
+      // 开始时间
       startTime: {
         id: 0,
         week: "今天06/01",
@@ -210,7 +237,7 @@ export default {
       },
       overTime: {
         id: 0,
-        week: "今天06/01",
+        week: "",
         time: ""
       },
       // 选择时间input内容
@@ -550,7 +577,7 @@ export default {
         }
       ],
       activeId: 0,
-      active:"null",
+      active: "null",
       activeIndex: 0,
       timer: [
         {
@@ -601,47 +628,47 @@ export default {
         },
         {
           id: 4,
-          time: "1:00",
+          time: "13:00",
           active: false
         },
         {
           id: 5,
-          time: "2:00",
+          time: "14:00",
           active: false
         },
         {
           id: 6,
-          time: "3:00",
+          time: "15:00",
           active: false
         },
         {
           id: 7,
-          time: "4:00",
+          time: "16:00",
           active: false
         },
         {
           id: 8,
-          time: "5:00",
+          time: "17:00",
           active: false
         },
         {
           id: 9,
-          time: "6:00",
+          time: "18:00",
           active: false
         },
         {
           id: 10,
-          time: "7:00",
+          time: "19:00",
           active: false
         },
         {
           id: 11,
-          time: "8:00",
+          time: "20:00",
           active: false
         },
         {
           id: 12,
-          time: "9:00",
+          time: "21:00",
           active: false
         }
       ]
@@ -653,7 +680,15 @@ export default {
     }
   },
   methods: {
-    closeHoure(){
+    onChange(name, title) {
+      console.log(name);
+      console.log(title);
+    },
+    onChange2(name, title) {
+      console.log(name);
+      console.log(title);
+    },
+    closeHoure() {
       this.showLives = false;
       this.show = false;
     },
@@ -668,11 +703,18 @@ export default {
       this.showLives = false;
     },
     cancel2() {
-      this.startTime.week = "今天06/01";
-      this.startTime.time = "";
-      this.overTime.week = "今天06/01";
-      this.overTime.time = "";
-      this.duration = 0;
+      this.startTime = {
+        id: 0,
+        week: "今天06/01",
+        time: ""
+      };
+      this.overTime = {
+        id: 0,
+        week: "今天06/01",
+        time: ""
+      };
+      // this.duration = 0;
+      // this.activeNum = 0;
       this.timers.forEach(item => (item.active = false));
     },
     // 租房确定
@@ -684,7 +726,7 @@ export default {
     confirm2() {
       this.timerInput = `${this.overTime.week} ${this.startTime.time}-${this.overTime.time}`;
       this.showLives = false;
-      this.form.time = this.timerInput
+      this.form.time = this.timerInput;
       this.cancel2();
     },
     showHouse() {
@@ -694,33 +736,53 @@ export default {
       this.show2 = false;
       this.showLives = false;
       this.show = false;
-      this.$router.push("/rentingDetails")
+      this.$router.push("/rentingDetails");
     },
-    showLive() {
-      
-    },
-    // 开始天数
+    showLive() {},
+    // 开始时间
     times(item, index) {
+      console.log("选择开始时间");
       this.startTime.id = item.id;
       this.startTime.time = item.time;
-      if (item.active) {
-        item.active = false;
-      } else {
-        item.active = true;
-      }
+      // if (item.active) {
+      //   item.active = false;
+      // } else {
+      //   item.active = true;
+      // }
     },
-    // 结束天数
+    // 结束时间
     times2(item, index) {
+      console.log("选择结束时间");
+      console.log(item);
+      console.log(index);
       this.overTime.id = item.id;
       this.overTime.time = item.time;
-      this.duration = this.overTime.id - this.startTime.id ;
+      this.duration = this.overTime.id - this.startTime.id;
+      if (this.duration < 0) {
+        this.duration = this.duration * -1;
+      }
+      this.timers.forEach(items => {
+        if (items.id >= item.id) {
+          items.active = false;
+        }
+      });
       if (item.active) {
         item.active = false;
       } else {
         item.active = true;
       }
-      for (let i = this.startTime.id; i < this.duration; i++) {
-        this.timers[i].active = true;
+      if (this.overTime.id > this.startTime.id) {
+        this.timers.forEach(item => {
+          if (item.id > this.startTime.id && item.id <= this.overTime.id) {
+            item.active = true;
+          }
+        });
+      } else {
+        this.timers.forEach(item => {
+          if (item.id <= this.startTime.id && item.id > this.overTime.id) {
+            item.active = true;
+          }
+        });
       }
     },
     clickItem(e) {
@@ -745,6 +807,10 @@ export default {
         // this.$router.push("/paymenterr");
       }
     },
+    // onChange1(name,title){
+    //   console.log(name)
+    //   console.log(title)
+    // },
     phone(e) {
       const myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
       if (!myreg.test(e)) {
@@ -778,16 +844,29 @@ export default {
       }
     },
     // 选择开始天数
-    vanClick(name, title) {
+    vanClick(index, title, e) {
+      console.log("选择开始天数");
+      this.activeNum = index;
       this.startTime.week = title;
-      this.active = 0;
-      this.timers.forEach(item => (item.active = false));
-
+      // this.active = 0;
+      // this.timers.map(item => (item.active = false));
+      // this.startTime.week = title;
     },
     // 选择结束天数
-    vanClick2(name, title) {
-
+    vanClick2(index, title) {
+      console.log("选择结束天数");
+      this.activeNum = index;
       this.overTime.week = title;
+      // this.startTime = {
+      //   id: 0,
+      //   week: title,
+      //   time: ""
+      // };
+      // this.overTime = {
+      //   id: 0,
+      //   week: title,
+      //   time: ""
+      // };
     },
     clickNav(e) {
       this.timerObj.week = this.items[e].text;
@@ -880,6 +959,59 @@ div.appointment {
           line-height: 40px;
         }
       }
+
+      .appointment_form_form_input2 p img {
+        width: 16px;
+        height: 28px;
+      }
+      .appointment_form_form_input2:nth-child(1) .yuan {
+        border: 3px solid #43d39c;
+      }
+      .appointment_form_form_input2:nth-child(2) .yuan {
+        border: 3px solid #43b0d3;
+      }
+      .appointment_form_form_input2:nth-child(3) .yuan {
+        border: 3px solid #fa9702;
+      }
+      .appointment_form_form_input2 {
+        height: 87px;
+        line-height: 87px;
+        display: flex;
+        align-items: center;
+        .yuan {
+          width: 12px;
+          height: 12px;
+          background: #ffffff;
+          border-radius: 12px;
+        }
+        label {
+          margin-left: 18px;
+          font-size: 28px;
+          font-family: PingFang-SC-Bold, PingFang-SC;
+          font-weight: bold;
+          color: rgba(51, 51, 51, 1);
+          line-height: 40px;
+        }
+        input {
+          margin-left: 50px;
+          border: none;
+          width: 400px;
+          height: 40px;
+          margin-top: 0;
+          font-size: 28px;
+          font-family: PingFang-SC-Medium, PingFang-SC;
+          font-weight: 500;
+          color: rgba(102, 102, 102, 1);
+          line-height: 40px;
+        }
+        input::-webkit-input-placeholder {
+          font-size: 28px;
+          font-family: PingFang-SC-Medium, PingFang-SC;
+          font-weight: 500;
+          color: rgba(199, 199, 199, 1);
+          line-height: 40px;
+        }
+      }
     }
   }
   .appointment_form_form_button {
@@ -895,7 +1027,7 @@ div.appointment {
     color: rgba(255, 255, 255, 1);
     line-height: 88px;
   }
-    .appointment_form_form_button2 {
+  .appointment_form_form_button2 {
     width: 630px;
     height: 88px;
     background: rgba(250, 151, 2, 1);
@@ -993,7 +1125,7 @@ div.appointment {
   height: auto !important;
 }
 .livesss {
-  height: 770px !important;
+  height: 800px !important;
 }
 
 .img_wrap img {
@@ -1037,29 +1169,28 @@ div.appointment {
 }
 
 .popup_timer_none {
-  font-size:24px !important;
-  font-family:PingFang-SC-Medium,PingFang-SC !important;
-  font-weight:500 !important;
-  color:rgba(153,153,153,1) !important;
-  line-height:33px !important;
+  font-size: 24px !important;
+  font-family: PingFang-SC-Medium, PingFang-SC !important;
+  font-weight: 500 !important;
+  color: rgba(153, 153, 153, 1) !important;
+  line-height: 33px !important;
 }
-
 </style>
 <style scoped>
 .appointment >>> .van-tabs--line .van-tabs__wrap {
   height: 88px !important;
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 .appointment >>> .van-tabs__wrap--scrollable .van-tabs__nav {
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 .appointment >>> .van-tabs__line {
-    width: 0.48rem !important;
-    height: 0.06667rem !important;
-    background: rgba(250,151,2,1) !important;
-    width: 1.24667rem;
-    transition-duration: 0.3s;
-    transform: translateX(83.5px) translateX(-50%);
+  width: 0.48rem !important;
+  height: 0.06667rem !important;
+  background: rgba(250, 151, 2, 1) !important;
+  width: 1.24667rem;
+  transition-duration: 0.3s;
+  transform: translateX(83.5px) translateX(-50%);
 }
 .topPoup {
   top: 49px !important;

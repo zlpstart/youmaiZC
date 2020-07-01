@@ -15,7 +15,7 @@
       <div class="login_form_input">
         <input type="text" v-model="loginForm.verify" placeholder="请输入验证码" />
         <button @click="getCode" v-show="getC">获取验证码</button>
-        <button @click="getCode" v-show="!getC">{{timer}}s</button>
+        <button v-show="!getC">{{timer}}s</button>
       </div>
     </div>
     <div
@@ -54,9 +54,6 @@
 </template>
 
 <script>
-import { sendForm } from "../../api/login/index";
-import { getIndex } from "../../api/login/index";
-
 export default {
   name: "login",
   data() {
@@ -71,10 +68,26 @@ export default {
   },
   methods: {
     login() {
-      if (this.loginForm.phone == "admin" && this.loginForm.verify == "admin") {
-        window.sessionStorage.setItem("key", true);
-        this.$router.push("/");
-      }
+      // 17521684561
+      console.log("我要登录");
+      let para = {
+        phone: this.loginForm.phone,
+        code: this.loginForm.verify
+      };
+      // http://192.168.50.89/api/login
+      // http://192.168.50.89/api/account
+      this.$api.login.login(para).then(res => {
+        console.log(res)
+
+        window.sessionStorage.setItem("userId", res.data.data.id);
+        window.sessionStorage.setItem("key", 1);
+        this.$router.push("/"); 
+
+        // if(res.data.code == 200){
+        //   window.sessionStorage.setItem("key",1)
+        //   this.$router.push('/')
+        // }
+      });
     },
     toServeAgreement() {
       this.$router.push("/serveAgreement");
@@ -82,6 +95,14 @@ export default {
     getCode() {
       this.timer = 60;
       this.getC = false;
+      let para = {
+        phone: this.loginForm.phone
+      };
+      this.$api.login.getRegistersms(para).then(res => {
+        console.log(res);
+        console.log("封装api");
+      });
+
       let timer = setInterval(() => {
         this.timer -= 1;
         if (this.timer <= 0) {
@@ -89,25 +110,6 @@ export default {
           this.getC = true;
         }
       }, 1000);
-
-      let para = {
-        phone: this.loginForm.phone
-      };
-
-      this.$api.login.getRegistersms(para).then(res => {
-        console.log(res);
-        console.log("封装api");
-      });
-
-      this.$api.login.getIndex().then(res => {
-        console.log(res);
-        console.log("封装axios");
-      });
-
-      getIndex().then(res => {
-        console.log(res);
-        console.log("get请求");
-      });
     }
   }
 };

@@ -71,8 +71,8 @@ export default {
         this.active = 0;
       }
     }
-    console.log("请求参数")
-    this.$api.home.getNews().then(res => console.log(res))
+    // console.log("请求参数")
+    // this.$api.home.getNews().then(res => console.log(res))
   },
   methods: {
     onChange(e) {
