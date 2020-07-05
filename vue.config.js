@@ -11,4 +11,7 @@ module.exports = {
 			.set('@components', resolve('src/components'))
 			.set('@static', resolve('src/static'))
 	},
+	devServer: {
+        port: 8888
+    }
 }

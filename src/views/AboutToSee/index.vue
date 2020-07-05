@@ -1,39 +1,9 @@
 <template>
   <div class="box">
-    <div class="aboutToSee">
+    <div class="aboutToSee" v-for="item in look" :key="item.space_work_id">
       <div class="aboutToSee_top">
         <div class="aboutToSee_top_txt">
-          <p>2020-06-20(周六) 09：30-10：00</p>
-        </div>
-        <div class="aboutToSee_top_btn">
-          <p>联系我们</p>
-        </div>
-      </div>
-      <div class="aboutToSee_content">
-        <div class="aboutToSee_content_box">
-          <LiveList />
-        </div>
-      </div>
-    </div>
-    <div class="aboutToSee">
-      <div class="aboutToSee_top">
-        <div class="aboutToSee_top_txt">
-          <p>2020-06-20(周六) 09：30-10：00</p>
-        </div>
-        <div class="aboutToSee_top_btn">
-          <p>联系我们</p>
-        </div>
-      </div>
-      <div class="aboutToSee_content">
-        <div class="aboutToSee_content_box">
-          <LiveList />
-        </div>
-      </div>
-    </div>
-    <div class="aboutToSee">
-      <div class="aboutToSee_top">
-        <div class="aboutToSee_top_txt">
-          <p>2020-06-20(周六) 09：30-10：00</p>
+          <p>{{item.look_date}} {{item.look_time}}</p>
         </div>
         <div class="aboutToSee_top_btn">
           <p>联系我们</p>
@@ -54,10 +24,24 @@ import LiveList from "../../components/RentingList/index";
 export default {
   name: "aboutToSee",
   data() {
-    return {};
+    return {
+      look:[],
+      work:[]
+    };
   },
   components: {
     LiveList
+  },
+  mounted(){
+    let para = {
+      id:window.sessionStorage.getItem("userId")
+    }
+    this.$api.aboutToSee.getAboutToSee(para).then(res => {
+      console.log(res)
+      console.log(res.data.data)
+      this.look = res.data.data.look
+      this.work = res.data.data.work
+    })
   }
 };
 </script>
@@ -97,7 +81,7 @@ div.aboutToSee {
       background: url("../../assets/img_contact.png") no-repeat center;
       background-size: 100%;
       text-align: center;
-      margin-top: -64px;
+      margin-top: -18px;
       padding: 5px 11px;
       box-sizing: content-box;
       p {

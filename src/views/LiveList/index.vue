@@ -14,6 +14,9 @@ export default {
     },
     components:{
         LiveList
+    },
+    mounted(){
+        this.$api.liveList.getliveList().then(res => console.log(res))
     }
 }
 </script>

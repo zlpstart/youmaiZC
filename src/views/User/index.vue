@@ -210,12 +210,8 @@ export default {
     let para = {
       id:Number(window.sessionStorage.getItem("userId"))
     }
-    console.log(para)
-    this.$api.user.getUserData(para).then(res => {
-      console.log(res.data)
-      this.userData = Object.assign(this.userData,res.data)
-    })
-
+    this.$api.user.getUserData(para).then(res =>this.userData = Object.assign(this.userData,res.data))
+    // this.$api.user.getUserData(para).then(res =>console.log(res))
   }
 };
 </script>

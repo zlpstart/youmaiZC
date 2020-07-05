@@ -181,7 +181,26 @@ const routes = [
     path: '/unsubscribe',
     name: 'unsubscribe',
     component: resolve => (require(["@/views/Unsubscribe/index.vue"], resolve))
-  }
+  },
+  // 设置
+  {
+    path: '/set',
+    name: 'set',
+    component: resolve => (require(["@/views/Set/index.vue"], resolve))
+  },
+  // 设置支付密码
+  {
+    path: '/setPass',
+    name: 'setPass',
+    component: resolve => (require(["@/views/SetPass/index.vue"], resolve))
+  },
+  // 修改支付密码
+  
+  {
+    path: '/modificationPass',
+    name: 'modificationPass',
+    component: resolve => (require(["@/views/ModificationPass/index.vue"], resolve))
+  },
 ]
 
 

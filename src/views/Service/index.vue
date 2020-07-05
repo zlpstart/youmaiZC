@@ -1,7 +1,7 @@
 <template>
     <div class="service">
     <div class="box" v-if="!showAttention">
-      <div class="box_content">
+      <!-- <div class="box_content">
         <div class="box_img">
           <img src="../../assets/img_guanzhu.png" alt />
         </div>
@@ -9,7 +9,7 @@
           <p>您还没有入驻</p>
           <p>搜索结果为空</p>
         </div>
-      </div>
+      </div> -->
     </div>
     </div>
 </template>

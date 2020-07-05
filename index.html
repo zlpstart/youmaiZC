@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,18 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    
+
 </body>
 <script>
-    axios.post('http://192.168.50.89/api/index')
+    axios({
+        method: 'post',
+        url: 'http://192.168.50.89:81/api/order',
+        data: {
+            order:6
+        }
+    })
     .then(res => console.log(res))
+    .catch(err => console.log(err))
 </script>
+
 </html>

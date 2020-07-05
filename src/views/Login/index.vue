@@ -68,25 +68,14 @@ export default {
   },
   methods: {
     login() {
-      // 17521684561
-      console.log("我要登录");
       let para = {
         phone: this.loginForm.phone,
         code: this.loginForm.verify
       };
-      // http://192.168.50.89/api/login
-      // http://192.168.50.89/api/account
       this.$api.login.login(para).then(res => {
-        console.log(res)
-
         window.sessionStorage.setItem("userId", res.data.data.id);
         window.sessionStorage.setItem("key", 1);
         this.$router.push("/"); 
-
-        // if(res.data.code == 200){
-        //   window.sessionStorage.setItem("key",1)
-        //   this.$router.push('/')
-        // }
       }).catch(err => console.log(err))
     },
     toServeAgreement() {
@@ -99,8 +88,7 @@ export default {
         phone: this.loginForm.phone
       };
       this.$api.login.getRegistersms(para).then(res => {
-        console.log(res);
-        console.log("封装api");
+        
       });
 
       let timer = setInterval(() => {

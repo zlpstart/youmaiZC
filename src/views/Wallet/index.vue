@@ -154,7 +154,11 @@ export default {
     let para = {
       id: window.sessionStorage.getItem("userId")
     };
-    this.$api.wallet.getCoupon(para).then(res => this.moneys = res.data.data[0].available_amount);
+    console.log(para)
+    this.$api.wallet.getCoupon(para).then(res => {
+      console.log(res)
+      this.moneys = res.data.data[0].available_amount
+    });
   }
 };
 </script>

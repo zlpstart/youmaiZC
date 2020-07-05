@@ -34,6 +34,12 @@ export default {
     changeIndent(name,title){
       this.active = name;
     }
+  },
+  mounted(){
+    let para = {
+      id:window.sessionStorage.getItem("userId")
+    }
+    this.$api.order.getOrder(para).then(res => console.log(res))
   }
 };
 </script>
