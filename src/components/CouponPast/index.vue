@@ -1,27 +1,15 @@
 <template>
-  <div class="couponUnused">
-    <div class="couponUnused_box">
+  <div class="couponUnused" >
+    <div class="couponUnused_box" v-for="item in coupon" :key="item.id">
       <div class="couponUnused_box_left">
         <h1>
-          <span>¥</span>100.00
+          <span>¥</span>{{item.discount_price}}
         </h1>
-        <p>满1000元可用</p>
+        <p>{{item.remake}}</p>
       </div>
       <div class="couponUnused_box_right">
-        <h1>服装电商直播基地专用抵扣券</h1>
-        <p>2020-06-01至2020-06-25</p>
-      </div>
-    </div>
-    <div class="couponUnused_box">
-      <div class="couponUnused_box_left">
-        <h1>
-          <span>¥</span>100.00
-        </h1>
-        <p>满1000元可用</p>
-      </div>
-      <div class="couponUnused_box_right">
-        <h1>服装电商直播基地专用抵扣券</h1>
-        <p>2020-06-01至2020-06-25</p>
+        <h1>{{item.discount_name}}</h1>
+        <p>{{item.created_at}}</p>
       </div>
     </div>
   </div>
@@ -31,9 +19,21 @@
 export default {
   name: "couponUnused",
   data() {
-    return {};
+    return {
+      coupon:[]
+    };
   },
-  props: []
+  props: [],
+  mounted() {
+    let para = {
+      id: window.sessionStorage.getItem("userId")
+    };
+    this.$api.coupon.getCoupon(para).then(res => {
+      this.coupon = res.data.data.filter(item => {
+        return item.status == 1;
+      });
+    });
+  }
 };
 </script>
 
@@ -60,7 +60,7 @@ div.couponUnused {
         font-size: 52px;
         font-family: PingFang-SC-Bold, PingFang-SC;
         font-weight: bold;
-        color: #AEAEAE;
+        color: #aeaeae;
         line-height: 33px;
         margin-top: 62px;
         span {
@@ -72,7 +72,7 @@ div.couponUnused {
         font-size: 22px;
         font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
-        color: #AEAEAE;
+        color: #aeaeae;
         line-height: 30px;
         margin-top: 20px;
       }
@@ -86,7 +86,7 @@ div.couponUnused {
         margin-top: 59px;
         font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
-        color: #AEAEAE;
+        color: #aeaeae;
         line-height: 40px;
       }
 
@@ -94,13 +94,13 @@ div.couponUnused {
         font-size: 20px;
         font-family: PingFang-SC-Medium, PingFang-SC;
         font-weight: 500;
-        color: #AEAEAE;
+        color: #aeaeae;
         line-height: 28px;
         margin-top: 31px !important;
       }
     }
   }
-    .couponUnused_box:nth-child(1) {
+  .couponUnused_box:nth-child(1) {
     margin-top: 30px !important;
   }
 }

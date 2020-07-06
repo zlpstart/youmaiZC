@@ -40,7 +40,7 @@ const routes = [
   },
   // 租房详情
   {
-    path: '/RentingDetails',
+    path: '/RentingDetails/:id',
     name: 'RentingDetails',
     component: resolve => (require(["@/views/RentingDetails/index.vue"], resolve))
   },
@@ -50,9 +50,10 @@ const routes = [
     name: 'liveList',
     component: resolve => (require(["@/views/LiveList/index.vue"], resolve))
   },
+
   // 直播详情
   {
-    path: '/liveDetails',
+    path: '/liveDetails/:id',
     name: 'liveDetails',
     component: resolve => (require(["@/views/LiveDetails/index.vue"], resolve))
   },

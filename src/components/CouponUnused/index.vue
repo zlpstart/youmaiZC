@@ -1,38 +1,22 @@
 <template>
   <div class="couponUnused">
-    <div class="couponUnused_box">
+    <div 
+    class="couponUnused_box"
+    v-for="item in coupon"
+    :key="item.id"
+    >
       <div class="couponUnused_box_left">
         <h1>
-          <span>¥</span>100.00
+          <span>¥</span>{{item.discount_price}}
         </h1>
-        <p>满1000元可用</p>
+        <p>{{item.remake}}</p>
       </div>
       <div class="couponUnused_box_right">
-        <h1>服装电商直播基地专用抵扣券</h1>
+        <h1>{{item.discount_name}}</h1>
         <p>
-          2020-06-01至2020-06-25
-          <van-radio-group v-model="radio" v-show="this.$route.path == '/orderform' ">
+          {{item.created_at}}
+          <van-radio-group v-model="radio" v-show="$route.path == '/orderform' ">
             <van-radio name="1" icon-size="24px">
-              <p>2020-06-01至2020-06-25</p>
-              <img slot="icon" src="../../assets/yes.png" alt />
-            </van-radio>
-          </van-radio-group>
-        </p>
-      </div>
-    </div>
-    <div class="couponUnused_box">
-      <div class="couponUnused_box_left">
-        <h1>
-          <span>¥</span>100.00
-        </h1>
-        <p>满1000元可用</p>
-      </div>
-      <div class="couponUnused_box_right">
-        <h1>服装电商直播基地专用抵扣券</h1>
-        <p>
-          2020-06-01至2020-06-25
-          <van-radio-group v-model="radio" v-show="this.$route.path == '/orderform' ">>
-            <van-radio name="2" icon-size="24px">
               <p>2020-06-01至2020-06-25</p>
               <img slot="icon" src="../../assets/yes.png" alt />
             </van-radio>
@@ -48,10 +32,21 @@ export default {
   name: "couponUnused",
   data() {
     return {
-      radio: "1"
+      radio: "1",
+      coupon:[]
     };
   },
-  props: []
+  mounted() {
+    let para = {
+      id: window.sessionStorage.getItem("userId")
+    };
+    this.$api.coupon.getCoupon(para).then(res => {
+      console.log(res.data.data)
+      this.coupon = res.data.data.filter(item => {
+        return item.status == 0
+      })
+    });
+  }
 };
 </script>
 

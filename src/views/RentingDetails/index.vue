@@ -19,21 +19,21 @@
         </template>
       </van-swipe>
       <div class="liveDetails_wrap_title">
-        <h1 class="txt_title">厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
+        <h1 class="txt_title">{{rentingData.work_sapce_name}}</h1>
       </div>
       <div class="liveDetails_wrap_rent">
         <ul>
           <li>
             <p class="txt_min">租金</p>
-            <h1 class="txt_money">250元/时起</h1>
+            <h1 class="txt_money">{{rentingData.price}}元/时起</h1>
           </li>
           <li>
             <p class="txt_min">工位</p>
-            <h1 class="txt_money">2000个工位</h1>
+            <h1 class="txt_money">{{rentingData.station}}个工位</h1>
           </li>
           <li>
             <p class="txt_min">面积</p>
-            <h1 class="txt_money">面积 750.00㎡</h1>
+            <h1 class="txt_money">面积 {{rentingData.office_area}}㎡</h1>
           </li>
         </ul>
       </div>
@@ -71,7 +71,7 @@
     </div>
     <div class="liveDetails_synopsis paddd">
       <h1 class="txt_title_min">房源简介</h1>
-      <p>是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。</p>
+      <p>{{rentingData.describe}}</p>
     </div>
     <div class="liveDetails_enter paddd">
       <div class="liveDetails_enter_title">
@@ -130,7 +130,8 @@ export default {
       current: 0,
       attentioning: true,
       loveSucess: false,
-      loveError: false
+      loveError: false,
+      rentingData:{}
     };
   },
   methods: {
@@ -173,6 +174,15 @@ export default {
   },
   components: {
     contentList
+  },
+  mounted(){
+    let para = {
+      id:this.$route.params.id
+    }
+    this.$api.rentingList.getDetails(para).then(res => {
+      window.sessionStorage.setItem('renting',JSON.stringify(res.data.data.content))
+      this.rentingData = res.data.data.content
+    })
   }
 };
 </script>

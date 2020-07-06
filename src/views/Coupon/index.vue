@@ -30,13 +30,6 @@ export default {
       CouponUnused,
       CouponFinish,
       CouponPast
-  },
-  mounted(){
-    console.log('youhuijuan')
-    let para = {
-      id: window.sessionStorage.getItem("userId")
-    };
-    this.$api.coupon.getCoupon(para).then(res => console.log(res))
   }
 };
 </script>

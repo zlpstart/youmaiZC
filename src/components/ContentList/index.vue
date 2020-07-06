@@ -9,7 +9,8 @@
           <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
             <h1
               :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
-            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
+            >{{liveDatas.sapce_live_name}}</h1>
+            <!-- {{getLiveDatas}} -->
           </div>
           <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform' && this.$route.path != '/havePaid'">
             <p class="txt_min">
@@ -27,7 +28,7 @@
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p :class="{txt_money:true,txt_orderform:this.$route.path == '/orderform'}">¥4800/月</p>
+            <p :class="{txt_money:true,txt_orderform:this.$route.path == '/orderform'}">¥{{liveDatas.rent}}/月</p>
           </div>
         </div>
       </div>
@@ -36,8 +37,15 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: "contentList",
+  data(){
+    return {
+      liveDatas:{}
+    }
+  },
   methods: {
     toWorkDetails() {
       if (this.$route.path == "/rentingList") {
@@ -46,6 +54,12 @@ export default {
         this.$router.push("/liveDetails");
       }
     }
+  },
+  computed:{
+    ...mapGetters(["getLiveDatas"])
+  },
+  mounted(){
+    this.liveDatas = JSON.parse(window.sessionStorage.getItem('liveDatas'))
   }
 };
 </script>

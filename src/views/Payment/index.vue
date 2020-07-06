@@ -1,7 +1,7 @@
 <template>
   <div class="payment">
     <div class="payment_top">
-      <h1><span>¥</span> 1250.00</h1>
+      <h1><span>¥</span> {{money}}</h1>
       <p>支付剩余时间29：59</p>
     </div>
     <div class="payment_list">
@@ -37,13 +37,17 @@ export default {
   name: "payment",
   data() {
     return {
-      radio: "1"
+      radio: "1",
+      money:''
     };
   },
   methods:{
       confirm(){
           this.$router.push("/paymentSucceed")
       }
+  },
+  mounted(){
+    this.money = window.sessionStorage.getItem('money')
   }
 };
 </script>

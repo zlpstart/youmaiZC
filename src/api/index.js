@@ -12,6 +12,8 @@ import coupon from './api_all/coupon'
 import order from './api_all/order'
 // 直播列表
 import liveList from './api_all/liveList'
+// 租房列表
+import rentingList from './api_all/rentingList'
 // 约看
 import aboutToSee from './api_all/aboutToSee'
 
@@ -24,7 +26,8 @@ const api = {
     coupon,
     order,
     liveList,
-    aboutToSee
+    aboutToSee,
+    rentingList
 }
 
 export default api;

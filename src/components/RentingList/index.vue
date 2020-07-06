@@ -1,36 +1,38 @@
 <template>
   <div class="contentList">
     <div
-      :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}"
-      @click="toWorkDetails"
+      v-for="item in liveData"
+      :key="item.id"
+      :class="{rentingList_content:true,rentingList_margin:$route.path == '/orderform'}"
+      @click="toWorkDetails(item)"
     >
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
           <img src="../../assets/ceshi.jpg" alt />
         </div>
         <div class="rentingList_content_box_txt">
-          <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
+          <div :class="{rentingList_content_box_txt_h1:true,form:$route.path == '/orderform'}">
             <h1
-              :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
-            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
+              :class="{txt_medium:true,form2:$route.path != '/orderform'}"
+            >{{item.work_sapce_name}}</h1>
           </div>
-          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
+          <div class="rentingList_content_box_txt_span" v-show="$route.path != '/orderform'">
             <p class="txt_min">
               <img src="../../assets/bangong_icon_chair_nor.png" alt />
-              100个工位
+              {{item.station}}个工位
             </p>
             <p class="txt_min">
               <img src="../../assets/bangong_icon_mianji_nor.png" alt />
-              500.00㎡面积
+              {{item.office_area}}㎡面积
             </p>
           </div>
-          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
+          <div class="zhanwei" v-show="!($route.path != '/orderform')"></div>
           <div class="rentingList_content_box_txt_card txt_card">
             <p>茶水间</p>
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p class="txt_money">¥4800/月</p>
+            <p class="txt_money">¥{{item.price}}/月</p>
           </div>
         </div>
       </div>
@@ -41,15 +43,25 @@
 <script>
 export default {
   name: "contentList",
+  data(){
+    return {
+      liveData:[]
+    }
+  },
   methods: {
-    toWorkDetails() {
-
+    toWorkDetails(e) {
       if (this.$route.path == "/rentingList") {
-        this.$router.push("/RentingDetails");
+        this.$router.push(`/RentingDetails/${e.id}`);
       } else if (this.$route.path == "/liveList") {
         this.$router.push("/liveDetails");
       }
     }
+  },
+  mounted(){
+    this.$api.rentingList.getRentingList().then(res => {
+      console.log(res)
+      this.liveData = res.data.msg.data
+    })
   }
 };
 </script>

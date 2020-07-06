@@ -7,17 +7,17 @@
     <div class="orderform_timer padd">
       <div class="orderform_timer_left">
         <p>开始时间</p>
-        <p>周三 06/01</p>
-        <p>15:00</p>
+        <p>{{startTime.week}}</p>
+        <p>{{startTime.time}}</p>
       </div>
       <div class="xianxian"></div>
       <div class="orderform_timer_cent">
-        <p>共5小时</p>
+        <p>共{{duration}}小时</p>
       </div>
       <div class="orderform_timer_left">
         <p>离开时间</p>
-        <p>周三 06/01</p>
-        <p>20:00</p>
+        <p>{{overTime.week}}</p>
+        <p>{{overTime.time}}</p>
       </div>
     </div>
     <div class="orderform_name padd">
@@ -27,22 +27,22 @@
       <div class="orderform_name_wrap">
         <div class="orderform_name_wrap_left">
           <img src="../../assets/icon_people_nor.png" alt />
-          <p>王女士</p>
+          <p>{{formData.name}}</p>
         </div>
         <div class="orderform_name_wrap_right">
-          <p>174****4561</p>
+          <p>{{formData.phone}}</p>
         </div>
       </div>
     </div>
     <div class="orderform_money padd">
       <div class="orderform_money_top">
         <div class="orderform_money_top_left">
-          <h1>房租总额（5小时）</h1>
-          <p>06/01 15:00-20:00</p>
+          <h1>房租总额（{{duration}}小时）</h1>
+          <p>{{startTime.week}} {{startTime.time}}-{{overTime.time}}</p>
         </div>
         <div class="orderform_money_top_right">
-          <h1>¥1250.00</h1>
-          <p>¥250.00*5</p>
+          <h1>{{liveDatas.rent * duration}}</h1>
+          <p>¥{{liveDatas.rent}}*{{duration}}</p>
         </div>
       </div>
       <div class="orderform_money_top">
@@ -54,7 +54,7 @@
           <p>正常退房后押金将退回</p>
         </div>
         <div class="orderform_money_top_right">
-          <h1>¥200.00</h1>
+          <h1>¥{{liveDatas.deposit}}</h1>
         </div>
       </div>
       <div class="orderform_money_top" @click="showCouponWrap">
@@ -71,7 +71,9 @@
     </div>
     <div class="orderform_wrap padd">
       <div class="orderform_wrap_left">合计总金额</div>
-      <div class="orderform_wrap_right">¥1250.00</div>
+      <div
+        class="orderform_wrap_right"
+      >¥{{Number(liveDatas.rent * duration) + Number(liveDatas.deposit)}}</div>
     </div>
     <div class="orderform_agreement">
       <img src="../../assets/icon_jinggao_nor.png" alt />
@@ -84,9 +86,9 @@
       <div class="orderform_bottom_box orderform_bottom_txt">
         <p>
           订单总额
-          <span>¥1250.00</span>
+          <span>¥{{Number(liveDatas.rent * duration) + Number(liveDatas.deposit)}}</span>
         </p>
-        <h1>(含押金，已优惠¥200.00)</h1>
+        <h1>(含押金，已优惠¥{{liveDatas.deposit}})</h1>
       </div>
       <div class="orderform_bottom_box">
         <button @click="submit">提交订单</button>
@@ -162,6 +164,7 @@
 import contentList from "../../components/ContentList/index";
 import couponUnused from "../../components/CouponUnused/index";
 import CouponPast from "../../components/CouponPast/index";
+import { mapGetters } from "vuex";
 
 export default {
   name: "orderform",
@@ -169,8 +172,34 @@ export default {
     return {
       active: -1,
       showCoupon: false,
-      radio: "1"
+      radio: "1",
+      liveDatas: {},
+      formData: {},
+      startTime: {},
+      overTime: {},
+      duration: ""
     };
+  },
+  mounted() {
+    // 直播列表信息
+    this.liveDatas = JSON.parse(window.sessionStorage.getItem("liveDatas"));
+    // 个人信息
+    this.formData = JSON.parse(window.sessionStorage.getItem("formData"));
+    // 开始时间
+    this.startTime = JSON.parse(window.sessionStorage.getItem("startTime"));
+    // 结束时间
+    this.overTime = JSON.parse(window.sessionStorage.getItem("overTime"));
+    // 总共时长
+    this.duration = JSON.parse(window.sessionStorage.getItem("duration"));
+  },
+  computed: {
+    ...mapGetters([
+      "getStartTime",
+      "getOverTime",
+      "getFormData",
+      "getLiveDatas",
+      "getDuration"
+    ])
   },
   components: {
     contentList,
@@ -179,7 +208,34 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push("/payment");
+      let para = {
+        id: this.liveDatas.id,
+        name: this.formData.name,
+        phone: this.formData.phone,
+        real_money:
+          Number(this.liveDatas.rent * this.duration) +
+          Number(this.liveDatas.deposit),
+        money:
+          Number(this.liveDatas.rent * this.duration) +
+          Number(this.liveDatas.deposit),
+        deposit_money: this.liveDatas.deposit,
+        discount_money: null,
+        discount_id: null,
+        begin_time: this.startTime.time,
+        end_time: this.overTime.time,
+        use_date: this.startTime.week,
+        order_name: this.liveDatas.sapce_live_name
+      };
+      console.log(111)
+      window.sessionStorage.setItem('money',(Number(this.liveDatas.rent * this.duration) + Number(this.liveDatas.deposit)))
+      console.log(para);
+      this.$api.liveList.purchase(para).then(res => {
+        console.log("下单！！")
+        console.log(res)
+        if (res.data.code === 200) {
+          this.$router.push("/payment");
+        }
+      });
     },
     toYajin() {
       this.$router.push("/guarantee");
@@ -417,7 +473,7 @@ div.couponUnused_box {
           img {
             width: 16px;
             height: 28px;
-            margin-left: 28px;
+            margin-left: 8px;
           }
         }
         p {

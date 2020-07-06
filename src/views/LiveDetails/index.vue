@@ -19,11 +19,11 @@
         </template>
       </van-swipe>
       <div class="liveDetails_wrap_title">
-        <h1 class="txt_title">厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
+        <h1 class="txt_title">{{details.sapce_live_name}}</h1>
       </div>
       <div class="liveDetails_wrap_rent">
         <p class="txt_min">租金</p>
-        <h1 class="txt_money">250元/时起</h1>
+        <h1 class="txt_money">{{details.rent}}元/时起</h1>
       </div>
       <div class="liveDetails_wrap_card">
         <div class="txt_card">
@@ -63,12 +63,12 @@
       </div>
       <div class="liveDetails_introductory_content">
         <div class="liveDetails_introductory_content_card">连租优惠</div>
-        <p>连续预定满3个小时，享受9.0折优惠</p>
+        <p>{{details.discount}}</p>
       </div>
     </div>
     <div class="liveDetails_synopsis paddd">
       <h1 class="txt_title_min">基地简介</h1>
-      <p>是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。是一个服务于企业级产品的设计体系，基于『确定』和『自然』的设计价值观和模块化的解决方案，让设计者专注于更好的用户体验。</p>
+      <p>{{details.describe}}</p>
     </div>
     <div class="liveDetails_enter paddd">
       <div class="liveDetails_enter_title">
@@ -79,7 +79,7 @@
           <p>押金</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">¥200</p>
+          <p class="txt_medium">¥{{details.deposit}}</p>
           <img src="../../assets/con_icon_ques.png" @click="toYa" />
         </div>
       </div>
@@ -88,7 +88,7 @@
           <p>最少起订</p>
         </div>
         <div class="liveDetails_enter_list_right">
-          <p class="txt_medium">1个小时</p>
+          <p class="txt_medium">{{details.mini_time}}个小时</p>
           <img src="../../assets/con_icon_ques.png" @click="toMinimum" />
         </div>
       </div>
@@ -158,7 +158,9 @@ export default {
       current: 0,
       attentioning: true,
       loveSucess: false,
-      loveError: false
+      loveError: false,
+      details:{},
+
     };
   },
   methods: {
@@ -166,7 +168,7 @@ export default {
       this.current = index;
     },
     toAppointment() {
-      this.$router.push(`/appointment/${2}`);
+      this.$router.push(`/appointment/${2}/${this.$route.params.id}/${this.details.rent}`);
     },
     attention() {
       if(this.loveSucess || this.loveError){
@@ -209,6 +211,21 @@ export default {
     toUnsubscribe() {
       this.$router.push("/unsubscribe");
     }
+  },
+  mounted(){
+    let para = {
+      id:this.$route.params.id
+    }
+    this.$api.liveList.getDetails({id:this.$route.params.id}).then(res => {
+      console.log(res)
+      this.details = res.data.data.content
+      window.sessionStorage.setItem("liveDatas",JSON.stringify(this.details))
+      this.$store.commit('changeLiveDatas',this.details)
+      console.log("我是vuex")
+      console.log(this.$store.getters.liveDatas)
+      console.log("押金")
+      console.log(this.details)
+    })
   }
 };
 </script>

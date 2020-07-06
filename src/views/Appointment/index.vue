@@ -3,9 +3,6 @@
     <div class="appointment_banner">
       <img src="../../assets/ceshi.jpg" alt />
     </div>
-
-
-
     <div class="appointment_form">
       <div class="appointment_form_title">
         <p>厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</p>
@@ -198,7 +195,6 @@
             </div>
           </van-tab>
         </van-tabs>
-
         <div class="popup_bottom">
           <button @click="cancel2">重置</button>
           <button @click="confirm2">确定</button>
@@ -240,7 +236,7 @@ export default {
       },
       overTime: {
         id: 0,
-        week: "",
+        week: "今天06/01",
         time: ""
       },
       // 选择时间input内容
@@ -693,6 +689,7 @@ export default {
     },
     closeHoure() {
       this.showLives = false;
+      console.log(111)
       this.show = false;
     },
     showType() {
@@ -716,8 +713,6 @@ export default {
         week: "今天06/01",
         time: ""
       };
-      // this.duration = 0;
-      // this.activeNum = 0;
       this.timers.forEach(item => (item.active = false));
     },
     // 租房确定
@@ -730,7 +725,9 @@ export default {
       this.timerInput = `${this.overTime.week} ${this.startTime.time}-${this.overTime.time}`;
       this.showLives = false;
       this.form.time = this.timerInput;
-      this.cancel2();
+      
+      console.log(this.startTime)
+      console.log(this.overTime)
     },
     showHouse() {
       this.show = true;
@@ -747,6 +744,7 @@ export default {
       console.log("选择开始时间");
       this.startTime.id = item.id;
       this.startTime.time = item.time;
+      console.log(this.startTime)
       if (item.active) {
         item.active = false;
       } else {
@@ -756,10 +754,9 @@ export default {
     // 结束时间
     times2(item, index) {
       console.log("选择结束时间");
-      console.log(item);
-      console.log(index);
       this.overTime.id = item.id;
       this.overTime.time = item.time;
+      console.log(this.overTime)
       this.duration = this.overTime.id - this.startTime.id;
       if (this.duration < 0) {
         this.duration = this.duration * -1;
@@ -789,8 +786,10 @@ export default {
       }
     },
     clickItem(e) {
+      console.log(e.text)
       this.timerObj.time = e.text;
     },
+    // 提交数据
     toOrderForm() {
       let a = this.phone(this.form.phone);
       if (!a) {
@@ -804,11 +803,19 @@ export default {
           }
         }, 1000);
       } else {
-        // 成功
+        window.sessionStorage.setItem("formData",JSON.stringify(this.form))
+        window.sessionStorage.setItem("startTime",JSON.stringify(this.startTime))
+        window.sessionStorage.setItem("overTime",JSON.stringify(this.overTime))
+        window.sessionStorage.setItem("duration",JSON.stringify(this.duration))
+        this.$store.commit('changeFormData',this.form)
+        this.$store.commit('changeStartTime',this.startTime)
+        this.$store.commit('changeOverTime',this.overTime)
+        this.$store.commit('changeDuration',this.duration)
+        // console.log(this.duration)
+        // console.log(this.$store.getters.getOverTime)
         this.$router.push("/orderform");
-        // 失败
-        // this.$router.push("/paymenterr");
       }
+      this.cancel2()
     },
     // onChange1(name,title){
     //   console.log(name)
@@ -830,6 +837,7 @@ export default {
         return false;
       }
     },
+    // 立即下单
     subscribe() {
       let a = this.phone(this.form.phone);
       if (!a) {
@@ -843,14 +851,26 @@ export default {
           }
         }, 1000);
       } else {
-        this.show2 = true;
+        let start = (this.timerObj.time).split("-")
+        let para = {
+          id:(JSON.parse(window.sessionStorage.getItem('renting'))).id,
+          name:this.form.name,
+          phone:this.form.phone,
+          begin_time:start[0],
+          end_time:start[1],
+          use_date:this.timerObj.week
+        }
+        console.log(para)
+        this.$api.rentingList.subscribe(para).then(res => console.log(res))
+
+        // this.show2 = true;
+        
       }
     },
     // 选择开始天数
     vanClick(index, title, e) {
       console.log("选择开始天数");
       this.activeNum = index;
-      this.startTime.week = title;
       this.overTime.week = title;
       this.timers.map(item => (item.active = false));
       this.startTime.week = title;
@@ -860,6 +880,8 @@ export default {
       console.log("选择结束天数");
       this.activeNum = index;
       this.overTime.week = title;
+      this.startTime.week = title;
+      console.log(this.startTime.week)
       // this.startTime = {
       //   id: 0,
       //   week: title,
@@ -872,6 +894,7 @@ export default {
       // };
     },
     clickNav(e) {
+      console.log(e[0].time)
       this.timerObj.week = this.items[e].text;
     }
   }

@@ -1,20 +1,22 @@
 <template>
   <div class="contentList">
     <div
-      :class="{rentingList_content:true,rentingList_margin:this.$route.path == '/orderform'}"
-      @click="toWorkDetails"
+      v-for="item in getLiveLists"
+      :key="item.id"
+      :class="{rentingList_content:true,rentingList_margin:$route.path == '/orderform'}"
+      @click="toWorkDetails(item)"
     >
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
           <img src="../../assets/ceshi.jpg" alt />
         </div>
         <div class="rentingList_content_box_txt">
-          <div :class="{rentingList_content_box_txt_h1:true,form:this.$route.path == '/orderform'}">
+          <div :class="{rentingList_content_box_txt_h1:true,form:$route.path == '/orderform'}">
             <h1
-              :class="{txt_medium:true,form2:this.$route.path != '/orderform'}"
-            >软件谷科创城C1栋5楼504软件谷科创城C1栋5楼504</h1>
+              :class="{txt_medium:true,form2:$route.path != '/orderform'}"
+            >{{item.sapce_live_name}}</h1>
           </div>
-          <div class="rentingList_content_box_txt_span" v-show="this.$route.path != '/orderform'">
+          <div class="rentingList_content_box_txt_span" v-show="$route.path != '/orderform'">
             <div class="txt_min">
               <div class="rentingList_content_box_txt_span_img">
                 <img src="../../assets/zhibo_icon_adress_nor.png" alt />
@@ -22,13 +24,13 @@
               <div class="rentingList_content_box_txt_span_img_txt">软件谷科创城C2栋18楼1815</div>
             </div>
           </div>
-          <div class="zhanwei" v-show="!(this.$route.path != '/orderform')"></div>
+          <div class="zhanwei" v-show="!($route.path != '/orderform')"></div>
           <div class="rentingList_content_box_txt_card txt_card">
             <p>茶水间</p>
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p class="txt_money">¥4800/月</p>
+            <p class="txt_money">¥{{item.rent}}/月</p>
           </div>
         </div>
       </div>
@@ -39,16 +41,26 @@
 <script>
 export default {
   name: "contentList",
+  data(){
+    return {
+      liveLists:[]
+    }
+  },
   methods: {
-    toWorkDetails() {
-
+    toWorkDetails(e) {
+      console.log(e.id)
       if (this.$route.path == "/rentingList") {
         this.$router.push("/RentingDetails");
       } else if (this.$route.path == "/liveList") {
-        this.$router.push("/liveDetails");
+        this.$router.push({
+          path:`/liveDetails/${e.id}`
+        });
       }
     }
-  }
+  },
+  // props:{
+  //   getLiveLists:Array
+  // }
 };
 </script>
 
