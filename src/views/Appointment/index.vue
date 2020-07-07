@@ -156,7 +156,7 @@
                   :class="{'van_active':item.active}"
                   @click="times(item,index)"
                 >
-                  <p>{{item.time}}</p>
+                  <p :class="{'isBtn':item.isBtn}">{{item.time}}</p>
                 </li>
               </ul>
             </div>
@@ -248,7 +248,7 @@ export default {
       showLives: false,
       // 请选择预约时间
       timerObj: {
-        week: "06月01日(今天)",
+        week: "",
         time: ""
       },
       form: {
@@ -257,439 +257,140 @@ export default {
         time: ""
       },
       showAlert: false,
-      items: [
-        //   1
-        {
-          // 导航名称
-          text: "06月01日（今天）",
-          children: [
-            {
-              // 名称
-              text: "09:00-09:30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: false
-            },
-            {
-              text: "09:30-10:00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10:00-10:30(已约满)",
-              id: 3,
-              disabled: true,
-              className: "dis"
-            },
-            {
-              text: "11:00-11:30(已约满)",
-              id: 4,
-              disabled: true
-            },
-            {
-              text: "11:30-12:00(已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12:00-12:30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12:30-13:00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 2
-        {
-          // 导航名称
-          text: "06月02日（明天）",
-          children: [
-            {
-              // 名称
-              text: "09:00-09:30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09:30-10:00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10:00-10:30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11:00-11:30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11:30-12:00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12:00-12:30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12:30-13:00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 3
-        {
-          // 导航名称
-          text: "06月03日（周三）",
-          children: [
-            {
-              // 名称
-              text: "09:00-09:30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09:30-10:00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10：00-10：30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11：00-11：30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12：00-12：30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12：30-13：00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 4
-        {
-          // 导航名称
-          text: "06月04日（周四）",
-          children: [
-            {
-              // 名称
-              text: "09：00-09：30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09：30-10：00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10：00-10：30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11：00-11：30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12：00-12：30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12：30-13：00 (已约满)",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 5
-        {
-          // 导航名称
-          text: "06月05日（周五）",
-          children: [
-            {
-              // 名称
-              text: "09：00-09：30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09：30-10：00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10：00-10：30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11：00-11：30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12：00-12：30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12：30-13：00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 6
-        {
-          // 导航名称
-          text: "06月06日（周六）",
-          children: [
-            {
-              // 名称
-              text: "09：00-09：30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09：30-10：00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10：00-10：30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11：00-11：30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12：00-12：30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12：30-13：00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        },
-        // 7
-        {
-          // 导航名称
-          text: "06月07日（周日）",
-          children: [
-            {
-              // 名称
-              text: "09：00-09：30",
-              // id，作为匹配选中状态的标识符
-              id: 1,
-              // 禁用选项
-              disabled: true
-            },
-            {
-              text: "09：30-10：00",
-              id: 2,
-              disabled: false
-            },
-            {
-              text: "10：00-10：30",
-              id: 3,
-              disabled: false
-            },
-            {
-              text: "11：00-11：30",
-              id: 4,
-              disabled: false
-            },
-            {
-              text: "11：30-12：00 (已约满)",
-              id: 5,
-              disabled: true
-            },
-            {
-              text: "12：00-12：30",
-              id: 6,
-              disabled: false
-            },
-            {
-              text: "12：30-13：00",
-              id: 7,
-              disabled: false
-            }
-          ]
-        }
-      ],
+      items: [],
       activeId: 0,
       active: "null",
       activeIndex: 0,
-      timer: [
-        {
-          date: "今天",
-          date2: "06/01"
-        },
-        {
-          date: "明天",
-          date2: "06/02"
-        },
-        {
-          date: "周一",
-          date2: "06/03"
-        },
-        {
-          date: "周二",
-          date2: "06/04"
-        },
-        {
-          date: "周三",
-          date2: "06/05"
-        },
-        {
-          date: "周四",
-          date2: "06/06"
-        },
-        {
-          date: "周五",
-          date2: "06/07"
-        }
-      ],
+      timer: [],
       // 天数
-      timers: [
-        {
-          id: 1,
-          time: "10:00",
-          active: false
-        },
-        {
-          id: 2,
-          time: "11:00",
-          active: false
-        },
-        {
-          id: 3,
-          time: "12:00",
-          active: false
-        },
-        {
-          id: 4,
-          time: "13:00",
-          active: false
-        },
-        {
-          id: 5,
-          time: "14:00",
-          active: false
-        },
-        {
-          id: 6,
-          time: "15:00",
-          active: false
-        },
-        {
-          id: 7,
-          time: "16:00",
-          active: false
-        },
-        {
-          id: 8,
-          time: "17:00",
-          active: false
-        },
-        {
-          id: 9,
-          time: "18:00",
-          active: false
-        },
-        {
-          id: 10,
-          time: "19:00",
-          active: false
-        },
-        {
-          id: 11,
-          time: "20:00",
-          active: false
-        },
-        {
-          id: 12,
-          time: "21:00",
-          active: false
-        }
-      ]
+      timers: [],
+      week: ""
     };
   },
   mounted() {
     if (this.$route.params.type == 1) {
-      this.type = false;
+      for (let i = 0; i < 7; i++) {
+        this.items.push({
+          // 导航名称
+          id: i,
+          text: this.getDate(i),
+          children: []
+        });
+      }
+      this.timerObj.week = this.getDate(0);
+      this.getTime();
+    } else {
+      for (let i = 0; i < 7; i++) {
+        this.timer.push({
+          isBtn: true,
+          date: "",
+          date2: this.getDate(i)
+        });
+      }
+      this.getLiveTime();
     }
   },
   methods: {
-    onChange(name, title) {
-      console.log(name);
-      console.log(title);
+    // 租房时间接口
+    getTime() {
+      if (this.$route.params.type == 1) {
+        let id = JSON.parse(window.sessionStorage.getItem("renting")).id;
+        let myDate = new Date();
+        // 当前月份
+        let a = myDate.getMonth() + 1;
+        if (a < 10) {
+          a = "0" + a;
+        }
+        // 当前日期
+        let b = myDate.getDate();
+        if (b < 10) {
+          b = "0" + b;
+        }
+        // 组合排列 07月07日
+        let c = `${a}月${b}日`;
+        let para = {
+          space_work_id: id,
+          look_date: c
+        };
+        this.$api.rentingList.getTime(para).then(res => {
+          console.log(res);
+          res.data.data.config.map((item, index) => {
+            this.items[0].children.push({
+              // 名称
+              text: item,
+              // id，作为匹配选中状态的标识符
+              id: index + 1,
+              // 禁用选项
+              disabled: true
+            });
+          });
+          res.data.data.time.filter(item => {
+            for (let i = 0; i < this.items[0].children.length; i++) {
+              if (item == this.items[0].children[i].text) {
+                this.items[0].children[i].disabled = false;
+              }
+            }
+          });
+        });
+        this.type = false;
+      }
     },
-    onChange2(name, title) {
-      console.log(name);
-      console.log(title);
+    // 直播时间接口
+    getLiveTime() {
+      let id = JSON.parse(window.sessionStorage.getItem("liveDatas")).id;
+      let myDate = new Date();
+      // 当前月份
+      let a = myDate.getMonth() + 1;
+      if (a < 10) {
+        a = "0" + a;
+      }
+      // 当前日期
+      let b = myDate.getDate();
+      if (b < 10) {
+        b = "0" + b;
+      }
+      // 组合排列 07月07日
+      let c = `${a}月${b}日`;
+      let para = {
+        space_live_id: id,
+        use_date: c
+      };
+      this.$api.liveList.getLiveTime(para).then(res => {
+        res.data.data.config.map((item, index) => {
+          // 添加租房数据
+          this.timers.push({
+            id: index + 1,
+            time: item,
+            active: false,
+            full: true,
+            isBtn: false
+          });
+        });
+      });
+      this.startTime.week = this.getDate(0);
+      this.overTime.week = this.getDate(0);
     },
+    // 获取往后日期
+    getDate(aa) {
+      var date1 = new Date(),
+        time1 = +(date1.getMonth() + 1) + "-" + date1.getDate(); //time1表示当前时间
+      var date2 = new Date(date1);
+      date2.setDate(date1.getDate() + aa);
+      let a = date2.getMonth() + 1;
+      let b = date2.getDate();
+      if (a < 10) {
+        a = "0" + a;
+      }
+      if (b < 10) {
+        b = "0" + b;
+      }
+      var time2 = a + "月" + b + "日";
+      return time2;
+    },
+    onChange(name, title) {},
+    onChange2(name, title) {},
     closeHoure() {
       this.showLives = false;
-      console.log(111)
       this.show = false;
     },
     showType() {
@@ -703,16 +404,19 @@ export default {
       this.showLives = false;
     },
     cancel2() {
+      console.log("我重置了");
+      console.log(this.week);
       this.startTime = {
         id: 0,
-        week: "今天06/01",
+        week: this.week,
         time: ""
       };
       this.overTime = {
         id: 0,
-        week: "今天06/01",
+        week: this.week,
         time: ""
       };
+      this.duration = 0;
       this.timers.forEach(item => (item.active = false));
     },
     // 租房确定
@@ -725,9 +429,6 @@ export default {
       this.timerInput = `${this.overTime.week} ${this.startTime.time}-${this.overTime.time}`;
       this.showLives = false;
       this.form.time = this.timerInput;
-      
-      console.log(this.startTime)
-      console.log(this.overTime)
     },
     showHouse() {
       this.show = true;
@@ -736,27 +437,37 @@ export default {
       this.show2 = false;
       this.showLives = false;
       this.show = false;
-      this.$router.push("/rentingDetails");
+      this.$router.push("/rentingList");
     },
     showLive() {},
     // 开始时间
     times(item, index) {
+      console.log(item);
       console.log("选择开始时间");
       this.startTime.id = item.id;
       this.startTime.time = item.time;
-      console.log(this.startTime)
+      console.log(this.startTime);
       if (item.active) {
         item.active = false;
       } else {
         item.active = true;
       }
+      this.timers.map(item1 => {
+        if (item1.id < item.id) {
+          item1.isBtn = false
+          console.log()
+        }
+      });
+      console.log(this.timers)
+
     },
     // 结束时间
     times2(item, index) {
       console.log("选择结束时间");
+      console.log(item);
       this.overTime.id = item.id;
       this.overTime.time = item.time;
-      console.log(this.overTime)
+      this.week = this.overTime.week;
       this.duration = this.overTime.id - this.startTime.id;
       if (this.duration < 0) {
         this.duration = this.duration * -1;
@@ -786,7 +497,7 @@ export default {
       }
     },
     clickItem(e) {
-      console.log(e.text)
+      console.log(e.text);
       this.timerObj.time = e.text;
     },
     // 提交数据
@@ -803,19 +514,28 @@ export default {
           }
         }, 1000);
       } else {
-        window.sessionStorage.setItem("formData",JSON.stringify(this.form))
-        window.sessionStorage.setItem("startTime",JSON.stringify(this.startTime))
-        window.sessionStorage.setItem("overTime",JSON.stringify(this.overTime))
-        window.sessionStorage.setItem("duration",JSON.stringify(this.duration))
-        this.$store.commit('changeFormData',this.form)
-        this.$store.commit('changeStartTime',this.startTime)
-        this.$store.commit('changeOverTime',this.overTime)
-        this.$store.commit('changeDuration',this.duration)
+        window.sessionStorage.setItem("formData", JSON.stringify(this.form));
+        window.sessionStorage.setItem(
+          "startTime",
+          JSON.stringify(this.startTime)
+        );
+        window.sessionStorage.setItem(
+          "overTime",
+          JSON.stringify(this.overTime)
+        );
+        window.sessionStorage.setItem(
+          "duration",
+          JSON.stringify(this.duration)
+        );
+        this.$store.commit("changeFormData", this.form);
+        this.$store.commit("changeStartTime", this.startTime);
+        this.$store.commit("changeOverTime", this.overTime);
+        this.$store.commit("changeDuration", this.duration);
         // console.log(this.duration)
         // console.log(this.$store.getters.getOverTime)
         this.$router.push("/orderform");
       }
-      this.cancel2()
+      this.cancel2();
     },
     // onChange1(name,title){
     //   console.log(name)
@@ -851,25 +571,27 @@ export default {
           }
         }, 1000);
       } else {
-        let start = (this.timerObj.time).split("-")
+        console.log(this.timerObj.time);
+        let start = this.timerObj.time.split("-");
         let para = {
-          id:(JSON.parse(window.sessionStorage.getItem('renting'))).id,
-          name:this.form.name,
-          phone:this.form.phone,
-          begin_time:start[0],
-          end_time:start[1],
-          use_date:this.timerObj.week
-        }
-        console.log(para)
-        this.$api.rentingList.subscribe(para).then(res => console.log(res))
-
-        // this.show2 = true;
-        
+          id: JSON.parse(window.sessionStorage.getItem("renting")).id,
+          name: this.form.name,
+          phone: this.form.phone,
+          time: this.timerObj.time,
+          day: this.timerObj.week
+        };
+        console.log(para);
+        this.$api.rentingList.subscribe(para).then(res => {
+          console.log(res);
+          if (res.data.code === 200) {
+            console.log("成功");
+            this.show2 = true;
+          }
+        });
       }
     },
     // 选择开始天数
     vanClick(index, title, e) {
-      console.log("选择开始天数");
       this.activeNum = index;
       this.overTime.week = title;
       this.timers.map(item => (item.active = false));
@@ -881,20 +603,40 @@ export default {
       this.activeNum = index;
       this.overTime.week = title;
       this.startTime.week = title;
-      console.log(this.startTime.week)
-      // this.startTime = {
-      //   id: 0,
-      //   week: title,
-      //   time: ""
-      // };
-      // this.overTime = {
-      //   id: 0,
-      //   week: title,
-      //   time: ""
-      // };
+      console.log(this.startTime.week);
     },
     clickNav(e) {
-      console.log(e[0].time)
+      let time = "";
+      let dates = this.items.map(item => {
+        if (item.id == e) {
+          time = item;
+        }
+      });
+      let id = JSON.parse(window.sessionStorage.getItem("renting")).id;
+      let para = {
+        space_work_id: id,
+        look_date: time.text
+      };
+      this.$api.rentingList.getTime(para).then(res => {
+        res.data.data.config.map((item, index) => {
+          this.items[e].children.push({
+            // 名称
+            text: item,
+            // id，作为匹配选中状态的标识符
+            id: index + 1,
+            // 禁用选项
+            disabled: true
+          });
+        });
+        res.data.data.time.filter(item => {
+          for (let i = 0; i < this.items[e].children.length; i++) {
+            if (item == this.items[e].children[i].text) {
+              this.items[e].children[i].disabled = false;
+            }
+          }
+        });
+      });
+      console.log(this.items[e]);
       this.timerObj.week = this.items[e].text;
     }
   }
@@ -1230,5 +972,10 @@ div.appointment {
   color: rgba(0, 0, 0, 1);
   text-align: center;
   position: relative;
+}
+.isBtn {
+  background: #f4f4f4 !important;
+  color: #c7c7c7 !important;
+  opacity: 0.5;
 }
 </style>

@@ -6,6 +6,8 @@ const liveList = {
     getDetails: (params) => request({ url: `/live/details`, method: 'get', params }),
     // 直播下单
     purchase: data => request({ url: `/live/order`, method: 'post', data }),
+    // 获取预约时间
+    getLiveTime:data => request({url:`/live/gettime`,method:'post',data}),
     // 直播订单支付
     alipay: data => request({ url: '/alipay', method: 'post', data })
 }

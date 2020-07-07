@@ -43,10 +43,10 @@
 <script>
 export default {
   name: "contentList",
-  data(){
+  data() {
     return {
-      liveData:[]
-    }
+      liveData: []
+    };
   },
   methods: {
     toWorkDetails(e) {
@@ -57,11 +57,15 @@ export default {
       }
     }
   },
-  mounted(){
-    this.$api.rentingList.getRentingList().then(res => {
-      console.log(res)
-      this.liveData = res.data.msg.data
-    })
+  mounted() {
+    if (this.$route.path == "/aboutToSee") {
+    } else {
+      this.$api.rentingList.getRentingList().then(res => {
+        console.log("我在组件里拿到了数据")
+        console.log(res);
+        this.liveData = res.data.msg.data;
+      });
+    }
   }
 };
 </script>

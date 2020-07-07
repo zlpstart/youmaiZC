@@ -226,6 +226,7 @@ export default {
         use_date: this.startTime.week,
         order_name: this.liveDatas.sapce_live_name
       };
+      console.log(para)
       console.log(111)
       window.sessionStorage.setItem('money',(Number(this.liveDatas.rent * this.duration) + Number(this.liveDatas.deposit)))
       console.log(para);

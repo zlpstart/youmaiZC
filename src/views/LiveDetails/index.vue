@@ -168,7 +168,7 @@ export default {
       this.current = index;
     },
     toAppointment() {
-      this.$router.push(`/appointment/${2}/${this.$route.params.id}/${this.details.rent}`);
+      this.$router.push(`/appointment/${2}`);
     },
     attention() {
       if(this.loveSucess || this.loveError){

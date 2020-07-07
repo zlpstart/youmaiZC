@@ -58,9 +58,9 @@ export default {
       }
     }
   },
-  // props:{
-  //   getLiveLists:Array
-  // }
+  props:{
+    getLiveLists:Array
+  }
 };
 </script>
 

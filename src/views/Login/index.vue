@@ -73,6 +73,7 @@ export default {
         code: this.loginForm.verify
       };
       this.$api.login.login(para).then(res => {
+        // console.log(res)
         window.sessionStorage.setItem("userId", res.data.data.id);
         window.sessionStorage.setItem("key", 1);
         this.$router.push("/"); 

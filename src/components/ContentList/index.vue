@@ -60,6 +60,7 @@ export default {
   },
   mounted(){
     this.liveDatas = JSON.parse(window.sessionStorage.getItem('liveDatas'))
+    console.log(this.liveDatas.sapce_live_name)
   }
 };
 </script>
