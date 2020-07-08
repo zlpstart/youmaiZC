@@ -14,6 +14,9 @@
             <p>有麦会员</p>
           </div>
         </div>
+        <div class="setting" @click="set">
+          <img src="../../assets/icon_install_nor.png" alt="">
+        </div>
       </div>
       <div class="user_top_list">
         <div class="user_top_list_box" @click="toWallet">
@@ -203,6 +206,9 @@ export default {
     },
     toAbout() {
       this.$router.push("/about");
+    },
+    set(){
+      this.$router.push('/set')
     }
   },
   mounted(){
@@ -473,5 +479,12 @@ div.user {
 }
 .user_list .user_list_box:nth-child(5) .user_list_box_left_img img {
   margin-left: 2px;
+}
+.setting {
+  margin-left: 250px;
+}
+.setting img {
+  width: 44px;
+  height: 44px;
 }
 </style>

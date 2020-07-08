@@ -1,9 +1,10 @@
 <template>
-  <div class="couponUnused" >
-    <div class="couponUnused_box" v-for="item in coupon" :key="item.id">
+  <div class="couponUnused">
+    <div class="couponUnused_box" v-for="item in coupon" :key="item.id" v-show="coupon.length != 0">
       <div class="couponUnused_box_left">
         <h1>
-          <span>¥</span>{{item.discount_price}}
+          <span>¥</span>
+          {{item.discount_price}}
         </h1>
         <p>{{item.remake}}</p>
       </div>
@@ -11,6 +12,9 @@
         <h1>{{item.discount_name}}</h1>
         <p>{{item.created_at}}</p>
       </div>
+    </div>
+    <div class="miss" v-show="coupon.length == 0">
+      <img src="../../assets/img_quan.png" alt />
     </div>
   </div>
 </template>
@@ -20,7 +24,7 @@ export default {
   name: "couponUnused",
   data() {
     return {
-      coupon:[]
+      coupon: []
     };
   },
   props: [],

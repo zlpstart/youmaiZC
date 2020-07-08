@@ -177,7 +177,8 @@ export default {
       formData: {},
       startTime: {},
       overTime: {},
-      duration: ""
+      duration: "",
+      allTimeStr:''
     };
   },
   mounted() {
@@ -191,6 +192,8 @@ export default {
     this.overTime = JSON.parse(window.sessionStorage.getItem("overTime"));
     // 总共时长
     this.duration = JSON.parse(window.sessionStorage.getItem("duration"));
+    // 所有时间的字符串
+    this.allTimeStr = window.sessionStorage.getItem('allTimeStr')
   },
   computed: {
     ...mapGetters([
@@ -212,19 +215,16 @@ export default {
         id: this.liveDatas.id,
         name: this.formData.name,
         phone: this.formData.phone,
-        real_money:
-          Number(this.liveDatas.rent * this.duration) +
-          Number(this.liveDatas.deposit),
-        money:
-          Number(this.liveDatas.rent * this.duration) +
-          Number(this.liveDatas.deposit),
+        real_money:Number(this.liveDatas.rent * this.duration) +Number(this.liveDatas.deposit),
+        money:Number(this.liveDatas.rent * this.duration) + Number(this.liveDatas.deposit),
         deposit_money: this.liveDatas.deposit,
         discount_money: null,
         discount_id: null,
         begin_time: this.startTime.time,
         end_time: this.overTime.time,
         use_date: this.startTime.week,
-        order_name: this.liveDatas.sapce_live_name
+        order_name: this.liveDatas.sapce_live_name,
+        all_time:this.allTimeStr
       };
       console.log(para)
       console.log(111)

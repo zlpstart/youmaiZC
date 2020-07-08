@@ -43,6 +43,15 @@ export default {
   components: {
     RentingList,
     LiveList
+  },
+  mounted(){
+    let para = {
+      id:window.sessionStorage.getItem('userId'),
+      type:2
+    }
+    this.$api.attention.getAttention(para).then(res => {
+      console.log(res)
+    })
   }
 };
 </script>

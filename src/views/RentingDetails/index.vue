@@ -142,9 +142,6 @@ export default {
       this.$router.push(`/appointment/${1}`);
     },
     attention() {
-      if(this.loveSucess || this.loveError){
-
-      }else {
       this.attentioning = !this.attentioning;
       if (this.attentioning) {
         this.loveError = false;
@@ -165,7 +162,7 @@ export default {
           this.loveSucess = false;
         }, 1000);
       }
-      }
+
 
     },
     toMore() {
@@ -180,6 +177,7 @@ export default {
       id:this.$route.params.id
     }
     this.$api.rentingList.getDetails(para).then(res => {
+      console.log(res)
       window.sessionStorage.setItem('renting',JSON.stringify(res.data.data.content))
       this.rentingData = res.data.data.content
     })

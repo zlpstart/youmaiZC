@@ -16,6 +16,10 @@ import liveList from './api_all/liveList'
 import rentingList from './api_all/rentingList'
 // 约看
 import aboutToSee from './api_all/aboutToSee'
+// 修改密码
+import setPass from './api_all/setPass'
+// 我的关注
+import attention from './api_all/attention'
 
 
 const api = {
@@ -27,7 +31,9 @@ const api = {
     order,
     liveList,
     aboutToSee,
-    rentingList
+    rentingList,
+    setPass,
+    attention
 }
 
 export default api;

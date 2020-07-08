@@ -264,7 +264,11 @@ export default {
       timer: [],
       // 天数
       timers: [],
-      week: ""
+      week: "",
+      timeString: "",
+      // 所有天数（数组）
+      allTimes: [],
+      allTimesStr:''
     };
   },
   mounted() {
@@ -356,6 +360,7 @@ export default {
         use_date: c
       };
       this.$api.liveList.getLiveTime(para).then(res => {
+        console.log(res);
         res.data.data.config.map((item, index) => {
           // 添加租房数据
           this.timers.push({
@@ -439,7 +444,10 @@ export default {
       this.show = false;
       this.$router.push("/rentingList");
     },
-    showLive() {},
+    showLive(name, title) {
+      console.log(name);
+      console.log(title);
+    },
     // 开始时间
     times(item, index) {
       console.log(item);
@@ -454,12 +462,12 @@ export default {
       }
       this.timers.map(item1 => {
         if (item1.id < item.id) {
-          item1.isBtn = false
+          item1.isBtn = false;
           console.log()
+          console.log(item1);
         }
       });
-      console.log(this.timers)
-
+      console.log(this.timers);
     },
     // 结束时间
     times2(item, index) {
@@ -486,15 +494,23 @@ export default {
         this.timers.forEach(item => {
           if (item.id > this.startTime.id && item.id <= this.overTime.id) {
             item.active = true;
+            this.allTimes.push(this.startTime.time);
+            this.allTimes.push(item.time);
+            this.timeString = item.time + ",";
           }
+          this.allTimesStr = this.allTimes.toString()
         });
       } else {
         this.timers.forEach(item => {
           if (item.id <= this.startTime.id && item.id > this.overTime.id) {
             item.active = true;
+            console.log("item");
+            console.log(item.time);
+            this.timeString = item.time + ",";
           }
         });
       }
+      console.log(this.timeString);
     },
     clickItem(e) {
       console.log(e.text);
@@ -527,12 +543,11 @@ export default {
           "duration",
           JSON.stringify(this.duration)
         );
+        window.sessionStorage.setItem("allTimeStr",this.allTimesStr)
         this.$store.commit("changeFormData", this.form);
         this.$store.commit("changeStartTime", this.startTime);
         this.$store.commit("changeOverTime", this.overTime);
         this.$store.commit("changeDuration", this.duration);
-        // console.log(this.duration)
-        // console.log(this.$store.getters.getOverTime)
         this.$router.push("/orderform");
       }
       this.cancel2();
@@ -592,14 +607,41 @@ export default {
     },
     // 选择开始天数
     vanClick(index, title, e) {
+      this.timers = [];
+
+      this.getDataTime(title);
+
       this.activeNum = index;
       this.overTime.week = title;
       this.timers.map(item => (item.active = false));
       this.startTime.week = title;
     },
+    // 获取预约时间数据
+    getDataTime(title) {
+      let id = JSON.parse(window.sessionStorage.getItem("liveDatas")).id;
+      let para = {
+        space_live_id: id,
+        use_date: title
+      };
+      this.$api.liveList.getLiveTime(para).then(res => {
+        console.log(res);
+        res.data.data.config.map((item, index) => {
+          // 添加租房数据
+          this.timers.push({
+            id: index + 1,
+            time: item,
+            active: false,
+            full: true,
+            isBtn: false
+          });
+        });
+      });
+    },
     // 选择结束天数
     vanClick2(index, title) {
+      this.timers = [];
       console.log("选择结束天数");
+      this.getOverTime(title);
       this.activeNum = index;
       this.overTime.week = title;
       this.startTime.week = title;
@@ -923,12 +965,6 @@ div.appointment {
   transform: translate(-50%, -50%);
   z-index: 1;
 }
-// .startTime .van-tabs__wrap {
-//   backghr
-// }
-// .startTime .van-tabs__wrap {
-//   background: red !important;
-// }
 .startTime .van-tabs__wrap {
   background: red !important;
 }
@@ -977,5 +1013,9 @@ div.appointment {
   background: #f4f4f4 !important;
   color: #c7c7c7 !important;
   opacity: 0.5;
+}
+.van_content ul {
+  height: 355px;
+  overflow-y: auto;
 }
 </style>

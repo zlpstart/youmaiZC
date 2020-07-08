@@ -1,14 +1,15 @@
 <template>
   <div class="set">
-    <div class="set_box">
+    <div class="set_box" @click="toSetPassWord">
       <p>设置支付密码</p>
     </div>
-    <div class="set_box">
+    <div class="set_box" @click="amendPassWord">
       <p>修改支付密码</p>
     </div>
-    <div class="set_box">
+    <div class="set_box" @click="forgetPassWord">
       <p>忘记支付密码</p>
     </div>
+    <div class="uploging">退出登录</div>
   </div>
 </template>
 
@@ -17,6 +18,17 @@ export default {
   name: "",
   data() {
     return {};
+  },
+  methods: {
+    toSetPassWord() {
+      this.$router.push("/setPass");
+    },
+    amendPassWord() {
+      this.$router.push("/modificationPass");
+    },
+    forgetPassWord() {
+      this.$router.push("/setPass");
+    }
   }
 };
 </script>
@@ -35,6 +47,20 @@ div.set {
       font-weight: 500;
       color: rgba(51, 51, 51, 1);
     }
+  }
+  .uploging {
+    width: 690px;
+    height: 88px;
+    line-height: 88px;
+    text-align: center;
+    background: rgba(250, 151, 2, 1);
+    border-radius: 6px;
+    position: fixed;
+    bottom: 68px;
+    font-size: 32px;
+    font-family: PingFang-SC-Bold, PingFang-SC;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 1);
   }
 }
 </style>

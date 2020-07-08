@@ -10,7 +10,7 @@
       <input type="text" v-model="formFlem.password" placeholder="请输入支付密码" />
     </div>
     <div class="set_box">
-      <p>再次输入</p>
+      <p>确认密码</p>
       <input type="text" v-model="formFlem.twopassword" placeholder="请再次输入支付密码" />
     </div>
     <button

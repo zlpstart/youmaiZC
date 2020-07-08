@@ -41,25 +41,42 @@
 <script>
 export default {
   name: "contentList",
-  data(){
+  data() {
     return {
-      liveLists:[]
-    }
+      liveLists: []
+    };
   },
   methods: {
     toWorkDetails(e) {
-      console.log(e.id)
+      console.log(e.id);
       if (this.$route.path == "/rentingList") {
         this.$router.push("/RentingDetails");
+      } else if (this.$route.path == "/attention") {
+        let para = {
+          id: window.sessionStorage.getItem("userId"),
+          type: 1
+        };
+        this.$api.attention.getAttention(para).then(res => {
+          console.log(res);
+        });
+      } else if (this.$route.path == "indent") {
+        let para = {
+          id: window.sessionStorage.getItem("userId"),
+          status: 1
+        };
+        this.$api.attention.getAttention(para).then(res => {
+          console.log(res);
+        });
       } else if (this.$route.path == "/liveList") {
         this.$router.push({
-          path:`/liveDetails/${e.id}`
+          path: `/liveDetails/${e.id}`
         });
       }
     }
   },
-  props:{
-    getLiveLists:Array
+  mounted() {},
+  props: {
+    getLiveLists: Array
   }
 };
 </script>

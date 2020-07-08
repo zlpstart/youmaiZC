@@ -196,11 +196,16 @@ const routes = [
     component: resolve => (require(["@/views/SetPass/index.vue"], resolve))
   },
   // 修改支付密码
-  
   {
     path: '/modificationPass',
     name: 'modificationPass',
     component: resolve => (require(["@/views/ModificationPass/index.vue"], resolve))
+  },
+  // 忘记密码
+  {
+    path: '/forgetPass',
+    name: 'forgetPass',
+    component: resolve => (require(["@/views/ForgetPass/index.vue"], resolve))
   },
 ]
 

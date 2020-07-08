@@ -59,9 +59,17 @@ export default {
   },
   mounted() {
     if (this.$route.path == "/aboutToSee") {
+    } else if (this.$route.path == "/attention") {
+      let para = {
+        id:window.sessionStorage.getItem('userId'),
+        type:1
+      }
+      this.$api.attention.getAttention(para).then(res => {
+        console.log(res)
+      })
     } else {
       this.$api.rentingList.getRentingList().then(res => {
-        console.log("我在组件里拿到了数据")
+        console.log("我在组件里拿到了数据");
         console.log(res);
         this.liveData = res.data.msg.data;
       });

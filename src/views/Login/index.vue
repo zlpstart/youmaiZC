@@ -73,9 +73,10 @@ export default {
         code: this.loginForm.verify
       };
       this.$api.login.login(para).then(res => {
-        // console.log(res)
+        console.log(res)
         window.sessionStorage.setItem("userId", res.data.data.id);
         window.sessionStorage.setItem("key", 1);
+        window.sessionStorage.setItem('phone',this.loginForm.phone)
         this.$router.push("/"); 
       }).catch(err => console.log(err))
     },
@@ -88,9 +89,7 @@ export default {
       let para = {
         phone: this.loginForm.phone
       };
-      this.$api.login.getRegistersms(para).then(res => {
-        
-      });
+      this.$api.login.getRegistersms(para).then(res => {});
 
       let timer = setInterval(() => {
         this.timer -= 1;
