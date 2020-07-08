@@ -24,7 +24,8 @@ export default {
   name: "indent",
   data() {
     return {
-      active: 0
+      active: 0,
+      isData:{}
     };
   },
   components: {
@@ -39,7 +40,13 @@ export default {
     let para = {
       id:window.sessionStorage.getItem("userId")
     }
-    this.$api.order.getOrder(para).then(res => console.log(res))
+    this.$api.order.getOrder(para).then(res => {
+      console.log(res)
+      this.isData = res
+      if(res.data.code != 200){
+        this.show = true
+      }
+    })
   }
 };
 </script>

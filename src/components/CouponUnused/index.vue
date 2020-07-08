@@ -37,15 +37,7 @@ export default {
     };
   },
   mounted() {
-    let para = {
-      id: window.sessionStorage.getItem("userId")
-    };
-    this.$api.coupon.getCoupon(para).then(res => {
-      console.log(res.data.data);
-      this.coupon = res.data.data.filter(item => {
-        return item.status == 0;
-      });
-    });
+
   }
 };
 </script>

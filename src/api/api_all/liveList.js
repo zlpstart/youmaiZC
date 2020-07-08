@@ -11,7 +11,9 @@ const liveList = {
     // 直播订单支付
     alipay: data => request({ url: '/alipay', method: 'post', data }),
     // 支付密码确认
-    postPassWord:data => request({url:'/account/checkpwd',method:'post',data})
+    postPassWord:data => request({url:'/account/checkpwd',method:'post',data}),
+    // 直播订单支付
+    payPass:data => request({url:'/live/pay',method:'post',data})
 }
 
 export default liveList;

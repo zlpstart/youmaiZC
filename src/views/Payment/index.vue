@@ -9,17 +9,17 @@
     </div>
     <div class="payment_list">
       <van-radio-group v-model="radio">
-        <van-radio name="1" icon-size="24px">
+        <van-radio name="account" icon-size="24px">
           <img src="../../assets/img_vip.png" alt />
           <p>会员支付</p>
           <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
         </van-radio>
-        <van-radio name="2" icon-size="24px">
+        <van-radio name="wx" icon-size="24px">
           <img src="../../assets/img-weixin.png" alt />
           <p>微信支付</p>
           <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
         </van-radio>
-        <van-radio name="3" icon-size="24px">
+        <van-radio name="alipay" icon-size="24px">
           <img src="../../assets/icon-zhifubao-nor@3x.png" alt />
           <p>支付宝支付</p>
           <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
@@ -73,7 +73,7 @@ export default {
   name: "payment",
   data() {
     return {
-      radio: "1",
+      radio: "account",
       money: "",
       value: "",
       showKeyboard: true,
@@ -101,8 +101,20 @@ export default {
         this.$api.liveList.postPassWord(para).then(res => {
           if (res.data.code != 200) {
             this.errorInfo = res.data.msg;
+            this.value = ""
+          }else {
+            let para = {
+              id:(JSON.parse(window.sessionStorage.getItem("liveDatas"))).id,
+              paytype:this.radio
+            }
+            console.log(para)
+            this.$api.liveList.payPass(para).then(res => {
+              console.log(res)
+              if(res.data.code == 200){
+                this.$router.push('/paymentSucceed')
+              }
+            })
           }
-          console.log(res);
         });
         console.log(this.value);
       } else {
@@ -114,6 +126,8 @@ export default {
     },
     close() {
       this.isPass = false;
+      this.value = "";
+      this.errorInfo = ''
     }
   },
   mounted() {

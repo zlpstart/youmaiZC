@@ -55,14 +55,15 @@ export default {
       setSucess: false,
       setErr: false,
       timer: 60,
-      sentCode: true
+      sentCode: true,
+      overTime: 2
     };
   },
   methods: {
     getCode() {
       this.sentCode = false;
       this.timer = 60;
-      setInterval(() => {
+      let timer = setInterval(() => {
         this.timer -= 1;
         if (this.timer <= 0) {
           this.sentCode = true;
@@ -86,26 +87,27 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           this.setSucess = true;
-          let a = 2;
+          this.overTime = 2;
           let timer = setInterval(() => {
-            a--;
-            if (a <= 0) {
-              clearInterval("timer");
+            this.overTime--;
+            if (this.overTime <= 0) {
+              this.setSucess = false;
+              clearInterval(timer);
             }
           }, 1000);
         } else {
+          this.overTime = 2;
           console.log("失败了");
           this.setErr = true;
-          let a = 2;
           let timer = setInterval(() => {
-            a--;
-            if(a <=0){
-              this.setErr = false
+            this.overTime--;
+            console.log(this.overTime);
+            if (this.overTime <= 0) {
+              this.setErr = false;
+              clearInterval(timer);
+              console.log("哈哈哈");
             }
           }, 1000);
-          if (a <= 0) {
-            clearInterval("timer");
-          }
         }
       });
     }

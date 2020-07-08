@@ -2,22 +2,22 @@
   <div class="coupon">
     <van-tabs v-model="active">
       <van-tab title="未使用(3)">
-          <CouponUnused />
+        <CouponUnused />
       </van-tab>
       <van-tab title="已使用(3)">
-          <CouponFinish />
+        <CouponFinish />
       </van-tab>
       <van-tab title="已过期(3)">
-          <CouponPast />
+        <CouponPast />
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
-import CouponUnused from '../../components/CouponUnused/index'
-import CouponFinish from '../../components/CouponFinish/index'
-import CouponPast from '../../components/CouponPast/index'
+import CouponUnused from "../../components/CouponUnused/index";
+import CouponFinish from "../../components/CouponFinish/index";
+import CouponPast from "../../components/CouponPast/index";
 
 export default {
   name: "coupon",
@@ -26,10 +26,26 @@ export default {
       active: 0
     };
   },
-  components:{
-      CouponUnused,
-      CouponFinish,
-      CouponPast
+  components: {
+    CouponUnused,
+    CouponFinish,
+    CouponPast
+  },
+  mounted(){
+    this.getData()
+  },
+  methods: {
+    getData() {
+      let para = {
+        id: window.sessionStorage.getItem("userId")
+      };
+      this.$api.coupon.getCoupon(para).then(res => {
+        console.log(res);
+        this.coupon = res.data.data.filter(item => {
+          return item.status == 0;
+        });
+      });
+    }
   }
 };
 </script>

@@ -6,6 +6,7 @@ let root = process.env.BASE_API;// 会根据环境不同自动获取对应环境
 
 const request = axios.create({
     baseURL: 'http://192.168.50.89:81/api',//所有接口主域名，
+    // baseURL: 'http://maichuang.admin.iyoumai.net/api',//所有接口主域名，
     timeout: 50000, // 请求超时时间
     withCredentials:true,// 根据需是否开启，关于cookie是否需要被带入请求头，后端也要做改动
 });

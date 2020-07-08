@@ -20,15 +20,15 @@
     <div class="havePaid_timeCard padd">
       <div class="havePaid_timeCard_box">
         <p>开始时间</p>
-        <p>周三 06/01</p>
-        <p>15:00</p>
+        <p>{{this.dataList.startTime.week}}</p>
+        <p>{{this.dataList.startTime.time}}</p>
       </div>
       <div class="xianxian"></div>
       <div class="havePaid_timeCard_center">共5小时</div>
       <div class="havePaid_timeCard_box">
         <p>离开时间</p>
-        <p>周三 06/01</p>
-        <p>20:00</p>
+        <p>{{dataList.overTime.week}}</p>
+        <p>{{dataList.overTime.time}}</p>
       </div>
     </div>
     <div class="havePaid_import padd">
@@ -37,7 +37,7 @@
       </div>
       <div class="havePaid_import_right">
         <div class="havePaid_import_right_h1">
-          <h1>厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
+          <h1>{{dataList.liveDatas.sapce_live_name}}</h1>
         </div>
         <div class="havePaid_import_right_card">
           <div class="havePaid_import_right_card_box">茶水间</div>
@@ -45,7 +45,7 @@
         </div>
         
         <div class="havePaid_import_right_txt">
-          <p>250元/时起</p>
+          <p>{{dataList.liveDatas.rent}}元/时起</p>
         </div>
       </div>
     </div>
@@ -56,10 +56,10 @@
       <div class="havePaid_name_content">
         <div class="havePaid_name_content_left">
           <img src="../../assets/icon_people_nor.png" alt />
-          <p>王女士</p>
+          <p>{{dataList.formData.name}}</p>
         </div>
         <div class="havePaid_name_content_right">
-          <p>174****4561</p>
+          <p>{{dataList.formData.phone}}</p>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
           <p>下单时间</p>
         </div>
         <div class="havePaid_form_box_right">
-          <p>2020-06-01 16:25:29</p>
+          <p>{{dataList.liveDatas.created_at}}</p>
         </div>
       </div>
       <div class="havePaid_form_box_money">
@@ -86,15 +86,15 @@
             <p>订单总额</p>
           </div>
           <div class="havePaid_form_box_money_title_right">
-            <p>¥1250.00</p>
+            <p>¥{{dataList.money}}</p>
           </div>
         </div>
         <div class="havePaid_form_box_money_li">
           <div class="havePaid_form_box_money_li_left">
-            <p>房租费用(5小时)</p>
+            <p>房租费用({{dataList.duration}}小时)</p>
           </div>
           <div class="havePaid_form_box_money_li_right">
-            <p>¥1250.00</p>
+            <p>¥{{dataList.liveDatas.rent}}</p>
           </div>
         </div>
         <div class="havePaid_form_box_money_li">
@@ -102,7 +102,7 @@
             <p>押金</p>
           </div>
           <div class="havePaid_form_box_money_li_right">
-            <p>¥200.00</p>
+            <p>¥{{dataList.liveDatas.deposit}}</p>
           </div>
         </div>
         <div class="havePaid_form_box_money_li">
@@ -110,7 +110,7 @@
             <p>优惠券</p>
           </div>
           <div class="havePaid_form_box_money_li_right">
-            <p>-¥200.00</p>
+            <p>-0</p>
           </div>
         </div>
       </div>
@@ -129,8 +129,32 @@ export default {
   name: "",
   data() {
     return {
-      showTitle: true
+      showTitle: true,
+      dataList:{
+        startTime:{},
+        overTime:{},
+        liveDatas:{},
+        formData:{},
+        money:'',
+        duration:''
+      },
+      a:1
     };
+  },
+  mounted(){
+    this.getDataList()
+  },
+  methods:{
+    // 获取缓存数据
+    getDataList(){
+      this.dataList.startTime = JSON.parse(window.sessionStorage.getItem("startTime"))
+      this.dataList.overTime = JSON.parse(window.sessionStorage.getItem("overTime"))
+      this.dataList.liveDatas = JSON.parse(window.sessionStorage.getItem('liveDatas'))
+      this.dataList.duration = window.sessionStorage.getItem('duration')
+      this.dataList.formData = JSON.parse(window.sessionStorage.getItem("formData"))
+      this.dataList.money = window.sessionStorage.getItem('money')
+      console.log(this.dataList.liveDatas)
+    }
   },
   components: {
     contentList

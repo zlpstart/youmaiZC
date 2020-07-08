@@ -102,40 +102,25 @@
         </div>
         <div class="coupon_wrap_content">
           <van-tabs v-model="active">
-            <van-tab title="可用优惠券(3)">
-              <div class="couponUnused_box">
+            <van-tab :title="`可用优惠券(${use.length})`">
+              <div 
+                class="couponUnused_box" 
+                v-for="item in use" 
+                :key="item.id"
+              >
                 <div class="couponUnused_box_left">
                   <h1>
-                    <span>¥</span>100.00
+                    <span>¥</span>{{item.discount_price}}
                   </h1>
                   <p>满1000元可用</p>
                 </div>
                 <div class="couponUnused_box_right">
-                  <h1>服装电商直播基地专用抵扣券</h1>
+                  <h1>{{item.discount_name}}</h1>
                   <p>
                     <van-radio-group v-model="radio">
                       <van-radio name="1" icon-size="24px">
-                        <p>2020-06-01至2020-06-25</p>
-                        <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
-                      </van-radio>
-                    </van-radio-group>
-                  </p>
-                </div>
-              </div>
-              <div class="couponUnused_box">
-                <div class="couponUnused_box_left">
-                  <h1>
-                    <span>¥</span>100.00
-                  </h1>
-                  <p>满1000元可用</p>
-                </div>
-                <div class="couponUnused_box_right">
-                  <h1>服装电商直播基地专用抵扣券</h1>
-                  <p>
-                    <van-radio-group v-model="radio">
-                      <van-radio name="2" icon-size="24px">
-                        <p>2020-06-01至2020-06-25</p>
-                        <img slot="icon" src="../../assets/icon_gou_nor.png" alt />
+                        <p>{{item.created_at}}</p>
+                        <img slot="icon" src="../../assets/icon_gou_nor.png" @click="isDiscounts" alt />
                       </van-radio>
                     </van-radio-group>
                   </p>
@@ -178,22 +163,17 @@ export default {
       startTime: {},
       overTime: {},
       duration: "",
-      allTimeStr:''
+      allTimeStr: "",
+      discounts:[],
+      // 可用优惠券
+      use:[],
+      // 不可用优惠券
+      unUse:[]
     };
   },
   mounted() {
-    // 直播列表信息
-    this.liveDatas = JSON.parse(window.sessionStorage.getItem("liveDatas"));
-    // 个人信息
-    this.formData = JSON.parse(window.sessionStorage.getItem("formData"));
-    // 开始时间
-    this.startTime = JSON.parse(window.sessionStorage.getItem("startTime"));
-    // 结束时间
-    this.overTime = JSON.parse(window.sessionStorage.getItem("overTime"));
-    // 总共时长
-    this.duration = JSON.parse(window.sessionStorage.getItem("duration"));
-    // 所有时间的字符串
-    this.allTimeStr = window.sessionStorage.getItem('allTimeStr')
+    this.getData();
+    this.getDiscount();
   },
   computed: {
     ...mapGetters([
@@ -210,13 +190,48 @@ export default {
     CouponPast
   },
   methods: {
+    // 获取缓存数据
+    getData() {
+      // 直播列表信息
+      this.liveDatas = JSON.parse(window.sessionStorage.getItem("liveDatas"));
+      // 个人信息
+      this.formData = JSON.parse(window.sessionStorage.getItem("formData"));
+      // 开始时间
+      this.startTime = JSON.parse(window.sessionStorage.getItem("startTime"));
+      // 结束时间
+      this.overTime = JSON.parse(window.sessionStorage.getItem("overTime"));
+      // 总共时长
+      this.duration = JSON.parse(window.sessionStorage.getItem("duration"));
+      // 所有时间的字符串
+      this.allTimeStr = window.sessionStorage.getItem("allTimeStr");
+    },
+    // 请求优惠券数据
+    getDiscount(){
+      let para = {
+        id:window.sessionStorage.getItem("userId"),
+        status:0
+      }
+      this.$api.coupon.getCoupon(para).then(res => {
+        console.log("获取优惠券")
+        this.discounts = res.data.data
+        console.log(this.discounts)
+        this.use = res.data.data.filter(item => {
+          return item.status == 0
+        })
+      })
+    },
+    // 立即下单
     submit() {
       let para = {
         id: this.liveDatas.id,
         name: this.formData.name,
         phone: this.formData.phone,
-        real_money:Number(this.liveDatas.rent * this.duration) +Number(this.liveDatas.deposit),
-        money:Number(this.liveDatas.rent * this.duration) + Number(this.liveDatas.deposit),
+        real_money:
+          Number(this.liveDatas.rent * this.duration) +
+          Number(this.liveDatas.deposit),
+        money:
+          Number(this.liveDatas.rent * this.duration) +
+          Number(this.liveDatas.deposit),
         deposit_money: this.liveDatas.deposit,
         discount_money: null,
         discount_id: null,
@@ -224,15 +239,19 @@ export default {
         end_time: this.overTime.time,
         use_date: this.startTime.week,
         order_name: this.liveDatas.sapce_live_name,
-        all_time:this.allTimeStr
+        all_time: this.allTimeStr
       };
-      console.log(para)
-      console.log(111)
-      window.sessionStorage.setItem('money',(Number(this.liveDatas.rent * this.duration) + Number(this.liveDatas.deposit)))
+      console.log(para);
+      console.log(111);
+      window.sessionStorage.setItem(
+        "money",
+        Number(this.liveDatas.rent * this.duration) +
+          Number(this.liveDatas.deposit)
+      );
       console.log(para);
       this.$api.liveList.purchase(para).then(res => {
-        console.log("下单！！")
-        console.log(res)
+        console.log("下单！！");
+        console.log(res);
         if (res.data.code === 200) {
           this.$router.push("/payment");
         }
@@ -252,6 +271,9 @@ export default {
     },
     toAgreement2() {
       this.$router.push("/platformAgreement");
+    },
+    isDiscounts(){
+      console.log("我选中了优惠券")
     }
   }
 };

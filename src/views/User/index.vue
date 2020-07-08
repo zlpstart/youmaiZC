@@ -7,7 +7,7 @@
         </div>
         <div class="user_top_message_right">
           <div class="user_top_message_right_phone">
-            <p>174****2310</p>
+            <p>{{phone}}</p>
           </div>
           <div class="user_top_message_right_card">
             <img src="../../assets/vip_icon_vip_nor.png" alt />
@@ -185,7 +185,8 @@ export default {
         account:'',
         discount:'',
         follow:''
-      }
+      },
+      phone:''
     };
   },
   methods: {
@@ -220,7 +221,7 @@ export default {
       this.userData = Object.assign(this.userData,res.data)
       console.log(res)
     })
-    // this.$api.user.getUserData(para).then(res =>console.log(res))
+    this.phone = window.sessionStorage.getItem('phone')
   }
 };
 </script>
@@ -481,7 +482,7 @@ div.user {
   margin-left: 2px;
 }
 .setting {
-  margin-left: 250px;
+  margin-left: 230px;
 }
 .setting img {
   width: 44px;
