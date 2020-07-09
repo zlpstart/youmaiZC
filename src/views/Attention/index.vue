@@ -9,7 +9,7 @@
         </van-tab>
         <van-tab title="直播基地">
           <div class="attention_content">
-            <LiveList />
+            <LiveList :getLiveLists="getLiveLists" />
           </div>
         </van-tab>
       </van-tabs>
@@ -37,21 +37,24 @@ export default {
   data() {
     return {
       active: 0,
-      showAttention: false
+      showAttention: false,
+      getLiveLists: []
     };
   },
   components: {
     RentingList,
     LiveList
   },
-  mounted(){
+  mounted() {
     let para = {
-      id:window.sessionStorage.getItem('userId'),
-      type:2
-    }
+      id: window.sessionStorage.getItem("userId"),
+      type: 2
+    };
     this.$api.attention.getAttention(para).then(res => {
-      console.log(res)
-    })
+      console.log("我是直播基地")
+      console.log(res.data.data);
+      this.getLiveLists = res.data.data;
+    });
   }
 };
 </script>
@@ -93,7 +96,6 @@ div.box {
     }
   }
 }
-
 </style>
 
 <style scoped>

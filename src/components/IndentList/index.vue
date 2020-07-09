@@ -1,9 +1,9 @@
 <template>
   <div class="IndentList_wrap">
-    <div class="IndentList">
+    <div class="IndentList" v-for="item in isData" v-show="isData.length > 0" :key="item.id">
       <div class="IndentList_top">
         <div class="IndentList_top_left">
-          <p>订单编号：2020060414YM490231334</p>
+          <p>订单编号：{{item.order_num}}</p>
         </div>
         <div class="IndentList_top_right">
           <p>待支付</p>
@@ -15,28 +15,27 @@
         </div>
         <div class="IndentList_content_txt">
           <div class="IndentList_content_txt_title">
-            <h1>厨房单间直播间，软件谷科创城D区1栋5楼带电梯，配套齐全</h1>
+            <h1>{{item.sapce_live_name}}</h1>
           </div>
           <div class="IndentList_content_txt_card">
             <div class="IndentList_content_txt_card_box">茶水间</div>
             <div class="IndentList_content_txt_card_box">路演厅</div>
           </div>
           <div class="IndentList_content_txt_mach">
-            <p>250元/时起</p>
+            <p>{{item.rent}}元/时起</p>
             <p>*4</p>
           </div>
         </div>
       </div>
       <div class="IndentList_bottom">
         <div class="IndentList_bottom_timer">
-          <p>2020-06-30</p>
-          <p>11:53</p>
+          <p>{{item.created_at}}</p>
         </div>
         <div class="IndentList_bottom_queding">
           <div class="IndentList_bottom_queding_mach">
             <h1>
               总金额：
-              <span>¥1000.00</span>
+              <span>¥{{item.money}}</span>
             </h1>
           </div>
           <div
@@ -70,6 +69,9 @@
         </div>
       </div>
     </div>
+    <div class="miss" v-show="isData.length == 0">
+      <img src="../../assets/img_order.png" alt />
+    </div>
   </div>
 </template>
 
@@ -79,12 +81,48 @@ export default {
   data() {
     return {
       cancels: false,
-      showCancels: false
+      showCancels: false,
+      isData: []
     };
   },
   props: ["indentData"],
   mounted() {
-
+    let para = {
+      id: window.sessionStorage.getItem("userId"),
+      status: 1
+    };
+    if (this.indentData == 0) {
+      para.status = 1;
+      this.$api.order.getOrder(para).then(res => {
+        this.isData = res.data.data;
+        if (this.isData.length == 0) {
+          this.$emit("postState",'no');
+        }else {
+          this.$emit("postState",'yes');
+        }
+      });
+    } else if (this.indentData == 1) {
+      console.log("已完成");
+      para.status = 2;
+      this.$api.order.getOrder(para).then(res => {
+        this.isData = res.data.data;
+        if (this.isData.length == 0) {
+          this.$emit("postState",'no');
+        }else {
+          this.$emit("postState",'yes');
+        }
+      });
+    } else if (this.indentData == 3) {
+      para.status = -1;
+      this.$api.order.getOrder(para).then(res => {
+        this.isData = res.data.data;
+        if (this.isData.length == 0) {
+          this.$emit("postState",'no');
+        }else {
+          this.$emit("postState",'yes');
+        }
+      });
+    }
   },
   methods: {
     topayment() {

@@ -159,8 +159,7 @@ export default {
       attentioning: true,
       loveSucess: false,
       loveError: false,
-      details:{},
-
+      details: {}
     };
   },
   methods: {
@@ -171,29 +170,47 @@ export default {
       this.$router.push(`/appointment/${2}`);
     },
     attention() {
-      if(this.loveSucess || this.loveError){
-
-      }else {
-      this.attentioning = !this.attentioning;
-      if (this.attentioning) {
-        this.loveError = false;
-        this.loveError = true;
-        if(this.loveError){
-          this.loveSucess = false;
-        }
-        setTimeout(() => {
-          this.loveError = false;
-        }, 1000);
+      if (this.loveSucess || this.loveError) {
       } else {
-        this.loveSucess = false;
-        this.loveSucess = true;
-        if(this.loveSucess){
-          this.loveError = false;
+        this.attentioning = !this.attentioning;
+        if (this.attentioning) {
+          console.log("我要取消关注");
+          let para = {
+            id: this.details.follow_id
+          };
+          this.$api.liveList.unAttention(para).then(res => {
+            if (res.data.code == 200) {
+              this.loveError = false;
+              this.loveError = true;
+              if (this.loveError) {
+                this.loveSucess = false;
+              }
+              setTimeout(() => {
+                this.loveError = false;
+              }, 1000);
+            }
+          });
+        } else {
+          let para = {
+            id: window.sessionStorage.getItem("userId"),
+            follow_id: this.details.follow_id,
+            follow_type: this.details.follow_type
+          };
+          this.$api.liveList.attention(para).then(res => {
+            console.log(res);
+            if (res.data.code == 200) {
+              console.log("我要关注");
+              this.loveSucess = false;
+              this.loveSucess = true;
+              if (this.loveSucess) {
+                this.loveError = false;
+              }
+              setTimeout(() => {
+                this.loveSucess = false;
+              }, 1000);
+            }
+          });
         }
-        setTimeout(() => {
-          this.loveSucess = false;
-        }, 1000);
-      }
       }
     },
     toYa() {
@@ -212,20 +229,20 @@ export default {
       this.$router.push("/unsubscribe");
     }
   },
-  mounted(){
+  mounted() {
     let para = {
-      id:this.$route.params.id
-    }
-    this.$api.liveList.getDetails({id:this.$route.params.id}).then(res => {
-      console.log(res)
-      this.details = res.data.data.content
-      window.sessionStorage.setItem("liveDatas",JSON.stringify(this.details))
-      this.$store.commit('changeLiveDatas',this.details)
-      console.log("我是vuex")
-      console.log(this.$store.getters.liveDatas)
-      console.log("押金")
-      console.log(this.details)
-    })
+      id: this.$route.params.id
+    };
+    this.$api.liveList.getDetails({ id: this.$route.params.id }).then(res => {
+      this.details = res.data.data.content;
+      window.sessionStorage.setItem("liveDatas", JSON.stringify(this.details));
+      console.log(res.data.data.content);
+      if (res.data.data.content.status_follow == 1) {
+        this.attentioning = false;
+      } else {
+        this.attentioning = true;
+      }
+    });
   }
 };
 </script>

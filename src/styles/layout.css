@@ -588,6 +588,7 @@ label input[type="radio"]:checked:after {
     height: 602px;
     margin:0 auto;
     margin-top: 300px;
+    background: white;
 }
 .miss img {
     width: 100%;

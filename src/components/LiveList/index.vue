@@ -1,10 +1,11 @@
 <template>
-  <div class="contentList">
+  <div class="contentList indent">
     <div
       v-for="item in getLiveLists"
       :key="item.id"
       :class="{rentingList_content:true,rentingList_margin:$route.path == '/orderform'}"
       @click="toWorkDetails(item)"
+      v-show="getLiveLists.length > 0"
     >
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
@@ -30,10 +31,13 @@
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p class="txt_money">¥{{item.rent}}/月</p>
+            <p class="txt_money">¥{{item.rent || item.live_area}}/月</p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="miss" v-show="getLiveLists.length == 0">
+      <img src="../../assets/img_guanzhu.png" alt="">
     </div>
   </div>
 </template>
@@ -52,13 +56,7 @@ export default {
       if (this.$route.path == "/rentingList") {
         this.$router.push("/RentingDetails");
       } else if (this.$route.path == "/attention") {
-        let para = {
-          id: window.sessionStorage.getItem("userId"),
-          type: 1
-        };
-        this.$api.attention.getAttention(para).then(res => {
-          console.log(res);
-        });
+        console.log("eee")
       } else if (this.$route.path == "indent") {
         let para = {
           id: window.sessionStorage.getItem("userId"),
@@ -74,7 +72,9 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() {
+    
+  },
   props: {
     getLiveLists: Array
   }
@@ -154,4 +154,5 @@ div.rentingList_content {
 .rentingList_content_box_txt_span_img_txt {
   margin-left: 8px;
 }
+
 </style>

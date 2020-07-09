@@ -69,7 +69,7 @@
           <p>订单编号</p>
         </div>
         <div class="havePaid_form_box_right">
-          <p>2020060414YM490231334</p>
+          <p>{{order_num}}</p>
         </div>
       </div>
       <div class="havePaid_form_box">
@@ -136,13 +136,15 @@ export default {
         liveDatas:{},
         formData:{},
         money:'',
-        duration:''
+        duration:'',
       },
-      a:1
+      a:1,
+      order_num:''
     };
   },
   mounted(){
     this.getDataList()
+    this.getorderId()
   },
   methods:{
     // 获取缓存数据
@@ -153,7 +155,17 @@ export default {
       this.dataList.duration = window.sessionStorage.getItem('duration')
       this.dataList.formData = JSON.parse(window.sessionStorage.getItem("formData"))
       this.dataList.money = window.sessionStorage.getItem('money')
-      console.log(this.dataList.liveDatas)
+      console.log(this.dataList.liveList)
+    },
+    // 获取订单编号
+    getorderId(){
+      let para = {
+        id:window.sessionStorage.getItem('orderId')
+      }
+      this.$api.liveList.getOrderCode(para).then(res => {
+        this.order_num = res.data.data.order_num
+        console.log(res.data.data.order_num)
+      })
     }
   },
   components: {

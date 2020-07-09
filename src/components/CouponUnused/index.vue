@@ -32,13 +32,13 @@ export default {
   name: "couponUnused",
   data() {
     return {
-      radio: "1",
-      coupon: []
+      radio: "1"
     };
   },
   mounted() {
 
-  }
+  },
+  props:["coupon"]
 };
 </script>
 

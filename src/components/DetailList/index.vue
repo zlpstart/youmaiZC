@@ -1,26 +1,38 @@
 <template>
-  <div class="detailList">
-    <div class="detailList_left">
-      <div class="detailList_left_txt">
-        <h1>线上充值5000元</h1>
+  <div>
+    <div class="detailList" v-for="item in detail" :key="item.id">
+      <div class="detailList_left">
+        <div class="detailList_left_txt">
+          <!-- {{detail}} -->
+          <h1>{{item.order_name}}</h1>
+        </div>
+        <div class="detailList_left_card">
+          <p>微信支付</p>
+        </div>
       </div>
-      <div class="detailList_left_card">
-        <p>微信支付</p>
-      </div>
-    </div>
-    <div class="detailList_right">
-      <div class="detailList_right_tx">
-        <p>2020-06-20</p>
-      </div>
-      <div class="detailList_right_mach">
-        <p>+¥5000.00</p>
+      <div class="detailList_right">
+        <div class="detailList_right_tx">
+          <p>2020-06-20</p>
+        </div>
+        <div class="detailList_right_mach">
+          <p v-show="item.account_type == 'pay'">+¥5000.00</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "detailList",
+  data() {
+    return {};
+  },
+  mounted() {
+    console.log(this.detail);
+  },
+  props: ["detail"]
+};
 </script>
 
 <style lang="less" scoped>
@@ -42,7 +54,7 @@ div.detailList {
         max-width: 350px;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow:ellipsis;
+        text-overflow: ellipsis;
       }
     }
 

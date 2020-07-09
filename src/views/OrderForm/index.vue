@@ -118,9 +118,9 @@
                   <h1>{{item.discount_name}}</h1>
                   <p>
                     <van-radio-group v-model="radio">
-                      <van-radio name="1" icon-size="24px">
+                      <van-radio name="1" icon-size="24px" @click="isDiscounts(item)">
                         <p>{{item.created_at}}</p>
-                        <img slot="icon" src="../../assets/icon_gou_nor.png" @click="isDiscounts" alt />
+                        <img slot="icon" src="../../assets/icon_gou_nor.png"  alt />
                       </van-radio>
                     </van-radio-group>
                   </p>
@@ -251,7 +251,8 @@ export default {
       console.log(para);
       this.$api.liveList.purchase(para).then(res => {
         console.log("下单！！");
-        console.log(res);
+        console.log(res.data.id);
+        window.sessionStorage.setItem('orderId',res.data.id)
         if (res.data.code === 200) {
           this.$router.push("/payment");
         }
@@ -272,8 +273,9 @@ export default {
     toAgreement2() {
       this.$router.push("/platformAgreement");
     },
-    isDiscounts(){
+    isDiscounts(e){
       console.log("我选中了优惠券")
+      console.log(e)
     }
   }
 };

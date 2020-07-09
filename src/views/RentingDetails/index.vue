@@ -2,20 +2,11 @@
   <div class="liveDetails">
     <div class="liveDetails_wrap">
       <van-swipe @change="onChange" style="width:100%">
-        <van-swipe-item>
-          <img src="../../assets/ceshi.jpg" alt />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="../../assets/ceshi.jpg" alt />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="../../assets/ceshi.jpg" alt />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="../../assets/ceshi.jpg" alt />
+        <van-swipe-item v-for="item in imgArr" :key="item.id">
+          <img :src="item.img_url" alt />
         </van-swipe-item>
         <template #indicator>
-          <div class="custom-indicator">{{ current + 1 }}/4</div>
+          <div class="custom-indicator">{{ current + 1 }}/{{imgArr.length}}</div>
         </template>
       </van-swipe>
       <div class="liveDetails_wrap_title">
@@ -33,7 +24,7 @@
           </li>
           <li>
             <p class="txt_min">面积</p>
-            <h1 class="txt_money">面积 {{rentingData.office_area}}㎡</h1>
+            <h1 class="txt_money">{{rentingData.office_area}}㎡</h1>
           </li>
         </ul>
       </div>
@@ -131,7 +122,8 @@ export default {
       attentioning: true,
       loveSucess: false,
       loveError: false,
-      rentingData:{}
+      rentingData:{},
+      imgArr:[]
     };
   },
   methods: {
@@ -144,6 +136,7 @@ export default {
     attention() {
       this.attentioning = !this.attentioning;
       if (this.attentioning) {
+        console.log("我要取消关注")
         this.loveError = false;
         this.loveError = true;
         if(this.loveError){
@@ -153,6 +146,13 @@ export default {
           this.loveError = false;
         }, 1000);
       } else {
+        console.log("我要关注")
+        let para = {
+          id:window.sessionStorage.getItem('userId'),
+          follow_id:this.rentingData.follow_id,
+          follow_type:1
+        }
+        this.$api.liveList.attention(para).then(res => console.log(res))
         this.loveSucess = false;
         this.loveSucess = true;
         if(this.loveSucess){
@@ -177,9 +177,11 @@ export default {
       id:this.$route.params.id
     }
     this.$api.rentingList.getDetails(para).then(res => {
-      console.log(res)
+      // console.log(res.data.data)
       window.sessionStorage.setItem('renting',JSON.stringify(res.data.data.content))
-      this.rentingData = res.data.data.content
+      this.rentingData = res.data.data.content[0]
+      this.imgArr = res.data.data.imgs
+      console.log(this.rentingData)
     })
   }
 };

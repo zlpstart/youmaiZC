@@ -13,7 +13,13 @@ const liveList = {
     // 支付密码确认
     postPassWord:data => request({url:'/account/checkpwd',method:'post',data}),
     // 直播订单支付
-    payPass:data => request({url:'/live/pay',method:'post',data})
+    payPass:data => request({url:'/live/pay',method:'post',data}),
+    // 获取单号编码
+    getOrderCode:data => request({url:'/order/orderdetails',method:'post',data}),
+    // 我要关注
+    attention:data => request({url:'/follow/clickfollow',method:'post',data}),
+    // 我要取消关注
+    unAttention:data => request({url:'/follow/cancelfollow',method:'post',data})
 }
 
 export default liveList;

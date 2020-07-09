@@ -1,6 +1,6 @@
 <template>
   <div class="couponUnused">
-    <div class="couponUnused_box" v-for="item in coupon" :key="item.id" v-show="coupon.length != 0">
+    <div class="couponUnused_box" v-for="item in unCoupon" :key="item.id" v-show="unCoupon.length != 0">
       <div class="couponUnused_box_left">
         <h1>
           <span>¥</span>
@@ -13,7 +13,7 @@
         <p>{{item.created_at}}</p>
       </div>
     </div>
-    <div class="miss" v-show="coupon.length == 0">
+    <div class="miss" v-show="unCoupon.length == 0">
       <img src="../../assets/img_quan.png" alt />
     </div>
   </div>
@@ -24,20 +24,10 @@ export default {
   name: "couponUnused",
   data() {
     return {
-      coupon: []
+
     };
   },
-  props: [],
-  mounted() {
-    let para = {
-      id: window.sessionStorage.getItem("userId")
-    };
-    this.$api.coupon.getCoupon(para).then(res => {
-      this.coupon = res.data.data.filter(item => {
-        return item.status == 1;
-      });
-    });
-  }
+  props: ["unCoupon"]
 };
 </script>
 

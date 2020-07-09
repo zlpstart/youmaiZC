@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="aboutToSee" v-for="item in look" :key="item.space_work_id">
+    <div class="aboutToSee" v-for="item in look" v-show="look.length > 0" :key="item.space_work_id">
       <div class="aboutToSee_top">
         <div class="aboutToSee_top_txt">
           <p>{{item.look_date}} {{item.look_time}}</p>
@@ -11,7 +11,6 @@
       </div>
       <div class="aboutToSee_content">
         <div class="aboutToSee_content_box">
-          <!-- <LiveList :getLiveLists="look"/> -->
           <div class="contentList">
             <div
               :class="{rentingList_content:true,rentingList_margin:true}"
@@ -59,6 +58,9 @@
         </div>
       </div>
     </div>
+    <div class="miss" v-show="look.length == 0">
+      <img src="../../assets/img_visit.png" alt="">
+    </div>
   </div>
 </template>
 
@@ -87,6 +89,7 @@ export default {
         console.log("我在模块里请求到了数据");
         console.log(res.data.data);
         this.look = res.data.data;
+        // this.look = [];
         this.work = res.data.data.work;
       });
     }

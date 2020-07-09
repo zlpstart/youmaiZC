@@ -1,10 +1,11 @@
 <template>
   <div class="contentList">
     <div
-      v-for="item in liveData"
+      v-for="item in (liveData)"
       :key="item.id"
       :class="{rentingList_content:true,rentingList_margin:$route.path == '/orderform'}"
       @click="toWorkDetails(item)"
+      v-show="liveData.length > 0"
     >
       <div class="rentingList_content_box">
         <div class="rentingList_content_box_img">
@@ -32,10 +33,13 @@
             <p>路演厅</p>
           </div>
           <div class="rentingList_content_box_txt_money">
-            <p class="txt_money">¥{{item.price}}/月</p>
+            <p class="txt_money">¥{{item.price || item.office_area}}/月</p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="miss" v-show="liveData.length == 0">
+      <img src="../../assets/img_guanzhu.png" alt="">
     </div>
   </div>
 </template>
@@ -61,12 +65,13 @@ export default {
     if (this.$route.path == "/aboutToSee") {
     } else if (this.$route.path == "/attention") {
       let para = {
-        id:window.sessionStorage.getItem('userId'),
-        type:1
-      }
+        id: window.sessionStorage.getItem("userId"),
+        type: 1
+      };
       this.$api.attention.getAttention(para).then(res => {
-        console.log(res)
-      })
+        console.log(res.data.data);
+        this.liveData = res.data.data;
+      });
     } else {
       this.$api.rentingList.getRentingList().then(res => {
         console.log("我在组件里拿到了数据");

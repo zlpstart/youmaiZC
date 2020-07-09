@@ -1,9 +1,15 @@
 <template>
   <div class="couponUnused">
-    <div class="couponUnused_box" v-for="item in coupon" :key="item.id" v-show="coupon.length != 0">
+    <div
+      class="couponUnused_box"
+      v-for="item in isCoupon"
+      :key="item.id"
+      v-show="isCoupon.length != 0"
+    >
       <div class="couponUnused_box_left">
         <h1>
-          <span>¥</span>{{item.discount_price}}
+          <span>¥</span>
+          {{item.discount_price}}
         </h1>
         <p>{{item.remake}}</p>
       </div>
@@ -12,8 +18,8 @@
         <p>{{item.created_at}}</p>
       </div>
     </div>
-        <div class="miss" v-show="coupon.length == 0">
-      <img src="../../assets/img_quan.png" alt="">
+    <div class="miss" v-show="isCoupon.length == 0">
+      <img src="../../assets/img_quan.png" alt />
     </div>
   </div>
 </template>
@@ -22,22 +28,10 @@
 export default {
   name: "couponUnused",
   data() {
-    return {
-      coupon:[]
-    };
+    return {};
   },
-  props: [],
-  mounted() {
-    let para = {
-      id: window.sessionStorage.getItem("userId")
-    };
-    this.$api.coupon.getCoupon(para).then(res => {
-      console.log(res.data.data);
-      this.coupon = res.data.data.filter(item => {
-        return item.status == 1;
-      });
-    });
-  }
+  props: ["isCoupon"],
+  mounted() {}
 };
 </script>
 
@@ -52,7 +46,7 @@ div.couponUnused {
     margin: auto;
     margin-top: 30px;
     height: 200px;
-    background: url("../../assets/img_quan_press (1).png") no-repeat center;
+    background: url("../../assets/img_quan_press.png") no-repeat center;
     background-size: 100%;
     display: flex;
     opacity: 0.5;

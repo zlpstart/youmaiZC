@@ -1,17 +1,17 @@
 <template>
-  <div class="indent">
+  <div :class="{indent:state == 'yes'}">
     <van-tabs v-model="active" @click="changeIndent">
       <van-tab title="全部">
-        <IndentList :indentData="active" />
+        <IndentList @postState="postState" :indentData="active" />
       </van-tab>
       <van-tab title="已完成">
-        <IndentList :indentData="active" />
+        <IndentList @postState="postState" :indentData="active" />
       </van-tab>
       <van-tab title="待支付">
-        <IndentList :indentData="active" />
+        <IndentList @postState="postState" :indentData="active" />
       </van-tab>
       <van-tab title="已取消">
-        <IndentList :indentData="active" />
+        <IndentList @postState="postState" :indentData="active" />
       </van-tab>
     </van-tabs>
   </div>
@@ -25,7 +25,8 @@ export default {
   data() {
     return {
       active: 0,
-      isData:{}
+      isData:{},
+      state:''
     };
   },
   components: {
@@ -34,19 +35,15 @@ export default {
   methods:{
     changeIndent(name,title){
       this.active = name;
+    },
+    postState(e){
+      console.log("我是父组件")
+      console.log(e)
+      this.state = e
     }
   },
   mounted(){
-    let para = {
-      id:window.sessionStorage.getItem("userId")
-    }
-    this.$api.order.getOrder(para).then(res => {
-      console.log(res)
-      this.isData = res
-      if(res.data.code != 200){
-        this.show = true
-      }
-    })
+
   }
 };
 </script>
